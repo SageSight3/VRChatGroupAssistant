@@ -54,7 +54,7 @@ pub async fn log_group_member_counts(account: &Configuration, target_group_id: &
     let member_counts = format!("online: {}, total: {}", member_counts.online, member_counts.total);
 
     //Build log entry
-    let log_entry = format!("[{}], [{}], {}, {}, {}, {}\n",
+    let log_entry = format!("{}, {}, {}, {}, {}, {}\n",
         month,
         year,
         date,
