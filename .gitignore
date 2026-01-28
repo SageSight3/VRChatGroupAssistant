@@ -3,3 +3,4 @@
 /storage/cookies
 /storage/target_group
 /data/activity_log
+/gui/__pycache__

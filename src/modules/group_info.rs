@@ -27,6 +27,7 @@ struct MemberCounts {
     total: i32
 }
 
+//Log the date and time, and online and total member counts of target group in activity_log file
 pub async fn log_group_member_counts(account: &Configuration, target_group_id: &str) {
     
     let member_counts = get_group_member_counts(account, target_group_id).await;
@@ -73,6 +74,7 @@ pub async fn log_group_member_counts(account: &Configuration, target_group_id: &
     log_file.write_all(log_entry.as_bytes()).expect("Failed to write log entry to activity log file");
 }
 
+//Query the VRChat API and return the values for target group's online and total member counts
 async fn get_group_member_counts(account: &Configuration, target_group_id: &str) -> MemberCounts {
 
     //Get target group's full info
@@ -96,6 +98,7 @@ async fn get_group_member_counts(account: &Configuration, target_group_id: &str)
     member_counts
 }
 
+//Query the VRChat API and return the group id for the group in target_group file
 pub async fn get_target_group_id(account: &Configuration) -> Result<String, GroupSearchResultError> {
 
     //Read and organize target group info for group search
@@ -142,6 +145,7 @@ pub async fn get_target_group_id(account: &Configuration) -> Result<String, Grou
     }
 }
 
+//Get group info from target_group file and return it in a GroupInfo struct
 fn get_group_info() -> GroupInfo {
     let target_group_file: Vec<String> = read_to_string("storage/target_group")
         .expect("Target group not found")

@@ -11,7 +11,7 @@ use std::sync::Arc;
 
 use super::util;
 
-//login to VRChat and return config for future API calls
+//Login to VRChat and return config for future API calls
 pub async fn login() -> Configuration {
 
     //Initialize account config
@@ -82,7 +82,7 @@ async fn load_stored_cookies(config: &mut Configuration) -> Arc<Jar> {
     jar
 }
 
-//prompt user for 2fa code and verify
+//Prompt user for 2fa code and verify
 async fn do_2fa(config: &mut Configuration, requires_2fa: RequiresTwoFactorAuth) {
 
     if requires_2fa.requires_two_factor_auth
@@ -115,7 +115,7 @@ async fn do_2fa(config: &mut Configuration, requires_2fa: RequiresTwoFactorAuth)
     }
 }
 
-//write cookies to cookies file
+//Write cookies to cookies file
 async fn store_cookies(cookies: Arc<Jar>) {
     let current_cookies = cookies
         .cookies(&url::Url::from_str("https://api.vrchat.cloud").expect("Url not okay"))
@@ -130,7 +130,7 @@ async fn store_cookies(cookies: Arc<Jar>) {
     }
 }
 
-//makes a Configuration from data in config_info file
+//Makes a Configuration from data in config_info file
 fn make_config() -> Configuration {
 
     //https://doc.rust-lang.org/std/fs/fn.read_to_string.html
@@ -142,7 +142,7 @@ fn make_config() -> Configuration {
 
     let username: String = config_info[0].to_owned();
     let password: String = config_info[1].to_owned();
-    let my_user_agent: String = format!("VRChatGroupAssistant/0.2.0 {}", config_info[2]);
+    let my_user_agent: String = config_info[2].to_owned();
 
     let mut config = Configuration::default();
     config.basic_auth = 
