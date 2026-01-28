@@ -117,6 +117,7 @@ pub async fn get_target_group_id(account: &Configuration) -> Result<String, Grou
         |group| 
             *group.short_code.as_ref().unwrap() == target_group_info.short_code 
             && *group.discriminator.as_ref().unwrap() == target_group_info.discriminator
+            && *group.name.as_ref().unwrap() == target_group_info.name
     ).collect();
 
     /*Verify the target group's been found. There should only be one result
