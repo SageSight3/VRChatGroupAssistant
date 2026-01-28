@@ -1,0 +1,158 @@
+use std::fs::read_to_string;
+use vrchatapi::apis::groups_api;
+use vrchatapi::apis::configuration::Configuration;
+use vrchatapi::models::LimitedGroup;
+use std::result::Result;
+use chrono::{self, Datelike};
+use std::fs::{OpenOptions};
+use std::io::Write;
+
+#[derive(Debug, Clone)]
+struct GroupInfo {
+    name: String,
+    short_code: String,
+    discriminator: String,
+}
+
+#[derive(Debug)]
+pub enum GroupSearchResultError {
+    MultipleMatchesError,
+    NoMatchesError,
+    UnknownError
+}
+
+#[derive(Debug, Clone)]
+struct MemberCounts {
+    online: i32,
+    total: i32
+}
+
+pub async fn log_group_member_counts(account: &Configuration, target_group_id: &str) {
+    
+    let member_counts = get_group_member_counts(account, target_group_id).await;
+
+    //Get time of log entry
+    let now = chrono::Local::now();
+
+    //Create log entry
+
+    //Format time info
+    let time = format!("{}", now.time().format("%H:%M"));
+    let date = format!("{}", now.date_naive());
+    let weekday = format!("{}", now.date_naive().weekday());
+
+    //converts month from u32 to it's name
+    //https://docs.rs/chrono/latest/chrono/enum.Month.html
+    let month = chrono::Month::try_from(
+            u8::try_from(now.date_naive().month())
+            .unwrap()
+    ).ok();
+    let month = format!("{:?}", month.unwrap());
+    let year = format!("{}", now.date_naive().year());
+
+    //Format member counts
+    let member_counts = format!("online: {}, total: {}", member_counts.online, member_counts.total);
+
+    //Build log entry
+    let log_entry = format!("[{}], [{}], {}, {}, {}, {}\n",
+        month,
+        year,
+        date,
+        weekday,
+        time,
+        member_counts
+    );
+
+    //write log entry to log file
+    let mut log_file = OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open("data/activity_log")
+        .expect("Failed to open activity log file");
+
+    log_file.write_all(log_entry.as_bytes()).expect("Failed to write log entry to activity log file");
+}
+
+async fn get_group_member_counts(account: &Configuration, target_group_id: &str) -> MemberCounts {
+
+    //Get target group's full info
+    let target_group_full_info = groups_api::get_group(
+        account, 
+        target_group_id, 
+        Some(false)
+    ).await.expect(
+        "Bad response in getting target group full info. Function: get_group_member_counts()"
+    );
+
+    //Get active member counts
+    let online_member_count = target_group_full_info.online_member_count.unwrap();
+    let total_member_count = target_group_full_info.member_count.unwrap();
+
+    let member_counts = MemberCounts {
+        online: online_member_count,
+        total: total_member_count
+    };
+
+    member_counts
+}
+
+pub async fn get_target_group_id(account: &Configuration) -> Result<String, GroupSearchResultError> {
+
+    //Read and organize target group info for group search
+    let target_group_info = get_group_info();
+
+    //Search for target group, will return limited group
+    //Search groups with or close to target group's name
+    let query = target_group_info.name.as_str();
+    let groups_search_result = groups_api::search_groups(
+        account, 
+        Some(query), 
+        Some(0), 
+        Some(100)
+    ).await.expect("Bad response in group search. Function: get_target_group_id()");
+
+    //Filter results for target group using the target group's short code and discriminator
+    //Both group short code and discriminator are plainly visible in VRChat and on VRChat's website
+    let filter_for_target_group: Vec<LimitedGroup> = groups_search_result.into_iter().filter(
+        |group| 
+            *group.short_code.as_ref().unwrap() == target_group_info.short_code 
+            && *group.discriminator.as_ref().unwrap() == target_group_info.discriminator
+    ).collect();
+
+    /*Verify the target group's been found. There should only be one result
+    * If we have, return the group's id.
+    * If we don't, return one of three errors:
+    * Multiple Matches Found
+    * No Matches Found
+    * Unknown Error */
+    let filter_len = filter_for_target_group.len();
+    if filter_len == 1 {
+
+        let target_group = filter_for_target_group[0].to_owned();
+        let target_group_id = target_group.id.to_owned().expect("Target group id not found");
+
+        Ok(target_group_id)
+    } else if filter_len == 0 {
+        Err(GroupSearchResultError::NoMatchesError)
+    } else if filter_len > 1 {
+        Err(GroupSearchResultError::MultipleMatchesError)
+    } else {
+        Err(GroupSearchResultError::UnknownError)
+    }
+}
+
+fn get_group_info() -> GroupInfo {
+    let target_group_file: Vec<String> = read_to_string("storage/target_group")
+        .expect("Target group not found")
+        .lines()
+        .map(String::from)
+        .collect();
+
+    let target_group_info =  GroupInfo {
+        name: target_group_file[0].to_owned(),
+        short_code: target_group_file[1].to_owned(),
+        discriminator: target_group_file[2].to_owned()
+    };
+
+    target_group_info
+}

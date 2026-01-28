@@ -1,0 +1,28 @@
+{
+    "model": [
+        {
+            "dayOfWeek": "a day of the week",
+            "date": "in format of <monthName> <dayOfMonth>, <year>",
+            "data": [
+                {
+                    "time": "00:00",
+                    "online": 4, //an int value of the number of members in the group online
+                    "total": 200 //an int value of the group's total size
+                },
+                {
+                    "time": "01:00",
+                    "online": 4, //an int value of the number of members in the group online
+                    "total": 200 //an int value of the group's total size
+                },
+                .
+                .
+                .
+                {
+                    "time": "23:00",
+                    "online": 4, //an int value of the number of members in the group online
+                    "total": 200 //an int value of the group's total size
+                }
+            ]
+        }
+    ]
+}
