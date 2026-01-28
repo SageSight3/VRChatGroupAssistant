@@ -6,25 +6,31 @@ import re
 path = "/../data/activity_log"
 
 # os.path.dirname(__file__) gets the absolute path to this file
-file = open(os.path.dirname(__file__) + path, 'r')
+log_file = open(os.path.dirname(__file__) + path, 'r')
 
 times = []
 online_counts = []
 total_counts = []
 title = ""
+    
+log_file_entries = list(map(lambda log_entry: log_entry.strip().split(", "), log_file.readlines()))
 
-for line in file:
-    line_formatted = line
-    line_formatted = line_formatted.strip()
+# the element at index 2 in an entry is the date it was logged
+# target_date_entries = list(filter(lamda entry: entry[2] == <a_date>, log_file_entries))
 
-    line_formatted = line_formatted.split(", ")
+for entry in log_file_entries:
+    times.append(entry[4]) # element at index 4 of entry is time
 
-    pattern = r'\d+'
+    pattern = r'\d+' # regexing to isolate member count values from their labels
+    # element at index 5 of entry is online member count
+    online_counts.append(int(re.findall(pattern, entry[5])[0])) 
+    # element at index 6 of entry is group total member count
+    total_counts.append(int(re.findall(pattern, entry[6])[0]))
 
-    times.append(line_formatted[4])
-    online_counts.append(int(re.findall(pattern, line_formatted[5])[0]))
-    total_counts.append(int(re.findall(pattern, line_formatted[6])[0]))
-    title = line_formatted[3] + " " + line_formatted[2]
+    # element at index 3 is day of the week, element at index 2
+    title = entry[3] + " " + entry[2]
+
+# Graph Data
 
 # First Graph
 
@@ -55,3 +61,5 @@ ax.set_xticks(label_location + width/2, times)
 ax.set_ylim(0, max(total_counts) + 50)
 
 plt.show()
+
+log_file.close()
