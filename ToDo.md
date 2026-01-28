@@ -12,3 +12,4 @@
 * Graph should have different bars to signify times the program wasn't running
 * Have login window and window for group info input
 * Have hub for expansion
+* Have list of buttons, where each button is for a specific date, that when pressed will pop up the active member counts graph for that day. Use the date field in the log entries for this
