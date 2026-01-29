@@ -1,6 +1,7 @@
 import os.path
 import matplotlib.pyplot as plt
 import numpy
+import matplotlib.widgets as widgets
 import re
 
 path = "/../data/activity_log"
@@ -37,7 +38,7 @@ for entry in log_file_entries:
 width = 0.3
 label_location = numpy.arange(len(times))
 
-fig, ax = plt.subplots(layout='constrained')
+fig, ax = plt.subplots()
 
 # set window title
 fig.canvas.manager.set_window_title("Active Member Counts")
@@ -60,6 +61,20 @@ ax.set_xticks(label_location + width/2, times)
 
 ax.set_ylim(0, max(total_counts) + 50)
 
+fig.subplots_adjust(bottom=0.25)
+
+# make slider to scroll through times
+time_slider_axis = fig.add_axes([0.25, 0.1, 0.65, 0.03])
+time_slider = widgets.Slider(time_slider_axis, "", 0, 7, valinit=1)
+
+def slider_update(val):
+    pos = time_slider.val
+    ax.axis([pos, pos+12, 0, max(total_counts) + 50])
+    fig.canvas.draw_idle()
+
+time_slider.on_changed(slider_update)
+
+slider_update(1)
 plt.show()
 
 log_file.close()

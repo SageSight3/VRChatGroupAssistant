@@ -2,6 +2,7 @@
 
 * Make GUI
 * Look into setting up activity logger to run on pc startup or on a schedule through linux crob or windows task scheduler
+* Look into making graph scrollable when window is small -> may require GUI framework
 
 ### GUI Brainstorm
 * Have buttons to switch between graphs of different days

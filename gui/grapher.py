@@ -1,13 +1,19 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.widgets as widgets
 
 # Creates and opens a matplotlib bar graph of member count data
-# from the passed in log data
+# from the passed in log data.
+# Make graph scrollable: https://www.geeksforgeeks.org/python/python-scroll-through-plots/
 def graph_member_counts(target_date_log_data):
 
     # Setup window
-    window, axes = plt.subplots(layout='constrained')
+    # Ensure fig size is large enough to show a graph of at least 24 entries
+    window, axes = plt.subplots(figsize=(12, 4), layout='constrained')
     window.canvas.manager.set_window_title("Active Member Counts")
+
+    # Set graph to open as a full screen window
+    plt.get_current_fig_manager()
 
     # Set graph attributes
     graph_title = target_date_log_data["Weekdays"][0] + " " + target_date_log_data["Dates"][0]
