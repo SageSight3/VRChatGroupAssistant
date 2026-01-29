@@ -38,7 +38,7 @@ for entry in log_file_entries:
 width = 0.3
 label_location = numpy.arange(len(times))
 
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(12, 5))
 
 # set window title
 fig.canvas.manager.set_window_title("Active Member Counts")
@@ -58,23 +58,24 @@ ax.legend(loc='upper left', ncols=2)
 
 # sets x tick marks to be times
 ax.set_xticks(label_location + width/2, times)
+plt.xticks(rotation=70)
 
 ax.set_ylim(0, max(total_counts) + 50)
 
-fig.subplots_adjust(bottom=0.25)
+fig.subplots_adjust(bottom=0.3)
 
 # make slider to scroll through times
 time_slider_axis = fig.add_axes([0.25, 0.1, 0.65, 0.03])
-time_slider = widgets.Slider(time_slider_axis, "", 0, 7, valinit=1)
+time_slider = widgets.Slider(time_slider_axis, "", -1, 7, valinit=-1)
 
 def slider_update(val):
     pos = time_slider.val
-    ax.axis([pos, pos+12, 0, max(total_counts) + 50])
+    ax.axis([pos, pos+24, 0, max(total_counts) + 50])
     fig.canvas.draw_idle()
 
 time_slider.on_changed(slider_update)
 
-slider_update(1)
+slider_update(0)
 plt.show()
 
 log_file.close()

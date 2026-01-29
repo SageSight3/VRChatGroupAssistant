@@ -9,7 +9,7 @@ def graph_member_counts(target_date_log_data):
 
     # Setup window
     # Ensure fig size is large enough to show a graph of at least 24 entries
-    window, axes = plt.subplots(figsize=(12, 4), layout='constrained')
+    window, axes = plt.subplots(figsize=(12, 5), layout='constrained')
     window.canvas.manager.set_window_title("Active Member Counts")
 
     # Set graph to open as a full screen window
@@ -28,6 +28,8 @@ def graph_member_counts(target_date_log_data):
     # Set labels and label positioning for each tick on the x-axis
     # tick labels should be centered between their respective bars
     axes.set_xticks(bar_group_locations + bar_width/2, target_date_log_data["LogEntryTimes"])
+    plt.xticks(rotation=70) # rotate x-tick labels to fit better
+
 
     # Create bars
     online_member_counts_bar = axes.bar(
