@@ -3,6 +3,8 @@
 * Make GUI
 * Look into setting up activity logger to run on pc startup or on a schedule through linux crob or windows task scheduler
 * Look into making graph scrollable when window is small -> may require GUI framework
+* Look into exporting full size matplotlib graphs as images and then having separate guis to move around them?
+* Look into embedding matplotlib graphs into other GUI frameworks
 
 ### GUI Brainstorm
 * Have buttons to switch between graphs of different days

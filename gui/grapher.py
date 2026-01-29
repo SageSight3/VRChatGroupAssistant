@@ -30,7 +30,6 @@ def graph_member_counts(target_date_log_data):
     axes.set_xticks(bar_group_locations + bar_width/2, target_date_log_data["LogEntryTimes"])
     plt.xticks(rotation=70) # rotate x-tick labels to fit better
 
-
     # Create bars
     online_member_counts_bar = axes.bar(
         bar_group_locations,
