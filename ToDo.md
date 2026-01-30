@@ -24,3 +24,7 @@
 
 ### To Update Version Number
 * Update it in config_info, README.md, and Cargo.toml
+
+### Compiling to executable
+* cargo build --release
+* python - M PyInstaller <--onedir or --onefile> <filename.py>
