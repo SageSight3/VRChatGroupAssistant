@@ -31,13 +31,18 @@ def get_activity_log_data(
     # Adding this only for debug, for now, maybe can add full log graph feature later
     target_date_entries = []
     if date == "":
-        # data from all log entries will be organized and returned
+        # Data from all log entries will be organized and returned
         target_date_entries = log_file_entries
     else:
-        # only log entries from target date will be parsed
+        # Only log entries from target date will be parsed
         target_date_entries = list(filter(
             lambda entry: entry[2] == date, log_file_entries
         ))
+
+    # Make sure the target date is valid and has logs.
+    if len(target_date_entries) < 1:
+        # -1 means is being used as a generic error code here
+        return -1
 
     # Create dictionary to hold log data to be returned
     target_date_log_data = {}
