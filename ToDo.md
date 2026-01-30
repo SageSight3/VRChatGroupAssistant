@@ -5,7 +5,7 @@
 * Look into making graph scrollable when window is small -> may require GUI framework
 * Look into exporting full size matplotlib graphs as images and then having separate guis to move around them?
 * Look into embedding matplotlib graphs into other GUI frameworks
-* Look into storing program data in AppData or Documents
+* Look into storing program data in AppData or Documents. May be necessary for compiling to an executable.
 
 ### GUI Brainstorm
 * Have buttons to switch between graphs of different days
