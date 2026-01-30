@@ -66,7 +66,7 @@ fig.subplots_adjust(bottom=0.3)
 
 # make slider to scroll through times
 time_slider_axis = fig.add_axes([0.25, 0.1, 0.65, 0.03])
-time_slider = widgets.Slider(time_slider_axis, "", -1, 7, valinit=-1)
+time_slider = widgets.Slider(time_slider_axis, "", -1, 30, valinit=-1)
 
 def slider_update(val):
     pos = time_slider.val
