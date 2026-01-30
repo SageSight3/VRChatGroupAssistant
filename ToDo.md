@@ -6,6 +6,7 @@
 * Look into exporting full size matplotlib graphs as images and then having separate guis to move around them?
 * Look into embedding matplotlib graphs into other GUI frameworks
 * Look into storing program data in AppData or Documents. May be necessary for compiling to an executable.
+* Possibly switch config_info from having user name, to just using email and password.
 
 ### GUI Brainstorm
 * Have buttons to switch between graphs of different days
