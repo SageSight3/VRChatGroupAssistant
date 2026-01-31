@@ -11,6 +11,7 @@
 * Make a new app.py script for running the GUI
 * Add scroll wheel to temporary GUI?
 * Look into making GUI with PySide
+* Add weekday to date selection labels
 
 ### GUI Brainstorm
 * Have buttons to switch between graphs of different days
