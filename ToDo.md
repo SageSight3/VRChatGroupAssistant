@@ -6,7 +6,7 @@
 * Look into exporting full size matplotlib graphs as images and then having separate guis to move around them?
 * Look into embedding matplotlib graphs into other GUI frameworks
 * Look into storing program data in AppData or Documents. May be necessary for compiling to an executable.
-* Possibly switch config_info from having user name, to just using email and password.
+* Possibly switch config_info from having username, to just using email and password.
 * Possibly refactor GUI scripts to follow MVC better: gui Convert gui.py to controller.py. Convert data-parser.py to model.py. Convert grapher.py to gui.py or view.py or make a new gui/view script and ahve grapher be a sub-script of it -> Look into Python classes.
 * Make a new app.py script for running the GUI
 

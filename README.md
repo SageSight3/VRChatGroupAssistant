@@ -14,7 +14,7 @@ To make the config file, make a new file called `config_info` in the `storage` d
 ```
 VRCUsernameOrEmail
 ObfuscatedPassword
-VRChatGroupAssistant/0.3.0 email@address.com
+VRChatGroupAssistant/0.5.0 email@address.com
 ```
 
 **Note**: Line order does matter.
