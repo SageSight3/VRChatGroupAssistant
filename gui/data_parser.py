@@ -7,13 +7,13 @@ import re
 # If passing a date, it should be in the format: "YYYY-MM-DD"
 def get_activity_log_data(
         date="", 
-        ret_months=True, 
-        ret_years=True, 
-        ret_dates=True,
-        ret_weekdays=True,
-        ret_log_entry_times=True,
-        ret_online_member_counts=True,
-        ret_group_total_member_counts=True
+        ret_months=False, 
+        ret_years=False, 
+        ret_dates=False,
+        ret_weekdays=False,
+        ret_log_entry_times=False,
+        ret_online_member_counts=False,
+        ret_group_total_member_counts=False
 ):
     # Open activity log
     path = "/../data/activity_log"
@@ -87,3 +87,12 @@ def get_activity_log_data(
         target_date_log_data.update({"GroupTotalMemberCounts": group_total_member_counts})
 
     return target_date_log_data
+
+# Get a list of all the unique dates in ctivity log file
+def get_activity_log_dates():
+    dates = get_activity_log_data(ret_dates=True)
+
+    # convert dates to list of unique dates from retrieved data
+    dates = list(set(dates["Dates"]))
+
+    return dates
