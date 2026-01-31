@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.widgets as widgets
+import tkinter as tk
 
 # Creates and opens a matplotlib bar graph of member count data
 # from the passed in log data.

@@ -93,6 +93,16 @@ def get_activity_log_dates():
     dates = get_activity_log_data(ret_dates=True)
 
     # convert dates to list of unique dates from retrieved data
-    dates = list(set(dates["Dates"]))
+    # dates = list(set(dates["Dates"]))
 
-    return dates
+    # list(set()) was returning the list out of order
+    # so for now, doing it the old fashioned way
+
+    sorted_dates = []
+    for date in dates["Dates"]:
+        if date not in sorted_dates:
+            sorted_dates.append(date)
+    
+    sorted_dates.reverse() # have the most recent date at the top
+
+    return sorted_dates
