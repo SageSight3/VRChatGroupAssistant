@@ -9,6 +9,8 @@
 * Possibly switch config_info from having username, to just using email and password.
 * Possibly refactor GUI scripts to follow MVC better: gui Convert gui.py to controller.py. Convert data-parser.py to model.py. Convert grapher.py to gui.py or view.py or make a new gui/view script and ahve grapher be a sub-script of it -> Look into Python classes.
 * Make a new app.py script for running the GUI
+* Add scroll wheel to temporary GUI?
+* Look into making GUI with PySide
 
 ### GUI Brainstorm
 * Have buttons to switch between graphs of different days
