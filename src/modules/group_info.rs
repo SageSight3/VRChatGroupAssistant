@@ -78,6 +78,7 @@ pub async fn log_group_member_counts(account: &Configuration, target_group_id: &
 async fn get_group_member_counts(account: &Configuration, target_group_id: &str) -> MemberCounts {
 
     //Get target group's full info
+    /*
     let target_group_full_info = groups_api::get_group(
         account, 
         target_group_id, 
@@ -85,10 +86,31 @@ async fn get_group_member_counts(account: &Configuration, target_group_id: &str)
     ).await.expect(
         "Bad response in getting target group full info. Function: get_group_member_counts()"
     );
+    */
+
+    let target_group_full_info = groups_api::get_group(
+        account, 
+        target_group_id, 
+        Some(false)
+    ).await;
 
     //Get active member counts
-    let online_member_count = target_group_full_info.online_member_count.unwrap();
-    let total_member_count = target_group_full_info.member_count.unwrap();
+    let online_member_count;
+    let total_member_count;
+    match target_group_full_info {
+        Ok(info) => {
+            online_member_count = info.online_member_count.unwrap();
+            total_member_count = info.member_count.unwrap();
+        },
+        Err(_) => {
+            eprintln!("Bad response in getting target group full info. Function: get_group_member_counts()");
+            online_member_count = 0;
+            total_member_count = 0;          
+        }
+    }
+
+    //let online_member_count = target_group_full_info.online_member_count.unwrap();
+    //let total_member_count = target_group_full_info.member_count.unwrap();
 
     let member_counts = MemberCounts {
         online: online_member_count,
