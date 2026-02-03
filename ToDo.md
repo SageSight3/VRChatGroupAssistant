@@ -24,6 +24,7 @@
 * Have login window and window for group info input
 * Have hub for expansion
 * Have list of buttons, where each button is for a specific date, that when pressed will pop up the active member counts graph for that day. Use the date field in the log entries for this
+* Update group_info log_member_counts() to log 0 for both online and total counts if querying API fails
 
 ### Feature Ideas
 * Have a graph of discord member counts also
