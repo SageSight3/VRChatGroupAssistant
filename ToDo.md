@@ -13,6 +13,8 @@
 * Look into making GUI with PySide
 * Add weekday to date selection labels
 * Begin doing research into making discord bot
+* Make script to update version num in all neccessary files
+* Update main.rs to print program version num when run
 
 ### GUI Brainstorm
 * Have buttons to switch between graphs of different days
