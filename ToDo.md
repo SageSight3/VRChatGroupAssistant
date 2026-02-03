@@ -12,6 +12,7 @@
 * Add scroll wheel to temporary GUI?
 * Look into making GUI with PySide
 * Add weekday to date selection labels
+* Begin doing research into making discord bot
 
 ### GUI Brainstorm
 * Have buttons to switch between graphs of different days
