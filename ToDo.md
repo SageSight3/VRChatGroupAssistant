@@ -35,3 +35,6 @@
 ### Compiling to executable
 * cargo build --release
 * python - M PyInstaller <--onedir or --onefile> <filename.py>
+
+## Done
+* Added better error handling for if querying member counts fails
