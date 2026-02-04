@@ -10,6 +10,7 @@
         "shortCode": "GroupShortCode",
         "discriminator": "GroupDiscriminator"
     },
+    "backendExePath": "backendExecutablePath",
     "appName": "VRChat Group Assistant",
     "appVersionNum": "AppVersionNum"
 }

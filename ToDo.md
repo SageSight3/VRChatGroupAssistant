@@ -17,6 +17,11 @@
 * Create login window
 * Refactor storage files into a single config file? -> possibly in JSON
 * Create window for entering target group's basic info (name, short code, discriminator)
+* Add buttons to start and stop Rust program
+* Add quit all button to GUI -> should close both the gui app and stop the rust program
+* Make it so when GUI launches, it will check if the rust program is running, and if it isn't, start it
+* Figure out how to find and close a specific process from a python script
+* Write GUI story board
 
 ### GUI Brainstorm
 * Have buttons to switch between graphs of different days
@@ -44,5 +49,5 @@
 
 ## Done
 * Added better error handling for if querying member counts fails
-* Add scroll wheel to temporary GUI?
+* Added scrollbar to dates listbox in temporary GUI
 * Update main.rs to print program version num when run
