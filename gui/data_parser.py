@@ -67,13 +67,21 @@ def get_activity_log_data(
         log_entry_times = list(map(lambda entry: entry[4], target_date_entries))
         target_date_log_data.update({"LogEntryTimes": log_entry_times})
 
-    # for member counts will need to isolate and convert log entry values to ints
-    member_count_vals_pattern = r"\d+"
+    # For member counts will need to isolate and convert log entry values to ints
+    # Will also converts error counts to 0s for graphing
+    def format_member_count(a_member_count_str):
+        member_count_vals_pattern = r"-?\d+"
+
+        member_count = int(re.findall(member_count_vals_pattern, a_member_count_str)[0])
+        if member_count == -1:
+            return 0
+        else:
+            return member_count
 
     if ret_online_member_counts:
         online_member_counts = list(map(
             # regex match will only have one result
-            lambda entry: int(re.findall(member_count_vals_pattern, entry[5])[0]), 
+            lambda entry: format_member_count(entry[5]), 
             target_date_entries
         ))
         target_date_log_data.update({"OnlineMemberCounts": online_member_counts})
@@ -81,7 +89,7 @@ def get_activity_log_data(
     if ret_group_total_member_counts:
         group_total_member_counts = list(map(
             # regex match will only have one result
-            lambda entry: int(re.findall(member_count_vals_pattern, entry[6])[0]),
+            lambda entry: format_member_count(entry[6]),
             target_date_entries
         ))
         target_date_log_data.update({"GroupTotalMemberCounts": group_total_member_counts})

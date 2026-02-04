@@ -17,6 +17,11 @@ pub async fn login() -> Configuration {
     //Initialize account config
     let mut config = make_config();
 
+    //Print VRGroupAssistant version num
+    let version_str = config.user_agent.clone().unwrap();
+    let version_str = version_str.split(" ").collect::<Vec<&str>>()[0];
+    println!("{}", version_str);
+
     //Attempt login from stored cookies
     let cookies = load_stored_cookies(&mut config).await;
     let login = authentication_api::get_current_user(&config)

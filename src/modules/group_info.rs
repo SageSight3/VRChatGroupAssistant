@@ -104,8 +104,8 @@ async fn get_group_member_counts(account: &Configuration, target_group_id: &str)
         },
         Err(_) => {
             eprintln!("Bad response in getting target group full info. Function: get_group_member_counts()");
-            online_member_count = 0;
-            total_member_count = 0;          
+            online_member_count = -1;
+            total_member_count = -1;          
         }
     }
 
