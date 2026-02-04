@@ -12,7 +12,10 @@
 * Look into making GUI with PySide
 * Add weekday to date selection labels
 * Begin doing research into making discord bot
-* Make script to update version num in all neccessary files
+* Make script to update version num in all neccessary files?
+* Have program create neccessary dirs and files when run, if they don't exist
+* Create login window
+* Refactor storage files into a single config file? -> possibly in JSON
 
 ### GUI Brainstorm
 * Have buttons to switch between graphs of different days
@@ -32,10 +35,11 @@
 
 ### To Update Version Number
 * Update it in config_info, README.md, and Cargo.toml
+* Make sure to update version num in release build dir also
 
 ### Compiling to executable
 * cargo build --release
-* python - M PyInstaller <--onedir or --onefile> <filename.py>
+* python -m PyInstaller <--onedir or --onefile> <--noconsole> <filename.py>
 
 ## Done
 * Added better error handling for if querying member counts fails
