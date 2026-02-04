@@ -9,12 +9,10 @@
 * Possibly switch config_info from having username, to just using email and password.
 * Possibly refactor GUI scripts to follow MVC better: gui Convert gui.py to controller.py. Convert data-parser.py to model.py. Convert grapher.py to gui.py or view.py or make a new gui/view script and ahve grapher be a sub-script of it -> Look into Python classes.
 * Make a new app.py script for running the GUI
-* Add scroll wheel to temporary GUI?
 * Look into making GUI with PySide
 * Add weekday to date selection labels
 * Begin doing research into making discord bot
 * Make script to update version num in all neccessary files
-* Update main.rs to print program version num when run
 
 ### GUI Brainstorm
 * Have buttons to switch between graphs of different days
@@ -41,3 +39,5 @@
 
 ## Done
 * Added better error handling for if querying member counts fails
+* Add scroll wheel to temporary GUI?
+* Update main.rs to print program version num when run - Print statement is in login - may move to main later
