@@ -22,6 +22,7 @@
 * Make it so when GUI launches, it will check if the rust program is running, and if it isn't, start it
 * Figure out how to find and close a specific process from a python script
 * Write GUI story board
+* Update GUI and maybe rust program also to change their working directories to where they need to be
 
 ### GUI Brainstorm
 * Have buttons to switch between graphs of different days
