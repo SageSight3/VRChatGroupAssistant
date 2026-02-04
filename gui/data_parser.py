@@ -114,3 +114,18 @@ def get_activity_log_dates():
     sorted_dates.reverse() # have the most recent date at the top
 
     return sorted_dates
+
+# Get VRChat Group Assistant version number
+def get_version_number():
+    # Open config_info - version num may be moved to a different location
+    # at a later date
+    path = "/../storage/config_info"
+    config_file = open(os.path.dirname(__file__) + path, 'r')
+    config = config_file.readlines()
+
+    # Version num is on third line of config_info file
+    version_num_pattern = r"\d+.\d+.\d+"
+    version_num = re.findall(version_num_pattern, config[2])[0]
+
+    return version_num
+

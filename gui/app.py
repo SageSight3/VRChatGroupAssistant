@@ -45,9 +45,13 @@ def show_member_counts(date):
 
     grapher.graph_member_counts(target_date_member_counts_data)
 
+# Get app version num
+def get_version_num():
+    return data_parser.get_version_number()
+
 # Initialize app window
 window_root = tk.Tk()
-window_root.title("VRChat Group Assistant")
+window_root.title("VRChat Group Assistant " + get_version_num())
 window_root.geometry("400x400")
 
 # Dates Listbox Frame
