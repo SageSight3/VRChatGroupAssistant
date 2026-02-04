@@ -1,0 +1,15 @@
+{
+    "sessionConfig": {
+        "username": "VRCUsernameOrEmail",
+        "password": "ObfuscatedPassword",
+        "email": "email@address.com",
+        "cookies": "Cookies"
+    },
+    "basicGroupInfo": {
+        "name": "GroupName",
+        "shortCode": "GroupShortCode",
+        "discriminator": "GroupDiscriminator"
+    },
+    "appName": "VRChat Group Assistant",
+    "appVersionNum": "AppVersionNum"
+}

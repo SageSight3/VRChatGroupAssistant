@@ -16,6 +16,7 @@
 * Have program create neccessary dirs and files when run, if they don't exist
 * Create login window
 * Refactor storage files into a single config file? -> possibly in JSON
+* Create window for entering target group's basic info (name, short code, discriminator)
 
 ### GUI Brainstorm
 * Have buttons to switch between graphs of different days
