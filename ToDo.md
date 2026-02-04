@@ -40,4 +40,4 @@
 ## Done
 * Added better error handling for if querying member counts fails
 * Add scroll wheel to temporary GUI?
-* Update main.rs to print program version num when run - Print statement is in login - may move to main later
+* Update main.rs to print program version num when run
