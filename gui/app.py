@@ -50,17 +50,28 @@ window_root = tk.Tk()
 window_root.title("VRChat Group Assistant")
 window_root.geometry("400x400")
 
-dates_listbox = tk.Listbox(window_root, selectmode=tk.SINGLE)
+# Dates Listbox Frame
+dates_listbox_frame = tk.Frame(window_root)
+
+dates_listbox = tk.Listbox(dates_listbox_frame, selectmode=tk.SINGLE)
 refresh_dates_listbox()
-dates_listbox_label = tk.Label(window_root, text="Select a Date")
+dates_listbox_label = tk.Label(dates_listbox_frame, text="Select a Date")
 
+dates_listbox_scrollbar = tk.Scrollbar(dates_listbox_frame)
+
+dates_listbox.config(yscrollcommand=dates_listbox_scrollbar.set)
+dates_listbox_scrollbar.config(command=dates_listbox.yview)
+
+dates_listbox_label.pack(side=tk.TOP, anchor=tk.NW)
+dates_listbox_scrollbar.pack(side=tk.RIGHT, fill=tk.BOTH)
+dates_listbox.pack(side=tk.TOP, anchor=tk.NW)
+
+# Refresh and Show Graph Buttons
 refresh_dates_button = tk.Button(window_root, text="Refresh Dates", command=on_refresh_dates_button_clicked)
-
 graph_dates_button = tk.Button(window_root, text="Show Member Counts Graph", command=on_graph_dates_button_clicked)
 
+dates_listbox_frame.pack(side=tk.TOP, anchor=tk.NW)
 refresh_dates_button.pack(side=tk.TOP, anchor=tk.NW)
-dates_listbox_label.pack(side=tk.TOP, anchor=tk.NW)
-dates_listbox.pack(side=tk.TOP, anchor=tk.NW)
 graph_dates_button.pack(side=tk.TOP, anchor=tk.NW)
 
 window_root.mainloop()
