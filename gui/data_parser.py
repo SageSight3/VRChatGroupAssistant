@@ -70,7 +70,7 @@ def get_activity_log_data(
     # For member counts will need to isolate and convert log entry values to ints
     # Will also converts error counts to 0s for graphing
     def format_member_count(a_member_count_str):
-        member_count_vals_pattern = r"-?\d+"
+        member_count_vals_pattern = r"-?\d+" # match for all numbers, including negatives
 
         member_count = int(re.findall(member_count_vals_pattern, a_member_count_str)[0])
         if member_count == -1:
