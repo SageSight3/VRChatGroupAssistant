@@ -12,5 +12,5 @@
     },
     "backendExePath": "backendExecutablePath",
     "appName": "VRChat Group Assistant",
-    "appVersionNum": "AppVersionNum"
+    "appVersion": "AppVersion"
 }
