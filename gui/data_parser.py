@@ -123,7 +123,7 @@ def get_app_version():
     return get_app_config()["appVersion"]
 
 def get_app_name():
-    return get_app_config()["appVersion"]
+    return get_app_config()["appName"]
 
 # Opens and parses the app's config
 def get_app_config():
