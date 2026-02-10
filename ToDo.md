@@ -34,6 +34,7 @@
 
 ### Feature Ideas
 * Have a graph of discord member counts also
+* For every month, calculate average member counts at every time for each day of the week, also have options to display averages for weekdays and weekends
 
 ### To Update Version Number
 * Update it in config_info, README.md, and Cargo.toml
