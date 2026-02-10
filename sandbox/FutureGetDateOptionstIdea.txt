@@ -1,0 +1,8 @@
+Get all months/years needed, add each's name to a list
+
+Initialize options list
+For first year, skip month if is less than start month
+For first month, if day num is less than start day, don't add to options list, otherwise don
+Add all days in months/years between first and last
+For last month, only add logs if day is less than end day
+For last year, skip all months after end month
