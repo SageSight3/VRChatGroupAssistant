@@ -10,7 +10,6 @@
 * Possibly refactor GUI scripts to follow MVC better: gui Convert gui.py to controller.py. Convert data-parser.py to model.py. Convert grapher.py to gui.py or view.py or make a new gui/view script and ahve grapher be a sub-script of it -> Look into Python classes.
 * Make a new app.py script for running the GUI
 * Look into making GUI with PySide
-* Add weekday to date selection labels
 * Begin doing research into making discord bot
 * Make script to update version num in all neccessary files?
 * Have program create neccessary dirs and files when run, if they don't exist
@@ -55,3 +54,4 @@
 * Update main.rs to print program version num when run
 * Refactor storage files into a single config file? -> possibly in JSON
 * Figure out how to find and close a specific process from a python script
+* Add weekday to date selection labels
