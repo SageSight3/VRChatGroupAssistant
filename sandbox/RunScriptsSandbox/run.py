@@ -4,6 +4,9 @@ import os.path
 import sys
 import time
 
+# Note: This code comes from the app's release build dir. 
+# File paths are different than they need to be for the debug build
+
 # Set CWD
 
 print(os.getcwd())
