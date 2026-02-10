@@ -1,4 +1,3 @@
-use std::fs::read_to_string;
 use vrchatapi::apis::groups_api;
 use vrchatapi::apis::configuration::Configuration;
 use vrchatapi::models::LimitedGroup;
@@ -6,6 +5,8 @@ use std::result::Result;
 use chrono::{self, Datelike};
 use std::fs::{OpenOptions};
 use std::io::Write;
+
+use crate::modules::util;
 
 #[derive(Debug, Clone)]
 struct GroupInfo {
@@ -77,17 +78,6 @@ pub async fn log_group_member_counts(account: &Configuration, target_group_id: &
 //Query the VRChat API and return the values for target group's online and total member counts
 async fn get_group_member_counts(account: &Configuration, target_group_id: &str) -> MemberCounts {
 
-    //Get target group's full info
-    /*
-    let target_group_full_info = groups_api::get_group(
-        account, 
-        target_group_id, 
-        Some(false)
-    ).await.expect(
-        "Bad response in getting target group full info. Function: get_group_member_counts()"
-    );
-    */
-
     let target_group_full_info = groups_api::get_group(
         account, 
         target_group_id, 
@@ -103,7 +93,9 @@ async fn get_group_member_counts(account: &Configuration, target_group_id: &str)
             total_member_count = info.member_count.unwrap();
         },
         Err(_) => {
-            eprintln!("Bad response in getting target group full info. Function: get_group_member_counts()");
+            let now = chrono::Local::now();
+            let time = format!("{}", now.time().format("%H:%M"));
+            eprintln!("{}: Bad response in getting target group full info. Function: get_group_member_counts()", time);
             online_member_count = -1;
             total_member_count = -1;          
         }
@@ -169,16 +161,12 @@ pub async fn get_target_group_id(account: &Configuration) -> Result<String, Grou
 
 //Get group info from target_group file and return it in a GroupInfo struct
 fn get_group_info() -> GroupInfo {
-    let target_group_file: Vec<String> = read_to_string("storage/target_group")
-        .expect("Target group not found")
-        .lines()
-        .map(String::from)
-        .collect();
+    let app_config = util::parse_json(super::APP_CONFIG_PATH);
 
     let target_group_info =  GroupInfo {
-        name: target_group_file[0].to_owned(),
-        short_code: target_group_file[1].to_owned(),
-        discriminator: target_group_file[2].to_owned()
+        name: app_config["basicGroupInfo"]["name"].as_str().unwrap().to_string(),
+        short_code: app_config["basicGroupInfo"]["shortCode"].as_str().unwrap().to_string(),
+        discriminator: app_config["basicGroupInfo"]["discriminator"].as_str().unwrap().to_string(),
     };
 
     target_group_info

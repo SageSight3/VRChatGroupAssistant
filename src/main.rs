@@ -5,15 +5,17 @@ mod modules;
 use modules::auth;
 use modules::group_info;
 
+use crate::modules::util;
+
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let account_main = auth::login().await;
 
     //Print VRGroupAssistant version num
-    let version_str = account_main.user_agent.clone().unwrap();
-    let version_str = version_str.split(" ").collect::<Vec<&str>>()[0];
-    println!("{}", version_str);
+    let app_config = util::parse_json(modules::APP_CONFIG_PATH);
+    let app_version = format!("{} {}", app_config["appName"].as_str().unwrap(), app_config["appVersion"].as_str().unwrap());
+    println!("{}", app_version);
 
     //Get target group id. Panic, if error
     let target_group_id_search = group_info::get_target_group_id(&account_main.clone()).await;

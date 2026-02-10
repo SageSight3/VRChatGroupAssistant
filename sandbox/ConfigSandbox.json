@@ -1,16 +1,16 @@
 {
-    "sessionConfig": {
-        "username": "VRCUsernameOrEmail",
-        "password": "ObfuscatedPassword",
-        "email": "email@address.com",
-        "cookies": "Cookies"
-    },
-    "basicGroupInfo": {
-        "name": "GroupName",
-        "shortCode": "GroupShortCode",
-        "discriminator": "GroupDiscriminator"
-    },
-    "backendExePath": "backendExecutablePath",
     "appName": "VRChat Group Assistant",
-    "appVersion": "AppVersion"
+    "appVersion": "AppVersion",
+    "backendExePath": "backendExecutablePath",
+    "basicGroupInfo": {
+        "discriminator": "GroupDiscriminator",
+        "name": "GroupName",
+        "shortCode": "GroupShortCode"
+    },
+    "sessionConfig": {
+        "cookies": "Cookies",
+        "email": "email@address.com",
+        "password": "ObfuscatedPassword",    
+        "username": "VRCUsernameOrEmail"
+    }
 }

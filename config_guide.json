@@ -1,0 +1,16 @@
+{
+  "appName": "VRChat Group Assistant",
+  "appVersion": "0.8.0",
+  "backendExePath": "./VRChatGroupAssistant.exe",
+  "basicGroupInfo": {
+    "discriminator": "GroupDiscriminator",
+    "name": "GroupName",
+    "shortCode": "GroupShortCode"
+  },
+  "sessionConfig": {
+    "cookies": "Cookies",
+    "email": "email@address.com",
+    "password": "ObfuscatedPassword",
+    "username": "VRCUsernameOrEmail"
+  }
+}

@@ -8,17 +8,14 @@ This repo does not include the `config_info` file for your authentication config
 
 Once the program is running, it can be stopped by hitting `ctrl-c`.
 
-### Make config_info File
-To make the config file, make a new file called `config_info` in the `storage` directory, and add the following three lines:
+### Make App Config File
+As of version 0.8.0, the basic info VRChat Group Assistant uses to run has been unified under one file in the app backend's main working directory, `config.json`. See example: [config_guide.json](config_guide.json)
 
-```
-VRCUsernameOrEmail
-ObfuscatedPassword
-VRChatGroupAssistant/0.7.0 email@address.com
-```
+To make the config file, create a new file called `config.json` in the main the app's main directory, `VRChatGroupAssistant`, copy and paste over the everything from `config_guide.json`, and replace all the fields in `basicGroupInfo` and `sessionConfig`, except the `cookies` field your account and group information. Make sure your password has been obfuscated before entering it. No other field needs to be changed. 
 
-**Note**: Line order does matter.
+Alternatively, just replace the necessary info in config_guide.json and remove the `-guide` from the file name. 
 
+### Obfuscating Your Password
 To obfuscate your password, temporarily add these lines to `main` or another rust program
 
 ```rust
@@ -33,15 +30,7 @@ Also, you can change `obfuscate_text()` obfuscates your password to whatever you
 
 **Disclaimer**: This obfuscation is not meant to be a secure form of password encryption. It is only there, because I wasn't comfortable with having a VRChat account password in plain text sitting in a file, since I like to screenshare as I develop code, as well as for concerns over potential Windows Recall or similar features.
 
-### Make target_group File
-Make a file called `target_group` in the `storage` directory. Then add these lines in order:
-
-```
-GroupName
-GroupShortCode
-GroupDiscriminator
-```
-
+### Finding Your Group's Basic Info
 Your group's short code and discriminator is the group code you can find under your group's name in it's description on VRChat or VRChat's website. It'll look like `ACODE.####`.
 
 **On VRChat**

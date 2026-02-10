@@ -3,5 +3,7 @@
 /storage/config.json
 /storage/cookies
 /storage/target_group
+/deprecated
 /data/activity_log
 /gui/__pycache__
+/config.json

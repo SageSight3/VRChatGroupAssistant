@@ -1,4 +1,3 @@
-use std::fs::read_to_string;
 use vrchatapi::apis::configuration::Configuration;
 use reqwest::cookie::{CookieStore, Jar};
 use std::str::FromStr;
@@ -8,14 +7,17 @@ use vrchatapi::models::{RegisterUserAccount200Response, RequiresTwoFactorAuth};
 use vrchatapi::apis::authentication_api;
 use reqwest::header::HeaderValue;
 use std::sync::Arc;
+use serde_json;
 
 use super::util;
+
+use super::APP_CONFIG_PATH;
 
 //Login to VRChat and return config for future API calls
 pub async fn login() -> Configuration {
 
     //Initialize account config
-    let mut config = make_config();
+    let mut config = make_account_config();
 
     //Attempt login from stored cookies
     let cookies = load_stored_cookies(&mut config).await;
@@ -41,7 +43,7 @@ pub async fn login() -> Configuration {
                 RegisterUserAccount200Response::CurrentUser(user_2fa) => {
                     println!("Welcome, {}", user_2fa.display_name);
 
-                    //write new cookies to file, new cookies will have generated during 2fa
+                    //write new cookies to file, unclear where new cookies are generated
                     store_cookies(cookies).await;
                 },
                 RegisterUserAccount200Response::RequiresTwoFactorAuth(_) => {
@@ -58,14 +60,17 @@ pub async fn login() -> Configuration {
 
 //Load cookies from cookie_info file to config.client
 async fn load_stored_cookies(config: &mut Configuration) -> Arc<Jar> {
-    //get cookies from cookies file
-    let cookie_src: String = read_to_string("storage/cookies").unwrap();
+    //Get cookies from app config
+    let app_config = util::parse_json(APP_CONFIG_PATH);
 
-    //create cookie stre from existing cookies
+    let cookies_src = app_config["sessionConfig"]["cookies"].as_str()
+        .expect("Failed to find cookies");
+
+    //Create cookie stre from existing cookies
     let jar = reqwest::cookie::Jar::default();
     jar.set_cookies(
         &mut [HeaderValue::from_str(
-            &cookie_src,
+            &cookies_src,
         )
         .expect("Cookie not okay")]
         .iter(),
@@ -73,7 +78,7 @@ async fn load_stored_cookies(config: &mut Configuration) -> Arc<Jar> {
     );
     let jar = Arc::new(jar);
 
-    //set config client to have existing cookies
+    //Set config client to have existing cookies
     config.client = reqwest::Client::builder()
         .cookie_provider(jar.clone())
         .build()
@@ -124,30 +129,37 @@ async fn store_cookies(cookies: Arc<Jar>) {
         .expect("Cookies not valid string")
         .to_string();
 
-    if let Ok(mut file) = File::create("storage/cookies") {
-        file.write_all(current_cookies.as_bytes()).expect("failed to save cookies");
+    //Only way we're here is if app_config exists, is accessible, and is parseable
+    let mut app_config =  util::parse_json(APP_CONFIG_PATH);
+
+    //Update JSON
+    app_config["sessionConfig"]["cookies"] = serde_json::Value::String(current_cookies);
+    let app_config = serde_json::to_string_pretty(&app_config).unwrap();
+
+    if let Ok(mut file) = File::create("storage/config.json") {
+        file.write_all(app_config.as_bytes()).expect("failed to save cookies");
         println!("Cookies have been updated!");
     }
 }
 
 //Makes a Configuration from data in config_info file
-fn make_config() -> Configuration {
+fn make_account_config() -> Configuration {
 
     //https://doc.rust-lang.org/std/fs/fn.read_to_string.html
-    let config_info: Vec<String> = read_to_string("storage/config_info")
-        .expect("Config not found")
-        .lines()
-        .map(String::from)
-        .collect();
+    let config_info = util::parse_json(APP_CONFIG_PATH);
 
-    let username: String = config_info[0].to_owned();
-    let password: String = config_info[1].to_owned();
-    let my_user_agent: String = config_info[2].to_owned();
+    let username = config_info["sessionConfig"]["username"].as_str().unwrap();
+    let password = String::from(config_info["sessionConfig"]["password"].as_str().unwrap());
+    let user_agent = format!("{}/{} {}",
+        config_info["appName"].as_str().unwrap(),
+        config_info["appVersion"].as_str().unwrap(),
+        config_info["sessionConfig"]["email"].as_str().unwrap()
+    );
 
     let mut config = Configuration::default();
     config.basic_auth = 
         Some((String::from(username), Some(String::from(util::deobfuscate_text(&password)))));
-    config.user_agent = Some(String::from(my_user_agent));
+    config.user_agent = Some(String::from(user_agent));
 
     config
 }
