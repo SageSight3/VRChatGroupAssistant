@@ -15,6 +15,7 @@ pub fn read_user_input(prompt: &str) -> String {
     input.trim().to_string()
 }
 
+//Return parsed json data from a file
 pub fn parse_json(json_file_path: &str) -> serde_json::Value {
     //https://doc.rust-lang.org/std/fs/fn.read_to_string.html
     let file = read_to_string(json_file_path)

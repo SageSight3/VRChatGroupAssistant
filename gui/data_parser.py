@@ -1,5 +1,6 @@
 import os.path
 import re
+import json
 
 # Parses and returns activity log entry data, organized in a dictionary.
 # The ret_<activity_log_entry_attr>=True params are optional that will default to True
@@ -97,35 +98,39 @@ def get_activity_log_data(
     return target_date_log_data
 
 # Get a list of all the unique dates in ctivity log file
-def get_activity_log_dates():
-    dates = get_activity_log_data(ret_dates=True)
+def get_activity_log_days():
+    days = get_activity_log_data(ret_dates=True, ret_weekdays=True)
 
-    # convert dates to list of unique dates from retrieved data
+    # convert days to list of unique days from retrieved data
     # dates = list(set(dates["Dates"]))
 
     # list(set()) was returning the list out of order
     # so for now, doing it the old fashioned way
 
-    sorted_dates = []
-    for date in dates["Dates"]:
-        if date not in sorted_dates:
-            sorted_dates.append(date)
+    sorted_days = []
+    days_len = len(days["Dates"])
+    for index in range(days_len):
+        day = days["Dates"][index] + " " + days["Weekdays"][index]
+        if day not in sorted_days:
+            sorted_days.append(day)
     
-    sorted_dates.reverse() # have the most recent date at the top
+    sorted_days.reverse() # have the most recent date at the top
 
-    return sorted_dates
+    return sorted_days
 
 # Get VRChat Group Assistant version number
-def get_version_number():
-    # Open config_info - version num may be moved to a different location
-    # at a later date
-    path = "/../storage/config_info"
-    config_file = open(os.path.dirname(__file__) + path, 'r')
-    config = config_file.readlines()
+def get_app_version():
+    return get_app_config()["appVersion"]
 
-    # Version num is on third line of config_info file
-    version_num_pattern = r"\d+.\d+.\d+"
-    version_num = re.findall(version_num_pattern, config[2])[0]
+def get_app_name():
+    return get_app_config()["appVersion"]
 
-    return version_num
+# Opens and parses the app's config
+def get_app_config():
+    path = "/../config.json"
+    app_config = open(os.path.dirname(__file__) + path, 'r')
+    
+    # Parse app config
+    parsed_app_config = json.load(app_config)
 
+    return parsed_app_config

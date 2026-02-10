@@ -8,7 +8,7 @@ def on_refresh_dates_button_clicked():
 # Will refresh dates selection menu when a corresponding button is pushed
 def refresh_dates_listbox():
     # get refreshed date_options
-    date_options = data_parser.get_activity_log_dates()
+    date_options = data_parser.get_activity_log_days()
 
     # clear dates listbox
     dates_listbox.delete(0, tk.END)
@@ -24,7 +24,9 @@ def on_graph_dates_button_clicked():
     if not selected_index:
         return
 
-    target_date = dates_listbox.get(selected_index)
+    # parse the date from the selected date option label
+    # refactor to have separate dates list in future?
+    target_date = dates_listbox.get(selected_index).split(" ")[0]
     show_member_counts(target_date)
 
 # Opens a graph of online and total member counts
@@ -46,12 +48,16 @@ def show_member_counts(date):
     grapher.graph_member_counts(target_date_member_counts_data)
 
 # Get app version num
-def get_version_num():
-    return data_parser.get_version_number()
+def get_app_version():
+    return data_parser.get_app_version()
+
+# Get app name
+def get_app_name():
+    return data_parser.get_app_name()
 
 # Initialize app window
 window_root = tk.Tk()
-window_root.title("VRChat Group Assistant " + get_version_num())
+window_root.title(get_app_name() + " " + get_app_version())
 window_root.geometry("400x400")
 
 # Dates Listbox Frame
