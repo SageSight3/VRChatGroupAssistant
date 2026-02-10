@@ -23,19 +23,14 @@
 * Possibly refactor Rust program so that auth module is a submodule
 * Switch log_group_member_counts() to use a BufWriter for updating the log -> not fully neccessary potentially, since log is only updated every hour
 * Make it so when program is launched, if any neccessary files don't exist yet, they'll be created with the necessary info they need
+* Change grapher.py to graph x bars without the log entries, and assign data to each xtick, based on log entry timestamps
+* Possibly change log storage to store in logs in dirs based on year with seperate log files for each month -> figure out how selecting a date to get the graph for, would work if implemented -> how would listbox be drawn, if using -> list most recent 30 days maybe? or maybe list entries off selected month and year? could have dropdowns for each, alternative, could have listbox show date options between one date and another
 
 ### GUI Brainstorm
-* Have buttons to switch between graphs of different days
-* Each graph could be one day
+* Have arrow buttons to switch between graphs of different days
 * Checkboxes to toggle rendering for both online and total member counts
-* Graph title will be day of weak and the date
-* Graph x-axis should be time of day
-* Graph y-axis should be member count
-* Graph should have different bars to signify times the program wasn't running
 * Have login window and window for group info input
 * Have hub for expansion
-* Have list of buttons, where each button is for a specific date, that when pressed will pop up the active member counts graph for that day. Use the date field in the log entries for this
-* Update group_info log_member_counts() to log 0 for both online and total counts if querying API fails
 
 ### Feature Ideas
 * Have a graph of discord member counts also
@@ -48,7 +43,15 @@
 * cargo build --release
 * python -m PyInstaller <--onedir or --onefile> <--noconsole> <filename.py>
 
+### Implemented GUI Features
+* Graph x-axis should be time of day
+* Graph y-axis should be member count
+* Each graph could be one day
+* Graph title will be day of weak and the date
+* Have list of buttons, where each button is for a specific date, that when pressed will pop up the active member counts graph for that day. Use the date field in the log entries for this
+
 ## Done
+* Update group_info log_member_counts() to log 0 for both online and total counts if querying API fails
 * Added better error handling for if querying member counts fails
 * Added scrollbar to dates listbox in temporary GUI
 * Update main.rs to print program version num when run
