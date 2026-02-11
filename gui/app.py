@@ -27,10 +27,10 @@ def on_graph_dates_button_clicked():
     # parse the date from the selected date option label
     # refactor to have separate dates list in future?
     target_date = dates_listbox.get(selected_index).split(" ")[0]
-    show_member_counts(target_date)
+    graph_member_counts(target_date)
 
 # Opens a graph of online and total member counts
-def show_member_counts(date):
+def graph_member_counts(date):
     target_date_member_counts_data = data_parser.get_activity_log_data(
         date, 
         ret_weekdays=True, 
@@ -45,7 +45,33 @@ def show_member_counts(date):
         print("No member count logs found for " + date)
         return
 
-    grapher.graph_member_counts(target_date_member_counts_data)
+    graph_data: grapher.GraphData = generate_graph_data(target_date_member_counts_data)
+
+    grapher.graph_member_counts(graph_data)
+
+# Instead of graphing activity log data directly from 
+# passed in log entries, create a data point for the top
+# of every hour in the day, and assign the corresponding log
+# entry data to it's respective time slot. This will cause
+# the graph to display bars for every hour, even if there isn't
+# log data for that hour. Missing hours should have their
+# member counts read "0" or "N/A"
+def generate_graph_data(target_date_log_data) -> grapher.GraphData:
+
+    weekday = target_date_log_data["Weekdays"][0]
+    date = target_date_log_data["Dates"][0]
+    graph_title = f"{weekday} {date}"
+
+    target_date_data = {
+        "Timestamps": [timestamp for timestamp in target_date_log_data["LogEntryTimes"]],
+        "OnlineCounts": [online_count for online_count in target_date_log_data["OnlineMemberCounts"]],
+        "TotalCounts": [total_count for total_count in target_date_log_data["GroupTotalMemberCounts"]]
+    }
+
+    graph_data = grapher.GraphData(graph_title, target_date_data)
+
+    return graph_data
+
 
 # Get app version num
 def get_app_version():
@@ -76,9 +102,9 @@ dates_listbox_label.pack(side=tk.TOP, anchor=tk.NW)
 dates_listbox_scrollbar.pack(side=tk.RIGHT, fill=tk.BOTH)
 dates_listbox.pack(side=tk.TOP, anchor=tk.NW)
 
-# Refresh and Show Graph Buttons
+# Refresh Dates and Graph Member Counts Buttons
 refresh_dates_button = tk.Button(window_root, text="Refresh Dates", command=on_refresh_dates_button_clicked)
-graph_dates_button = tk.Button(window_root, text="Show Member Counts Graph", command=on_graph_dates_button_clicked)
+graph_dates_button = tk.Button(window_root, text="Graph Member Counts", command=on_graph_dates_button_clicked)
 
 dates_listbox_frame.pack(side=tk.TOP, anchor=tk.NW)
 refresh_dates_button.pack(side=tk.TOP, anchor=tk.NW)
