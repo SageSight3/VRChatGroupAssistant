@@ -23,8 +23,8 @@
 * Possibly refactor Rust program so that auth module is a submodule
 * Switch log_group_member_counts() to use a BufWriter for updating the log -> not fully neccessary potentially, since log is only updated every hour
 * Make it so when program is launched, if any neccessary files don't exist yet, they'll be created with the necessary info they need
-* Change grapher.py to graph x bars without the log entries, and assign data to each xtick, based on log entry timestamps
 * Possibly change log storage to store in logs in dirs based on year with seperate log files for each month -> figure out how selecting a date to get the graph for, would work if implemented -> how would listbox be drawn, if using -> list most recent 30 days maybe? or maybe list entries off selected month and year? could have dropdowns for each, alternative, could have listbox show date options between one date and another
+* See if can space bar groups in graph to be better spaces/give the bar labels more room
 
 ### GUI Brainstorm
 * Have arrow buttons to switch between graphs of different days
@@ -59,3 +59,4 @@
 * Refactor storage files into a single config file? -> possibly in JSON
 * Figure out how to find and close a specific process from a python script
 * Add weekday to date selection labels
+* Change grapher.py to graph x bars without the log entries, and assign data to each xtick, based on log entry timestamps
