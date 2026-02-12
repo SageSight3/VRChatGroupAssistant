@@ -1,7 +1,6 @@
 # To Do
 
 * Make GUI
-* Look into setting up activity logger to run on pc startup or on a schedule through linux cron jobs or windows task scheduler
 * Look into making graph scrollable when window is small -> may require GUI framework
 * Look into exporting full size matplotlib graphs as images and then having separate guis to move around them?
 * Look into embedding matplotlib graphs into other GUI frameworks
@@ -25,6 +24,7 @@
 * Make it so when program is launched, if any neccessary files don't exist yet, they'll be created with the necessary info they need
 * Possibly change log storage to store in logs in dirs based on year with seperate log files for each month -> figure out how selecting a date to get the graph for, would work if implemented -> how would listbox be drawn, if using -> list most recent 30 days maybe? or maybe list entries off selected month and year? could have dropdowns for each, alternative, could have listbox show date options between one date and another
 * See if can space bar groups in graph to be better spaces/give the bar labels more room
+* Create separate doc for task list
 
 ### GUI Brainstorm
 * Have arrow buttons to switch between graphs of different days
@@ -60,3 +60,4 @@
 * Figure out how to find and close a specific process from a python script
 * Add weekday to date selection labels
 * Change grapher.py to graph x bars without the log entries, and assign data to each xtick, based on log entry timestamps
+* Look into setting up activity logger to run on pc startup or on a schedule through linux cron jobs or windows task scheduler
