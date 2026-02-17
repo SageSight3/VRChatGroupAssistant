@@ -29,8 +29,21 @@ def on_graph_dates_button_clicked():
     target_date = dates_listbox.get(selected_index).split(" ")[0]
     graph_member_counts(target_date)
 
+def on_graph_percents_button_clicked():
+        # get selected index
+    selected_index = dates_listbox.curselection()
+
+    # if no index is selected, return
+    if not selected_index:
+        return
+
+    # parse the date from the selected date option label
+    # refactor to have separate dates list in future?
+    target_date = dates_listbox.get(selected_index).split(" ")[0]
+    graph_member_counts(target_date, is_percents=True)
+
 # Opens a graph of online and total member counts
-def graph_member_counts(date):
+def graph_member_counts(date, is_percents=False):
     target_date_member_counts_data = data_parser.get_activity_log_data(
         date, 
         ret_weekdays=True, 
@@ -45,9 +58,12 @@ def graph_member_counts(date):
         print("No member count logs found for " + date)
         return
 
-    graph_data: grapher.GraphData = generate_graph_data(target_date_member_counts_data)
-
-    grapher.graph_member_counts(graph_data)
+    if is_percents: # if showing percents graph
+        graph_data: grapher.PercentsGraphData = generate_percents_graph_data(target_date_member_counts_data)
+        grapher.graph_percents(graph_data)
+    else:
+        graph_data: grapher.GraphData = generate_graph_data(target_date_member_counts_data)
+        grapher.graph_member_counts(graph_data)
 
 # Instead of graphing activity log data directly from 
 # passed in log entries, create a data point for the top
@@ -72,6 +88,30 @@ def generate_graph_data(target_date_log_data) -> grapher.GraphData:
 
     return graph_data
 
+# Same as generate graphd data, but generates activity percets graph data instead
+def generate_percents_graph_data(target_date_log_data) -> grapher.GraphData:
+
+    weekday = target_date_log_data["Weekdays"][0]
+    date = target_date_log_data["Dates"][0]
+    graph_title = f"{weekday} {date}"
+
+    percents = []
+    for index in range(0, len(target_date_log_data["Dates"])):
+        if target_date_log_data["GroupTotalMemberCounts"][index] == 0:
+            percents.append(0)
+            continue
+        percent = target_date_log_data["OnlineMemberCounts"][index] / target_date_log_data["GroupTotalMemberCounts"][index]
+        percent = int(round(percent, 2) * 100)
+        percents.append(percent)
+
+    target_date_data = {
+        "Timestamps": [timestamp for timestamp in target_date_log_data["LogEntryTimes"]],
+        "Percents": percents
+    }
+
+    graph_data = grapher.PercentsGraphData(graph_title, target_date_data)
+
+    return graph_data
 
 # Get app version num
 def get_app_version():
@@ -105,9 +145,11 @@ dates_listbox.pack(side=tk.TOP, anchor=tk.NW)
 # Refresh Dates and Graph Member Counts Buttons
 refresh_dates_button = tk.Button(window_root, text="Refresh Dates", command=on_refresh_dates_button_clicked)
 graph_dates_button = tk.Button(window_root, text="Graph Member Counts", command=on_graph_dates_button_clicked)
+graph_percents_button = tk.Button(window_root, text="Graph Member Counts as Percents", command=on_graph_percents_button_clicked)
 
 dates_listbox_frame.pack(side=tk.TOP, anchor=tk.NW)
 refresh_dates_button.pack(side=tk.TOP, anchor=tk.NW)
 graph_dates_button.pack(side=tk.TOP, anchor=tk.NW)
+graph_percents_button.pack(side=tk.TOP, anchor=tk.NW)
 
 window_root.mainloop()
