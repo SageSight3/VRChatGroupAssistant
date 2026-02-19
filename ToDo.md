@@ -24,7 +24,11 @@
 * Make it so when program is launched, if any neccessary files don't exist yet, they'll be created with the necessary info they need
 * Possibly change log storage to store in logs in dirs based on year with seperate log files for each month -> figure out how selecting a date to get the graph for, would work if implemented -> how would listbox be drawn, if using -> list most recent 30 days maybe? or maybe list entries off selected month and year? could have dropdowns for each, alternative, could have listbox show date options between one date and another
 * See if can space bar groups in graph to be better spaces/give the bar labels more room
-* Create separate doc for task list
+* Create separate doc for tasks list
+* Create separate doc for notes
+* Create and figure out to how to add VRChat Group Assistant Liscense to project-> look into GPL?
+* Figure out why there is error switching to venv for python interpreter
+* Look into how to put qt liscense (LGPL) in project for distributed version
 
 ### GUI Brainstorm
 * Have arrow buttons to switch between graphs of different days
@@ -50,6 +54,13 @@
 * Each graph could be one day
 * Graph title will be day of weak and the date
 * Have list of buttons, where each button is for a specific date, that when pressed will pop up the active member counts graph for that day. Use the date field in the log entries for this
+
+### To Switch to Venv
+* ctrl+shift+p, Python: Select Interpeter, choose the one that says .venv, and switch to cmd or git bash terminal
+* In a powershell terminal, change session script perms with the command: `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`. Then enter command: `.\.venv\Scripts\activate
+
+### To convert .ui file to .py
+* pyside6-uic a_file.ui -o ui_a_file.py
 
 ## Done
 * Update group_info log_member_counts() to log 0 for both online and total counts if querying API fails

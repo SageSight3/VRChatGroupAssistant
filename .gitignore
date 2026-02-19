@@ -6,4 +6,6 @@
 /deprecated
 /data/activity_log
 /gui/__pycache__
+/sandbox/PySideSandbox/__pycache__
 /config.json
+/.venv
