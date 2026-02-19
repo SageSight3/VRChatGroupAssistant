@@ -29,6 +29,7 @@
 * Create and figure out to how to add VRChat Group Assistant Liscense to project-> look into GPL?
 * Figure out why there is error switching to venv for python interpreter
 * Look into how to put qt liscense (LGPL) in project for distributed version
+* Look into how to embed matplotplot lib figure in a qtwidget -> figure out how to be able to update graph in a widget with a button, also figure out how to add it to a widget's layout
 
 ### GUI Brainstorm
 * Have arrow buttons to switch between graphs of different days
