@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLabel,
-    QMainWindow, QPushButton, QSizePolicy, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QMainWindow,
+    QPushButton, QSizePolicy, QVBoxLayout, QWidget)
+
+from custom_widgets import SearchableComboBox
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -28,15 +29,16 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.verticalLayout = QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.testComboBox = QComboBox(self.centralwidget)
+        self.testComboBox = SearchableComboBox(self.centralwidget)
         self.testComboBox.setObjectName(u"testComboBox")
+        self.testComboBox.setEditable(True)
 
         self.verticalLayout.addWidget(self.testComboBox)
 
-        self.testButton = QPushButton(self.centralwidget)
-        self.testButton.setObjectName(u"testButton")
+        self.graphButton = QPushButton(self.centralwidget)
+        self.graphButton.setObjectName(u"graphButton")
 
-        self.verticalLayout.addWidget(self.testButton)
+        self.verticalLayout.addWidget(self.graphButton)
 
         self.testLabel = QLabel(self.centralwidget)
         self.testLabel.setObjectName(u"testLabel")
@@ -45,22 +47,22 @@ class Ui_MainWindow(object):
 
         self.testWidget = QWidget(self.centralwidget)
         self.testWidget.setObjectName(u"testWidget")
-        self.verticalLayout_3 = QVBoxLayout(self.testWidget)
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.horizontalLayout = QHBoxLayout()
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.testWidgetMainLayout = QVBoxLayout(self.testWidget)
+        self.testWidgetMainLayout.setObjectName(u"testWidgetMainLayout")
+        self.testWidgetDashboardLayout = QHBoxLayout()
+        self.testWidgetDashboardLayout.setObjectName(u"testWidgetDashboardLayout")
         self.graphLabel = QLabel(self.testWidget)
         self.graphLabel.setObjectName(u"graphLabel")
 
-        self.horizontalLayout.addWidget(self.graphLabel)
+        self.testWidgetDashboardLayout.addWidget(self.graphLabel)
 
-        self.graphButton = QPushButton(self.testWidget)
-        self.graphButton.setObjectName(u"graphButton")
+        self.newValsButton = QPushButton(self.testWidget)
+        self.newValsButton.setObjectName(u"newValsButton")
 
-        self.horizontalLayout.addWidget(self.graphButton)
+        self.testWidgetDashboardLayout.addWidget(self.newValsButton)
 
 
-        self.verticalLayout_3.addLayout(self.horizontalLayout)
+        self.testWidgetMainLayout.addLayout(self.testWidgetDashboardLayout)
 
 
         self.verticalLayout.addWidget(self.testWidget)
@@ -74,9 +76,9 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.testButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
+        self.graphButton.setText(QCoreApplication.translate("MainWindow", u"Graph Selected Option", None))
         self.testLabel.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
         self.graphLabel.setText(QCoreApplication.translate("MainWindow", u"Graph ", None))
-        self.graphButton.setText(QCoreApplication.translate("MainWindow", u"ChangeGraph", None))
+        self.newValsButton.setText(QCoreApplication.translate("MainWindow", u"Generate New Options", None))
     # retranslateUi
 

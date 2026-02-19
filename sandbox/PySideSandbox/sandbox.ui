@@ -16,12 +16,16 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QComboBox" name="testComboBox"/>
+     <widget class="SearchableComboBox" name="testComboBox">
+      <property name="editable">
+       <bool>true</bool>
+      </property>
+     </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="testButton">
+     <widget class="QPushButton" name="graphButton">
       <property name="text">
-       <string>PushButton</string>
+       <string>Graph Selected Option</string>
       </property>
      </widget>
     </item>
@@ -34,9 +38,9 @@
     </item>
     <item>
      <widget class="QWidget" name="testWidget" native="true">
-      <layout class="QVBoxLayout" name="verticalLayout_3">
+      <layout class="QVBoxLayout" name="testWidgetMainLayout">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
+        <layout class="QHBoxLayout" name="testWidgetDashboardLayout">
          <item>
           <widget class="QLabel" name="graphLabel">
            <property name="text">
@@ -45,9 +49,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="graphButton">
+          <widget class="QPushButton" name="newValsButton">
            <property name="text">
-            <string>ChangeGraph</string>
+            <string>Generate New Options</string>
            </property>
           </widget>
          </item>
@@ -59,6 +63,13 @@
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SearchableComboBox</class>
+   <extends>QComboBox</extends>
+   <header>custom_widgets</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
