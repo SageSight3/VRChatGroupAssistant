@@ -22,8 +22,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.testWidgetMainLayout.addWidget(self.__graph)
 
     def on_new_vals_button_clicked(self):
+
+        # save selected option
+        selected_index = self.testComboBox.currentIndex()
+
         self.testComboBox.clear()
         self.fill_test_combo_box()
+
+        # keep selected index on what it was previously
+        self.testComboBox.setCurrentIndex(selected_index)
+
         self.display_selected_item_data()
 
     def on_graph_button_clicked(self):
