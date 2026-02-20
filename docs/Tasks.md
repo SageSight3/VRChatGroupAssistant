@@ -26,6 +26,8 @@
 * Look into how to put qt liscense (LGPL) in project for distributed version
 * !!! Figure out what packages I need to include liscenses for: vrchatapi, tokio, reqwest, url, tokio-cron-scheduler, chrono, serde_json, pyside6, pyqt6, matplotlib
 * Figure out how to distribute project, for version 1.0.0 -> do i need to publish both a release, package, or both? How do I do both of those things, and what do I need to include/do for each
+* Look into how to certify distributed release build/cost
+* See if can remove need to store auth credentials -> logging in via loading cookies may not need them
 
 ## In Progress
 * Make GUI

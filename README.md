@@ -1,12 +1,11 @@
-# VRChat Group Activity Assistant
+# VRChat Group Assistant
 
-# Current Features
-* Logs online player counts every hour to help figure out when your group's members are most active, for the sake of planning meetups and other events. Once you run the program, the the logs will be able to be found in [`data/activity_log`](data/activity_log)
+VRChat Group Assistant is an app and backend to help with running a VRChat group, by providing analytics tools for identifying geogrpahical demographics within your group's member base to better understand what times of the day, your group is most active, and other tools for streamlining group moderation, event planning, and more, with possible future features including announcement, moderation, and log syncing with a discord server, if your group has one. See **[Features](docs/Features.md)** for more info.
 
 # Instructions
-This repo does not include the `config_info` file for your authentication config, or the `target_group` file for the basic information related to the group you are using this program for. Both of these will need to be made for the program to work.
+VRChat Group Assistant, at present not create a config file for you automoatically, which you will need to make manually, following the steps below.
 
-Once the program is running, it can be stopped by hitting `ctrl-c`.
+While this will change in future, for now, you will need to start the backend and app individually, from each other.
 
 ### Make App Config File
 As of version 0.8.0, the basic info VRChat Group Assistant uses to run has been unified under one file in the app backend's main working directory, `config.json`. See example: [config_guide.json](config_guide.json)
