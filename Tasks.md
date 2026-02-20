@@ -25,7 +25,7 @@
 * Create and figure out to how to add VRChat Group Assistant Liscense to project-> look into GPL?
 * Look into how to put qt liscense (LGPL) in project for distributed version
 * Figure out what packages I need to include liscenses for: vrchatapi, tokio, reqwest, url, tokio-cron-scheduler, chrono, serde_json, pyside6, pyqt6, matplotlib
-* Figure out how to publish project release or package
+* Figure out how to distribute project, for version 1.0.0 -> do i need to publish both a release, package, or both? How do I do both of those things, and what do I need to include/do for each
 
 
 ## In Progress
