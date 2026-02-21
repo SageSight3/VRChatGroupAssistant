@@ -24,7 +24,7 @@
 * See if can space bar groups in graph to be better spaces/give the bar labels more room
 * Figure out how to distribute project, for version 1.0.0 -> do i need to publish both a release, package, or both? How do I do both of those things, and what do I need to include/do for each
 * Look into how to certify distributed release build/cost
-* See if can remove need to store auth credentials -> logging in via loading cookies may not need them
+* See if can remove need to store auth credentials -> logging in via loading cookies may not need them -> If logging via loading cookies, only need user agent
 * Add about/credits section to GUI -> will need to put LGPLv3 license text here? will also need to include name of LGPL libraries used (PySide6?)? Look into what else needs to be in it
 
 ## In Progress
