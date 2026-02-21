@@ -53,7 +53,6 @@ Note: The app and backend run independently from each other. In future, there wi
     * mentor assignment
     * mock/dummy moderation actions and logs for situations in-training staff members handle, that full staff members can review or execute on
 
-
 ### GUI Brainstorm
 * Have arrow buttons to switch between graphs of different days
 * Checkboxes to toggle rendering for both online and total member counts

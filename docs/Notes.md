@@ -14,3 +14,6 @@
 
 ### To convert .ui file to .py
 * pyside6-uic a_file.ui -o ui_a_file.py
+
+### Making a Release
+* When making a release, make sure to include `READEME.md` and the `licenses` dir with it.
