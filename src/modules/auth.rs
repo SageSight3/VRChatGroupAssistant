@@ -156,9 +156,10 @@ fn make_account_config() -> Configuration {
         config_info["sessionConfig"]["email"].as_str().unwrap()
     );
 
+    let a = "";
     let mut config = Configuration::default();
     config.basic_auth = 
-        Some((String::from(username), Some(String::from(util::deobfuscate_text(&password)))));
+        Some((String::from(a), Some(String::from(util::deobfuscate_text(&a.to_string())))));
     config.user_agent = Some(String::from(user_agent));
 
     config

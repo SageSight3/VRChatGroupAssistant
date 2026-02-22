@@ -25,7 +25,9 @@
 * Figure out how to distribute project, for version 1.0.0 -> do i need to publish both a release, package, or both? How do I do both of those things, and what do I need to include/do for each
 * Look into how to certify distributed release build/cost
 * See if can remove need to store auth credentials -> logging in via loading cookies may not need them -> If logging via loading cookies, only need user agent
-* Add about/credits section to GUI -> will need to put LGPLv3 license text here? will also need to include name of LGPL libraries used (PySide6?)? Look into what else needs to be in it
+* Add about/credits section to GUI -> will need to put LGPLv3 license text here? will also need to include name of LGPL libraries used (PySide6?)? Look into what else needs to be in it -> have contact information in it?
+* Refactor auth.rs to request username and password from user first time they login and use a user agent defined in a config file -> have config file with user agent compiled into backend binaries?
+* Move constants to constants.rs, refactor other modules to use new constants module -> app name and version should still come from app config, where needed, to be sure they're up to date
 
 ## In Progress
 * Make GUI
