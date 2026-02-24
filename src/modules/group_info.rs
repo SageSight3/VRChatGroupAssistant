@@ -6,7 +6,8 @@ use chrono::{self, Datelike};
 use std::fs::{OpenOptions};
 use std::io::Write;
 
-use crate::modules::util;
+use super::util;
+use super::constants::{APP_CONFIG_PATH};
 
 #[derive(Debug, Clone)]
 struct GroupInfo {
@@ -161,7 +162,7 @@ pub async fn get_target_group_id(account: &Configuration) -> Result<String, Grou
 
 //Get group info from target_group file and return it in a GroupInfo struct
 fn get_group_info() -> GroupInfo {
-    let app_config = util::parse_json(super::APP_CONFIG_PATH);
+    let app_config = util::parse_json(APP_CONFIG_PATH);
 
     let target_group_info =  GroupInfo {
         name: app_config["basicGroupInfo"]["name"].as_str().unwrap().to_string(),

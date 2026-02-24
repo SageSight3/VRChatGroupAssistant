@@ -1,19 +1,27 @@
 # Notes
 
 ### To Update Version Number
-* Update it in config_info, README.md, and Cargo.toml
+* Make sure it's up to date in `cargo.toml`, `config.json`, `config-guide.json`, and `constants.rs`
 * Make sure to update version num in release build dir also
-
-### Compiling to executable
-* cargo build --release
-* python -m PyInstaller <--onedir or --onefile> <--noconsole> <filename.py>
 
 ### To Switch to Venv
 * ctrl+shift+p, Python: Select Interpeter, choose the one that says .venv, and switch to cmd or git bash terminal
-* In a powershell terminal, change session script perms with the command: `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`. Then enter command: `.\.venv\Scripts\activate
+* In a powershell terminal, change session script perms with the command: `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`. Then enter command: `.\.venv\Scripts\activate`
 
-### To convert .ui file to .py
-* pyside6-uic a_file.ui -o ui_a_file.py
+### To convert `.ui` file to `.py`
+* `pyside6-uic a_file.ui -o ui_a_file.py`
 
-### Making a Release
+### Making a Release for Distribution
 * When making a release, make sure to include `READEME.md` and the `licenses` dir with it.
+
+### Build Process
+* Make sure it's up to date in `cargo.toml`, `config.json`, `config-guide.json`, and `constants.rs`
+* **Frontend**
+    * convert necessary `.ui` files to `.py` files
+    * if building release:
+        * Compile to an executable with PyInstaller: `python -m PyInstaller <--onedir or --onefile> <--noconsole> <filename.py>`
+* **Backend**
+    * if building release:
+        * use command `cargo build --release`, compiles to release profile executable, instead of debug
+* if building release:
+    * make sure everything is up to date in release build dir, also
