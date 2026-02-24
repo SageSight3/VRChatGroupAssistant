@@ -29,6 +29,7 @@
 ## In Progress
 * Make GUI
 * Create login window and functionality
+* Sandbox PySide GUI changing windows
 
 ## Done
 * Update group_info log_member_counts() to log 0 for both online and total counts if querying API fails
