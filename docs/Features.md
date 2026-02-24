@@ -54,6 +54,7 @@ Note: The app and backend run independently from each other. In future, there wi
     * mock/dummy moderation actions and logs for situations in-training staff members handle, that full staff members can review or execute on
 * Can be used for multiple groups
 * Clearer management of group role permissions, would have clear distinction between between management and member perms
+* In the event of multiple people using the same app on the same machine, or someone's account getting comprimised, for sensitive group logs (like moderation logs), maybe encrypt sensitive logs using the permissions needed to access those logs and the group's id, and make them only decryptable/readable in the app? Would need encryption to complex enough to dissuade bad actors from trying to break it.
 
 ### GUI Brainstorm
 * Have arrow buttons to switch between graphs of different days

@@ -1,0 +1,69 @@
+{
+    "displayName": "DisplayName",
+    "groups": [
+        {
+            "discriminator": "GroupDiscriminator",
+            "id": "GroupId",
+            "name": "GroupName",
+            "shortCode": "GroupShortCode"
+        },
+        {
+            "discriminator": "GroupDiscriminator",
+            "id": "GroupId",
+            "name": "GroupName",
+            "shortCode": "GroupShortCode"
+        },
+        {
+            "discriminator": "GroupDiscriminator",
+            "id": "GroupId",
+            "name": "GroupName",
+            "shortCode": "GroupShortCode"
+        },
+        {
+            "discriminator": "etc.",
+            "id": "etc.",
+            "name": "etc.",
+            "shortCode": "etc."
+        }
+    ],
+    "groupPermisions": [
+        {
+            "id": "aUniqueGroupId",
+            "perms": [
+                "aPerm",
+                "aPerm",
+                "aPerm",
+                "etc."
+            ]
+        },
+        {
+            "id": "aUniqueGroupId",
+            "perms": [
+                "aPerm",
+                "aPerm",
+                "aPerm",
+                "etc."                
+            ]            
+        },
+        {
+            "id": "aUniqueGroupId",
+            "perms": [
+                 "aPerm",
+                "aPerm",
+                "aPerm",
+                "etc."               
+            ]          
+        },
+        {
+            "id": "etc.",
+            "perms": [
+                "aPerm",
+                "aPerm",
+                "aPerm",
+                "etc."                
+            ]
+        }
+    ],
+    "username": "Username",
+    "userID": "UserID"
+}
