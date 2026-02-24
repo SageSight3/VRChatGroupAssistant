@@ -19,7 +19,7 @@ Note: The app and backend run independently from each other. In future, there wi
 
 # Ideas
 
-### Feature Ideas/Proposals
+### Feature Ideas/Proposals - DISCORD FEATURES ON HOLD
 * Have a graph of discord member counts also
 * For every month, calculate average member counts at every time for each day of the week, also have options to display averages for weekdays and weekends
 * Query api every two minutes, or so during meetups, to track peak players at the meet, and when it was most active -> can also maybe use this to figure out who are the group meetup's regular attendees?
