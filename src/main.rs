@@ -34,7 +34,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     //Create job for logging member counts
     let log_member_counts_job = Job::new_async(
-        "0 * * * * *",
+        "0 0 * * * *",
         move |_uuid, _locked| {
             Box::pin({
                 //clone session and target group id to new variables to move into the closure
