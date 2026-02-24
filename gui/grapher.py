@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.widgets as widgets
 import tkinter as tk
+import mplcursors
 
 class GraphData:
 
@@ -159,16 +160,28 @@ def graph_member_counts(graph_data: GraphData):
         label="Total"
     )
 
-    # Add labels of each bar's exact value above them
-    bar_label_font_size = 10
-    axes.bar_label(online_member_counts_bar, labels=graph_data.get_online_bar_labels(), fontsize=bar_label_font_size, padding=3)
-    axes.bar_label(group_total_member_counts_bar, labels=graph_data.get_total_bar_labels(), fontsize=bar_label_font_size, padding=3)
-
     # Increase y-axis limit to give more room
     axes.set_ylim(0, graph_data.get_ylim())
 
     # Add a legend
     axes.legend(loc="upper left", ncols=2)
+
+    # Get bar labels
+    online_bar_labels = graph_data.get_online_bar_labels()
+    totals_bar_labels = graph_data.get_total_bar_labels()
+
+    # Make it so bar label will only appear when the bar is hovered over
+    online_cursor = mplcursors.cursor(online_member_counts_bar, hover=mplcursors.HoverMode.Transient)
+
+    @online_cursor.connect("add")
+    def online_on_hover(selection):
+        on_hover(selection, labels=online_bar_labels)
+
+    totals_cursor = mplcursors.cursor(group_total_member_counts_bar, hover=mplcursors.HoverMode.Transient)
+
+    @totals_cursor.connect("add")
+    def totals_on_hover(selection):
+        on_hover(selection, labels=totals_bar_labels)
 
     plt.show()
 
@@ -191,27 +204,45 @@ def graph_percents(graph_data: PercentsGraphData):
     axes.set_ylabel("Percentage of Total Members Online")
     axes.set_xlabel("Time")
 
-    bar_location = np.arange(len(graph_data.get_timestamps()))
+    bar_locations = np.arange(len(graph_data.get_timestamps()))
     bar_width = 0.5
 
     # Set labels and label positioning for each tick on the x-axis
     # tick labels should be centered between their respective bars
-    axes.set_xticks(bar_location, graph_data.get_timestamps())
+    axes.set_xticks(bar_locations, graph_data.get_timestamps())
     plt.xticks(rotation=70) # rotate x-tick labels to fit better
 
     # Create bar
-    percents_bar = axes.bar(
-        bar_location,
+    percents_bars = axes.bar(
+        bar_locations,
         graph_data.get_percents(),
         bar_width,
         label="Percents"
     )
 
-    # Add labels of each bar's exact value above them
-    bar_label_font_size = 10
-    axes.bar_label(percents_bar, labels=graph_data.get_percents_bar_labels(), fontsize=bar_label_font_size, padding=3)
-
     # Increase y-axis limit to give more room
     axes.set_ylim(0, graph_data.get_ylim())
 
+    # Get bar labels
+    bar_labels=graph_data.get_percents_bar_labels()
+
+    # Make it so bar label will only appear when the bar is hovered over
+    cursor = mplcursors.cursor(percents_bars, hover=mplcursors.HoverMode.Transient)
+
+    @cursor.connect("add")
+    def percents_on_hover(selection):
+        on_hover(selection, labels=bar_labels)
+
     plt.show()
+
+def on_hover(selection, labels):
+    index = selection.index
+    artist = selection.artist
+    height = selection.artist[index].get_height()
+    selection.annotation.set(text=f"{labels[index]}", position=(0, 2), anncoords="offset points")
+    selection.annotation.xy = (artist[index].get_x() + artist[index].get_width() / 2, height)
+
+    # remove annotation arrow and bounding box
+    if selection.annotation.arrow_patch:
+        selection.annotation.arrow_patch.set_visible(False)
+    selection.annotation.get_bbox_patch().set(alpha=0.0)
