@@ -29,7 +29,7 @@ The short code is everything on the left of the `.`, and the discriminator is th
 In future, I intend to make it so you can enter your authentication config info and group info through a GUI.
 
 # Licensing
-VRChat Group Assistant uses primarily PySide6 for it's GUI under the open source license, [LGPLv3](licenses/pyside6/LICENSE). In abidance with it, you may can find instructions on how to install PySide6 in the [pyside-pyside-setup repo on github](https://github.com/qtproject/pyside-pyside-setup/blob/dev/README.pyside6.md), part of the [Qt Project](https://github.com/qtproject).
+VRChat Group Assistant uses primarily PySide6 for it's GUI under the open source license, [LGPLv3](licenses/python/pyside6/LICENSE). In abidance with it, you may can find instructions on how to install PySide6 in the [pyside-pyside-setup repo on github](https://github.com/qtproject/pyside-pyside-setup/blob/dev/README.pyside6.md), part of the [Qt Project](https://github.com/qtproject).
 
 ---
 
