@@ -25,12 +25,14 @@
 * Add logout functionality -> cookies should be cleared when user logs out
 * Refactor auth module to be a struct impl block
 * Update backend for case of user enters wrong auth credentials
-* Look into how group data would be structured if wanting to use VRCGA, for multiple groups -> how would running jobs (like autologgers) for both groups work?
+* Look into how group data would be structured if wanting to use VRCGA, for multiple groups -> how would making and running jobs (like autologgers) for both groups work?, How would switching between multiple groups work?
+* Make so instead of needing to search for group, can choose group from user's group list -> may not be pheasible to only list groups where user has a management role
+* For actions able to be taken in the group by someone using VRCGA, gray out or hide actions a user's role in the group doesn't allow them to do? -> look into `get_user_all_group_permissions` in the api
 
 ## In Progress
 * Make GUI
 * Create login window and functionality
-* Sandbox PySide GUI changing windows
+* Sandbox PySide GUI changing windows -> look into QStackedWidget
 
 ## Done
 * Update group_info log_member_counts() to log 0 for both online and total counts if querying API fails
