@@ -52,6 +52,7 @@ Note: The app and backend run independently from each other. In future, there wi
 * Implement training tools to help staff members in training?
     * mentor assignment
     * mock/dummy moderation actions and logs for situations in-training staff members handle, that full staff members can review or execute on
+* Can be used for multiple groups
 
 ### GUI Brainstorm
 * Have arrow buttons to switch between graphs of different days

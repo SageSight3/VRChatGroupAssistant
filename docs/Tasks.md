@@ -25,6 +25,7 @@
 * Add logout functionality -> cookies should be cleared when user logs out
 * Refactor auth module to be a struct impl block
 * Update backend for case of user enters wrong auth credentials
+* Look into how group data would be structured if wanting to use VRCGA, for multiple groups -> how would running jobs (like autologgers) for both groups work?
 
 ## In Progress
 * Make GUI
