@@ -25,3 +25,32 @@
         * use command `cargo build --release`, compiles to release profile executable, instead of debug
 * if building release:
     * make sure everything is up to date in release build dir, also
+
+### Sorted Group Permissions
+* **Management**
+    * Manage Group Member Data
+    * Manage Group Data
+    * View Audit log
+    * Manage Group Roles
+    * Manage Group Default Role
+    * Assign Group Roles
+    * Manage Group Bans
+    * Remove Group Members
+    * Moderate Group Instances
+    * Manage Group Instances
+* **Member**
+    * View All Members
+    * Manage Group Announcement
+    * Manage Group Calendar
+    * Link Instances and Events
+    * Manage Group Galleries
+    * Manage Group Invites
+    * Group Instance Queue Priority
+    * Create Age Gated Instances
+    * Create Group Public Instances
+    * Create Group+ Instances
+    * Create Members-Only Group Instances
+    * Role-Restrict Members-Only Instances
+    * Portal to Group+ Instances
+    * Unlocked Portal to Group+ Instances
+    * Join Group Instances

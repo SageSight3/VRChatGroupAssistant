@@ -26,7 +26,7 @@
 * Refactor auth module to be a struct impl block
 * Update backend for case of user enters wrong auth credentials
 * Look into how group data would be structured if wanting to use VRCGA, for multiple groups -> how would making and running jobs (like autologgers) for both groups work?, How would switching between multiple groups work? How would a user choose what groups they want to use VRCGA to help manage?
-* Make so instead of needing to search for group, can choose group from user's group list -> may not be pheasible to only list groups where user has a management role
+* Make so instead of needing to search for group, can choose group from user's group list -> may not be pheasible to only list groups where user has a management role -> look into get_group_permissions
 * For actions able to be taken in the group by someone using VRCGA, gray out or hide actions a user's role in the group doesn't allow them to do? -> look into `get_user_all_group_permissions` in the api
 
 ## In Progress

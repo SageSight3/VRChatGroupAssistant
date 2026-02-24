@@ -31,6 +31,8 @@ In future, I intend to make it so you can enter your authentication config info 
 # Licensing
 VRChat Group Assistant uses primarily PySide6 for it's GUI under the open source license, [LGPLv3](licenses/python/pyside6/LICENSE). In abidance with it, you may can find instructions on how to install PySide6 in the [pyside-pyside-setup repo on github](https://github.com/qtproject/pyside-pyside-setup/blob/dev/README.pyside6.md), part of the [Qt Project](https://github.com/qtproject).
 
+VRChat Group Assistant also uses the python package, `mplcursors` for its graphs. [Find it here.](https://github.com/anntzer/mplcursors)
+
 ---
 
 VRChat Group Assistant is not endorsed by VRChat and does not reflect the views or opinions of VRChat or anyone officially involved in producing or managing VRChat properties. VRChat and all associated properties are trademarks or registered trademarks of VRChat Inc. VRChat © VRChat Inc.

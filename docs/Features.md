@@ -53,9 +53,16 @@ Note: The app and backend run independently from each other. In future, there wi
     * mentor assignment
     * mock/dummy moderation actions and logs for situations in-training staff members handle, that full staff members can review or execute on
 * Can be used for multiple groups
+* Clearer management of group role permissions, would have clear distinction between between management and member perms
 
 ### GUI Brainstorm
 * Have arrow buttons to switch between graphs of different days
 * Checkboxes to toggle rendering for both online and total member counts
 * Have login window and window for group info input
 * Have hub for expansion
+
+### GUI Pages
+* Login
+* App
+    * Activity Grapher
+    * About
