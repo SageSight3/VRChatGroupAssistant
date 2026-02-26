@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="images">
+    <file>images/vrc_login_failed.png</file>
+  </qresource>
+  <qresource prefix="testPrefix"/>
+</RCC>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TestPageWidget</class>
+ <widget class="QWidget" name="TestPageWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TestPageWidget</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="SearchableComboBox" name="testComboBox">
+     <property name="editable">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="graphButton">
+     <property name="text">
+      <string>Graph Selected Option</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="testLabel">
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="testWidget" native="true">
+     <layout class="QVBoxLayout" name="testWidgetMainLayout">
+      <item>
+       <layout class="QHBoxLayout" name="testWidgetDashboardLayout">
+        <item>
+         <widget class="QLabel" name="graphLabel">
+          <property name="text">
+           <string>Graph </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="newValsButton">
+          <property name="text">
+           <string>Generate New Options</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SearchableComboBox</class>
+   <extends>QComboBox</extends>
+   <header>custom_widgets</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
