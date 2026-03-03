@@ -55,12 +55,61 @@ Note: The app and backend run independently from each other. In future, there wi
 * Can be used for multiple groups
 * Clearer management of group role permissions, would have clear distinction between between management and member perms
 * In the event of multiple people using the same app on the same machine, or someone's account getting comprimised, for sensitive group logs (like moderation logs), maybe encrypt sensitive logs using the permissions needed to access those logs and the group's id, and make them only decryptable/readable in the app? Would need encryption to complex enough to dissuade bad actors from trying to break it.
+* **Checking User Group Perms and Membership Status**
+    * First, check membership status, then, if status is valid (user is in group), check perms
+    * **Checking For a Specific Group**
+        * **When:**
+            * User changes selected group in app to that group
+            * User attempts to take an action that directly involves querying the VRChat API (ex. making a group post) -> analytics tools shouldn't fall under this, as they would be querying the API automatically, and just displaying aggregated data from locally stored logs 
+        * WIP Check all perms for all groups listed in app for a user on an interval/when querying the VRChat API for that group, in general
 
 ### GUI Brainstorm
 * Have arrow buttons to switch between graphs of different days
 * Checkboxes to toggle rendering for both online and total member counts
 * Have login window and window for group info input
 * Have hub for expansion
+* **Pages:**
+    * Login
+    * 2fa
+    * App -> info bar at top with selected group dropdown (placeholder text could say "Group Select..."), a refresh button (will get new list of available groups user can select and refresh all group info) -> when group selection changes, all group info should refresh to change to the newly selected group
+        * Home -> buttons to start, stop, and restart backend, logout button, delete logs button, quit all button (prompt for user confirmation before quitting), basic info info: selected group size, user roles in selected group, backend status, is the group in the autologger, group name, group short code and discriminator
+        * About -> LGPL, app description, other license info
+        * Group Analytics (auto logger) - Should display something if selected group isn't set up with autologger
+            * Add Group Button -> button to add new group to VRCGA auto-logger -> List should be empty by default -> if a group is added, should refresh all group info, after a group is added, button should change to `Remove Group` button
+            * Remove Group Button -> button to remove a group from VRCGA auto-logger (have subwindow to prompt for confirmation) -> if a group is removed, button should change to `Add Group` button
+            * Next to Add/Remove Group Button - display if autologger is enabled for the selected group
+            * Dropdown to select analytic being viewed
+                * Online Member Counts
+                    * Date selection box
+                    * Selection between viewing member counts or percents in graph
+                    * Show graph button
+                    * Option to show graph in new window
+                    * Graph widget
+                    * Arrow buttons to cycle between graphs of different days -> date selection should update, when button is pushed, graph shouldn't change if selected date is earliest or most recent available
+                * Meetup Activity
+                    * WIP
+* WIP
+
+### Model Data
+* Selected group
+    * Group id
+    * Name
+    * Short code and discriminator (formatted how they are in VRChat)
+* User roles in selected group
+* User perms in selected group
+* Backend status
+* WIP
+
+### Config Data
+* App name
+* App version
+* Session cookies (clear, if user logs out)
+* Users Info
+    * Username
+    * User id
+* Auto-logger groups
+* WIP
+    
 
 ### GUI Pages
 * Login

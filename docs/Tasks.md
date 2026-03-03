@@ -28,6 +28,9 @@
 * Look into how group data would be structured if wanting to use VRCGA, for multiple groups -> how would making and running jobs (like autologgers) for both groups work?, How would switching between multiple groups work? How would a user choose what groups they want to use VRCGA to help manage?
 * Make so instead of needing to search for group, can choose group from user's group list -> may not be pheasible to only list groups where user has a management role -> look into get_group_permissions
 * For actions able to be taken in the group by someone using VRCGA, gray out or hide actions a user's role in the group doesn't allow them to do? -> look into `get_user_all_group_permissions` in the api
+* !!! Change group auto logger queries, to first check and make sure app user requesting is allowed to (has a management role in the group)
+* Look into how to have a python app communicate with a rust app
+* What should happen if a user loses management perms for or leaves/gets removed from a group? -> delete all data associated with that group, should there be a revert functionality, may not be able to be made truly secure, without a server element to the group's use of VRCGA or VRCGA directly
 
 ## In Progress
 * Make GUI
