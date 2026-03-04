@@ -31,6 +31,7 @@
 * !!! Change group auto logger queries, to first check and make sure app user requesting is allowed to (has a management role in the group)
 * Look into how to have a python app communicate with a rust app
 * What should happen if a user loses management perms for or leaves/gets removed from a group? -> delete all data associated with that group, should there be a revert functionality, may not be able to be made truly secure, without a server element to the group's use of VRCGA or VRCGA directly
+* Look into switching logs to being stored in sqlite3 db
 
 ## In Progress
 * Make GUI
