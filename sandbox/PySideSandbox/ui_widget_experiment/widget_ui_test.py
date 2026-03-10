@@ -8,7 +8,7 @@ class WidgetUI(CustomSignals):
     def __init__(self, a_ui_widget):
 
         # initialize CustomSignals, signal senders won't stay in memory
-        # if not done
+        # if not
         super().__init__()
 
         self.__dial = a_ui_widget.dial

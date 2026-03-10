@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'widget_ui_testozpySC.ui'
+## Form generated from reading UI file 'widget_ui_testxNPYKU.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.3
 ##
@@ -18,7 +18,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QCalendarWidget, QDial, QLabel,
     QPushButton, QSizePolicy, QTextBrowser, QWidget)
 
-class Ui_WidgetUITest(QWidget):
+class Ui_WidgetUITest(QWidget): # swapped inheritance from object to QWidget manually
+
+    # __init__() added manually
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setupUi(self)

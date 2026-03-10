@@ -1,8 +1,9 @@
 import sys
 from PySide6 import QtWidgets
+from PySide6.QtCore import Slot
 from ui_stacked_widget_test import Ui_MainWindow
 
-from widget_ui import WidgetUI
+from widget_ui_test import WidgetUI
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -26,6 +27,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def on_push_button_clicked(self):
         self.stackedWidget.setCurrentIndex(1)
 
+    @Slot(int)
     def on_change_page(self, val):
         self.stackedWidget.setCurrentIndex(val)
 
