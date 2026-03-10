@@ -18,6 +18,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QMainWindow,
     QPushButton, QSizePolicy, QVBoxLayout, QWidget)
 
+# handwritten, only here due to moving file to OLD dir
+import sys
+sys.path.append('../')
 from custom_widgets import SearchableComboBox
 
 class Ui_MainWindow(object):

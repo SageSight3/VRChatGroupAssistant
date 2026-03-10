@@ -11,6 +11,10 @@
 ### To convert `.ui` file to `.py`
 * `pyside6-uic a_file.ui -o ui_a_file.py`
 
+### Convert resources.qrc to resources_rc.py
+* When using a resources.qrc file with Pyside6, the resources file must also be converted to a python file 
+* `pyside6-rcc a_file.qrc -o your_file_rc.py`
+
 ### Making a Release for Distribution
 * When making a release, make sure to include `READEME.md` and the `licenses` dir with it.
 

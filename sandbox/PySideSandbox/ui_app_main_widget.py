@@ -19,8 +19,8 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QHBoxLayout,
     QLabel, QPushButton, QSizePolicy, QSpacerItem,
     QTabWidget, QVBoxLayout, QWidget)
 
-from ui_about_page_widget.py import Ui_AboutPage
-from ui_test_page_widget.py import Ui_TestPageWidget
+from ui_about_page_widget import Ui_AboutPage
+from ui_test_page_widget import Ui_TestPageWidget
 
 class Ui_AppMainWidget(object):
     def setupUi(self, AppMainWidget):

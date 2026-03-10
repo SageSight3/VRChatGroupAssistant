@@ -32,31 +32,31 @@ class Ui_TwoFactorAuthPage(object):
 
         self.gridLayout.addItem(self.verticalSpacer, 0, 1, 1, 1)
 
-        self.loginFailedWidget = QWidget(TwoFactorAuthPage)
-        self.loginFailedWidget.setObjectName(u"loginFailedWidget")
-        self.horizontalLayout = QHBoxLayout(self.loginFailedWidget)
+        self.verificationFailedWidget = QWidget(TwoFactorAuthPage)
+        self.verificationFailedWidget.setObjectName(u"verificationFailedWidget")
+        self.horizontalLayout = QHBoxLayout(self.verificationFailedWidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer_4)
 
-        self.errorImage = QLabel(self.loginFailedWidget)
+        self.errorImage = QLabel(self.verificationFailedWidget)
         self.errorImage.setObjectName(u"errorImage")
         self.errorImage.setPixmap(QPixmap(u":/images/images/vrc_login_failed.png"))
 
         self.horizontalLayout.addWidget(self.errorImage)
 
-        self.loginFailedDesc = QLabel(self.loginFailedWidget)
-        self.loginFailedDesc.setObjectName(u"loginFailedDesc")
+        self.verificationFailedDesc = QLabel(self.verificationFailedWidget)
+        self.verificationFailedDesc.setObjectName(u"verificationFailedDesc")
 
-        self.horizontalLayout.addWidget(self.loginFailedDesc)
+        self.horizontalLayout.addWidget(self.verificationFailedDesc)
 
         self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer_3)
 
 
-        self.gridLayout.addWidget(self.loginFailedWidget, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.verificationFailedWidget, 1, 1, 1, 1)
 
         self.label = QLabel(TwoFactorAuthPage)
         self.label.setObjectName(u"label")
@@ -96,7 +96,7 @@ class Ui_TwoFactorAuthPage(object):
     def retranslateUi(self, TwoFactorAuthPage):
         TwoFactorAuthPage.setWindowTitle(QCoreApplication.translate("TwoFactorAuthPage", u"Verify 2FA", None))
         self.errorImage.setText("")
-        self.loginFailedDesc.setText(QCoreApplication.translate("TwoFactorAuthPage", u"Invalid Code", None))
+        self.verificationFailedDesc.setText(QCoreApplication.translate("TwoFactorAuthPage", u"Invalid Code", None))
         self.label.setText(QCoreApplication.translate("TwoFactorAuthPage", u"Two Factor Authentication", None))
         self.twoFactorCodeIn.setText("")
         self.twoFactorCodeIn.setPlaceholderText(QCoreApplication.translate("TwoFactorAuthPage", u"Enter 2fa Code from app or email", None))

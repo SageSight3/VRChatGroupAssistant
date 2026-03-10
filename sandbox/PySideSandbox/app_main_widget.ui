@@ -213,13 +213,13 @@
   <customwidget>
    <class>Ui_TestPageWidget</class>
    <extends>QWidget</extends>
-   <header>ui_test_page_widget.py</header>
+   <header>ui_test_page_widget</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>Ui_AboutPage</class>
    <extends>QWidget</extends>
-   <header>ui_about_page_widget.py</header>
+   <header>ui_about_page_widget</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
