@@ -40,7 +40,6 @@ class AppContainer(QWidget):
         return self.__current_page
 
     def change_page(self, val):
-        print(val)
         if val < self.__view.appContent.count() and val > -1:
             self.__view.appContent.setCurrentIndex(val)
             self.__current_page = self.__view.appContent.currentIndex()

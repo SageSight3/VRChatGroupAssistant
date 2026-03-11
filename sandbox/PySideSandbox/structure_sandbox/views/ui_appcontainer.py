@@ -48,7 +48,7 @@ class Ui_AppContainer(object):
 
         self.retranslateUi(AppContainer)
 
-        self.appContent.setCurrentIndex(1)
+        self.appContent.setCurrentIndex(0)
 
     # setupUi
 
@@ -63,7 +63,7 @@ class Ui_AppContainer(object):
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">This app is a simple demo of how you can create muti view applications with PySide6 using custom (promoted) widgets for different pages.<br /><br />If you switch to next page, you will find working controls to interact with the app's main window, despite those controls being inside a subview of the main window's app container subview.<br /><br />The buttons at the top of the main window will also allo"
                         "w to switch between the different pages of the app container subview.<br /><br />The view hierarchy should look like this:<br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Courier New'; font-weight:700;\">MainWindow</span><br /><span style=\" font-family:'Courier New';\">\u251c\u2500\u2500 dashboard</span><br /><span style=\" font-family:'Courier New';\">\u2514\u2500\u2500 </span><span style=\" font-family:'Courier New'; font-weight:700;\">appContainer</span><span style=\" font-family:'Courier New';\"><br />    \u251c\u2500\u2500 aboutPage<br />    \u2514\u2500\u2500 </span><span style=\" font-family:'Courier New'; font-weight:700;\">interactivePage<br /><br /></span>Items in bold are different subviews with their own unique ui files, separate from the main window's, implemented as custom widgets, while unbolded items are made of different default widgets and GUI elements that come shipped with Qt6"
-                        "/PySide.</p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Courier New'; font-weight:700; text-decoration: underline;\">MainWindow</span><br /><span style=\" font-family:'Courier New';\">\u251c\u2500\u2500 dashboard</span><br /><span style=\" font-family:'Courier New';\">\u2514\u2500\u2500 </span><span style=\" font-family:'Courier New'; font-weight:700; text-decoration: underline;\">appContainer</span><span style=\" font-family:'Courier New';\"><br />    \u251c\u2500\u2500 aboutPage<br />    \u2514\u2500\u2500 </span><span style=\" font-family:'Courier New'; font-weight:700; text-decoration: underline;\">interactivePage</span><span style=\" font-family:'Courier New'; font-weight:700;\"><br /><br /></span>Underlined items are different subviews with their own unique ui files, separate fr"
+                        "om the main window's, implemented as custom widgets, while unbolded items are made of different default widgets and GUI elements that come shipped with Qt6/PySide.</p></body></html>", None))
     # retranslateUi
 
