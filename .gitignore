@@ -5,9 +5,13 @@
 /storage/target_group
 /deprecated
 /data/activity_log
+/config.json
+/.venv
 /gui/__pycache__
 /sandbox/PySideSandbox/__pycache__
 /sandbox/PySideSandbox/OLD/__pycache__
+/sandbox/PySideSandbox/OLD/ui_widget_experiment/__pycache__
+/sandbox/PySideSandbox/OLD/custom_widget_test/__pycache__
 /sandbox/PySideSandbox/ui_widget_experiment/__pycache__
-/config.json
-/.venv
+/sandbox/PySideSandbox/structure_sandbox/__pycache__
+/sandbox/PySideSandbox/structure_sandbox/views/__pycache__
