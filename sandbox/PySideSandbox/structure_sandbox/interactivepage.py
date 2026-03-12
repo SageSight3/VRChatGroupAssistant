@@ -5,9 +5,7 @@ from views.ui_interactivepage import Ui_InteractivePage
 
 class InteractivePage(QWidget):
 
-    # signal to toggle visibility of the secret message in the app's
-    # main window
-    toggle_secret_clicked = Signal()
+    from appsignals import toggle_secret
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -22,6 +20,6 @@ class InteractivePage(QWidget):
 
     @Slot()
     def on_toggle_secret_button_clicked(self):
-        self.toggle_secret_clicked.emit()
+        self.toggle_secret.emit()
 
     

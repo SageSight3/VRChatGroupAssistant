@@ -5,7 +5,7 @@ from views.ui_appcontainer import Ui_AppContainer
 
 class AppContainer(QWidget):
 
-    toggle_secret = Signal()
+    from appsignals import toggle_secret
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -21,7 +21,7 @@ class AppContainer(QWidget):
         self.set_view_launch_state()
         
     def setup_connections(self):
-        self.__interactivePage.toggle_secret_clicked.connect(lambda: self.toggle_secret.emit())
+        self.__interactivePage.toggle_secret.connect(lambda: self.toggle_secret.emit())
     
     def set_view_launch_state(self):
         self.change_page(0)
