@@ -21,7 +21,14 @@ class AppContainer(QWidget):
         self.set_view_launch_state()
         
     def setup_connections(self):
-        self.__interactivePage.toggle_secret.connect(lambda: self.toggle_secret.emit())
+        self.__interactivePage.toggle_secret.connect(self.on_toggle_secret)
+
+    @Slot()
+    def on_toggle_secret(self):
+        sender = self.sender()
+        if sender == self.__interactivePage:
+            print("interactive page")
+        self.toggle_secret.emit()
     
     def set_view_launch_state(self):
         self.change_page(0)

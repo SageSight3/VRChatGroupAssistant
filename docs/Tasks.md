@@ -3,21 +3,16 @@
 ## To Do
 * Look into making graph scrollable when window is small
 * Look into storing program data in AppData or Documents. May be necessary for compiling to an executable.
-* Possibly switch config.json from having username, to just using email and password.
 * Possibly refactor GUI scripts to follow MVC better: gui Convert gui.py to controller.py. Convert data-parser.py to model.py. Convert grapher.py to gui.py or view.py or make a new gui/view script and ahve grapher be a sub-script of it -> Look into Python classes.
-* Make a new app.py script for running the GUI
 * Begin doing research into making discord bot ON HOLD
 * Make script to update version num in all neccessary files?
-* Have program create neccessary dirs and files when run, if they don't exist
-* Create window for entering target group's basic info (name, short code, discriminator)
 * Add buttons to start and stop Rust program
 * Add quit all button to GUI -> should close both the gui app and stop the rust program
 * Make it so when GUI launches, it will check if the rust program is running, and if it isn't, start it
-* Write GUI story board
+* Arrow buttons to GUI for switching between graphs
 * Update GUI and maybe rust program also to change their working directories to where they need to be
 * Switch log_group_member_counts() to use a BufWriter for updating the log -> not fully neccessary potentially, since log is only updated every hour
-* Make it so when program is launched, if any neccessary files or dirs don't exist yet, they'll be created with the necessary info they need
-* Possibly change log storage to store logs in dirs based on year with seperate log files for each month -> figure out how selecting a date to get the graph for, would work if implemented -> how would listbox be drawn, if using -> list most recent 30 days maybe? or maybe list entries off selected month and year? could have dropdowns for each, alternative, could have selection box show date options between one date and another
+* Make it so when program is launched, if any neccessary files or dirs don't exist yet, they'll be created with the necessary info they need -> make an install wizard?
 * See if can space bar groups in graph to be better spaces/give the bar labels more room
 * Figure out how to distribute project, for version 1.0.0 -> do i need to publish both a release, package, or both? How do I do both of those things, and what do I need to include/do for each
 * Look into how to certify distributed release build/cost
@@ -26,19 +21,23 @@
 * Refactor auth module to be a struct impl block
 * Update backend for case of user enters wrong auth credentials
 * Look into how group data would be structured if wanting to use VRCGA, for multiple groups -> how would making and running jobs (like autologgers) for both groups work?, How would switching between multiple groups work? How would a user choose what groups they want to use VRCGA to help manage?
-* Make so instead of needing to search for group, can choose group from user's group list -> may not be pheasible to only list groups where user has a management role -> look into get_group_permissions
+* Refine Group Selection
+    * Create window for entering target group's basic info (name, short code, discriminator)
+    * **OR**
+    * Make so instead of needing to search for group, can choose group from user's group list -> may not be pheasible to only list groups where user has a management role -> look into get_group_permissions
 * For actions able to be taken in the group by someone using VRCGA, gray out or hide actions a user's role in the group doesn't allow them to do? -> look into `get_user_all_group_permissions` in the api
 * !!! Change group auto logger queries, to first check and make sure app user requesting is allowed to (has a management role in the group)
 * Look into how to have a python app communicate with a rust app
 * Look into switching logs to being stored in sqlite3 db
-* Maybe have app check for discord perms, as well 
+* Maybe have app check for discord perms, as well
+* Look into finding a better way to organize tasks/docs
+
+## Frontend Tasks
 
 ## In Progress
 * Make GUI
 * Create login window and functionality
-* Sandbox PySide GUI changing windows -> look into QStackedWidget
 * What should happen if a user loses management perms for or leaves/gets removed from a group? -> delete all data associated with that group, should there be a revert functionality, may not be able to be made truly secure, without a server element to the group's use of VRCGA or VRCGA directly
-* Figure out how custom widgets for app pages will be maintained, since pyside6-uic overrides them havomg init methods, parents, and inheriting from QWidget
 
 ## Done
 * Update group_info log_member_counts() to log 0 for both online and total counts if querying API fails
@@ -61,3 +60,5 @@
 * Move constants to constants.rs, refactor other modules to use new constants module -> app name and version should still come from app config, where needed, to be sure they're up to date
 * Refactor auth.rs to request username and password from user first time they log in and use a user agent defined in a config file -> Have config file with user agent compiled into backend binaries -> user agent in constants.rs
 * Removed need to store auth credentials. User auth credentials are no longer saved.
+* Figure out how custom widgets for app pages will be maintained, since pyside6-uic overrides them havomg init methods, parents, and inheriting from QWidget
+* Sandbox PySide GUI changing windows -> look into QStackedWidget

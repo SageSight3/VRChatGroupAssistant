@@ -34,6 +34,10 @@ class MainWindow(QMainWindow):
 
     @Slot()
     def toggle_secret_message(self):
+        sender = self.sender()
+        if sender == self.__app_container:
+            print("app container")
+            
         if self.__view.secretMessage.isHidden():
             self.__view.secretMessage.show()
         else:
