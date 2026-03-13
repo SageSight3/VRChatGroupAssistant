@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="images">
+    <file>images/MainWindowBGLowOpacity.png</file>
+    <file>images/ArrowButton.png</file>
+  </qresource>
+</RCC>
