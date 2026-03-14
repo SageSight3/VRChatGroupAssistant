@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="images">
+    <file>images/ArrowButton.png</file>
+    <file>images/RefreshIcon.png</file>
+  </qresource>
+</RCC>

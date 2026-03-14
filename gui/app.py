@@ -1,6 +1,6 @@
 import data_parser
 import grapher
-import tkinter as tk
+# import tkinter as tk to be removed
 
 def on_refresh_dates_button_clicked():
     refresh_dates_listbox()

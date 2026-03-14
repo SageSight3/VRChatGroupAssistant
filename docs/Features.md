@@ -99,6 +99,11 @@ Note: The app and backend run independently from each other. In future, there wi
 * User perms in selected group
 * Backend status
 * WIP
+* Current Graph Data
+    * Percents?
+    * Online Counts
+    * Total Counts
+* Dates
 
 ### Config Data
 * App name

@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMainWindow, QApplication
+from PySide6.QtWidgets import QMainWindow
 from PySide6.QtCore import Signal, Slot
 
 from views.ui_mainwindow import Ui_MainWindow
