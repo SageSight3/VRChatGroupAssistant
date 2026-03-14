@@ -119,5 +119,10 @@ Note: The app and backend run independently from each other. In future, there wi
 ### GUI Pages
 * Login
 * App
-    * Activity Grapher
+    * Player Count Tracker
     * About
+    * Autologger controls -> for now maybe instead have menu bar that opens a subwindow with controls?
+        * Buttons to start and stop backend
+        * Should report backend status (running, not running)
+        * backend logs
+        
