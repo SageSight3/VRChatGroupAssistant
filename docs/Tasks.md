@@ -37,10 +37,12 @@
     * Login Screen
     * Two Factor Auth Screen
     * Auto-logger Page
+* have autologger session error logs be written to a file
 
 ## In Progress
 * Make GUI
-    * Player Count Tracker Page
+    * Player Count Tracker Page -> remove graph button, graph should update whenever selection changes or graph as percents is checked -> move all three to one graph, that could toggle on and off, if checked in controls? make sure pushing an arrow button updates the date selection also
+    * Create custom menubar widget -> should be menu, autologger status label, and auto logger status description (QMenuBar is kinda janky)
 * What should happen if a user loses management perms for or leaves/gets removed from a group? -> delete all data associated with that group, should there be a revert functionality, may not be able to be made truly secure, without a server element to the group's use of VRCGA or VRCGA directly
 
 ## Done

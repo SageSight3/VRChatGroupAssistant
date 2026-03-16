@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>756</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>VRChat Group Assistant</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QWidget" name="appContainer" native="true"/>
+    </item>
+   </layout>
+  </widget>
+  <action name="stop">
+   <property name="text">
+    <string>Stop Autologger</string>
+   </property>
+  </action>
+  <action name="restart">
+   <property name="text">
+    <string>Restart Autologger</string>
+   </property>
+  </action>
+  <action name="clearCookies">
+   <property name="text">
+    <string>Clear Cookies</string>
+   </property>
+  </action>
+  <action name="clearLogs">
+   <property name="text">
+    <string>Clear Logs</string>
+   </property>
+  </action>
+  <action name="quitAll">
+   <property name="text">
+    <string>Quit All</string>
+   </property>
+  </action>
+  <action name="start_2">
+   <property name="text">
+    <string>Start</string>
+   </property>
+  </action>
+  <action name="stop_2">
+   <property name="text">
+    <string>Stop</string>
+   </property>
+  </action>
+  <action name="restart_2">
+   <property name="text">
+    <string>Restart</string>
+   </property>
+  </action>
+  <action name="clearLogs_2">
+   <property name="text">
+    <string>Clear Logs</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

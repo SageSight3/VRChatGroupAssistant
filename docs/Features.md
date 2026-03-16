@@ -104,6 +104,7 @@ Note: The app and backend run independently from each other. In future, there wi
     * Online Counts
     * Total Counts
 * Dates
+* isLoggedIn -> for hiding and unhiding main window menu bar (PySide standard is for it to be in main window and there's no way to add it to a QWidget in QtDesigner, and would go against design precedents so far to add it in code)
 
 ### Config Data
 * App name
@@ -125,4 +126,16 @@ Note: The app and backend run independently from each other. In future, there wi
         * Buttons to start and stop backend
         * Should report backend status (running, not running)
         * backend logs
-        
+    * Menu
+        * Autologger Controls
+            * Start
+            * Stop
+            * Restart
+            * Open Logs Folder
+            * View Error Logs
+            * Clear Groups (future)
+        * Clear Cookies
+        * Quit -> should open dialog for confirmation, should inform user that the backend will close also
+    * If frontend is closed, but backend isn't, a dialog window should open, informing the user that the backend is still running, should also provide option to quit backend
+    * Menu bar should also display status of autologger
+    * Button to open about page should also be in menu bar -> should open as a subwindow/dialog
