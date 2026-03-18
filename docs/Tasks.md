@@ -31,7 +31,7 @@
 * Look into switching logs to being stored in sqlite3 db
 * Maybe have app check for discord perms, as well
 * Look into finding a better way to organize tasks/docs
-* Create login window and functionality
+* Implement login window functionality
 * GUI
     * Create custom menubar widget -> should be menu, autologger status label, and auto logger status description (QMenuBar is kinda janky)
     * Login
@@ -42,6 +42,7 @@
     * set up error log view in GUI
 * look into PySide6 context menus
 * Review Tasks and reorganize
+* Design database for refactoring log storage to an sqlite3 db
 
 ## In Progress
 * Make GUI
