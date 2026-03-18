@@ -38,6 +38,10 @@
     * Two Factor Auth Screen
     * Auto-logger Page
 * have autologger session error logs be written to a file
+    * log errors to file
+    * set up error log view in GUI
+* look into PySide6 context menus
+* Review Tasks and reorganize
 
 ## In Progress
 * Make GUI

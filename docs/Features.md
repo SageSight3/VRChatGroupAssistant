@@ -62,6 +62,7 @@ Note: The app and backend run independently from each other. In future, there wi
             * User changes selected group in app to that group
             * User attempts to take an action that directly involves querying the VRChat API (ex. making a group post) -> analytics tools shouldn't fall under this, as they would be querying the API automatically, and just displaying aggregated data from locally stored logs 
         * WIP Check all perms for all groups listed in app for a user on an interval/when querying the VRChat API for that group, in general
+* First Degree groups graph -> Should display target group in center with links to other groups it's members are in (have configureable parameters for how. ex. for group to be represented on graph, at least 5% of target group members must be in it). Should also show links between represented mutual groups if significant number of members in target group are in multiple of them. (ex. in target group a, a significant fraction of members are in both groups b and group c, so there's a link between groups b and c)
 
 ### GUI Brainstorm
 * Have arrow buttons to switch between graphs of different days
@@ -118,10 +119,10 @@ Note: The app and backend run independently from each other. In future, there wi
     
 
 ### GUI Pages
-* Login
+* Login - Put 2fa and login in same widget -> (will implement later, due to potential method/overhead considerations on how app frontend will communicate with backend)
 * App
     * Player Count Tracker
-    * About
+    * About - about tab should have app version in it (change Licenses tab to Credits tab)
     * Autologger controls -> for now maybe instead have menu bar that opens a subwindow with controls?
         * Buttons to start and stop backend
         * Should report backend status (running, not running)
@@ -130,7 +131,7 @@ Note: The app and backend run independently from each other. In future, there wi
         * Autologger Controls
             * Start
             * Stop
-            * Restart
+            * Restart (should be grayed out if autologger isn't running)
             * Open Logs Folder
             * View Error Logs
             * Clear Groups (future)

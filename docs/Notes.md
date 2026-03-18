@@ -34,6 +34,14 @@
 * if building release:
     * make sure everything is up to date in release build dir, also
 
+### PySide6 Note
+* You don't need a main window
+
+### License Requirements in GUI
+* Credits tab
+    * Have link to VRCGA's git repo
+    * Have LGPLv3 listed for PySide
+    * Attribute Flaticon for settings button icon
 ### Sorted Group Permissions
 * **Management**
     * Manage Group Member Data
