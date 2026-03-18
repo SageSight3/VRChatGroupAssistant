@@ -251,12 +251,26 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="aboutPage"/>
       <widget class="QWidget" name="analyticsPage"/>
       <widget class="QWidget" name="analyticsControlPanel"/>
-      <widget class="QWidget" name="settingsPage"/>
+      <widget class="QWidget" name="settingsPage">
+       <widget class="QLabel" name="settingsWIPLabel">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>250</y>
+          <width>49</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>WIP</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </widget>
    </item>

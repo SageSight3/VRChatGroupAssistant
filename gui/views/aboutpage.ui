@@ -30,17 +30,17 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QTabWidget" name="aboutTabs">
+    <widget class="QTabWidget" name="tabs">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
-     <widget class="QWidget" name="guide">
+     <widget class="QWidget" name="guideTab">
       <attribute name="title">
        <string>Guide</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <widget class="QTextBrowser" name="guideBrowser">
+        <widget class="QTextBrowser" name="guide">
          <property name="html">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -55,13 +55,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="credits">
+     <widget class="QWidget" name="creditsTab">
       <attribute name="title">
        <string>Credits</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QTextBrowser" name="creditsBrowser"/>
+        <widget class="QTextBrowser" name="credits"/>
        </item>
       </layout>
      </widget>

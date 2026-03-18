@@ -34,15 +34,41 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="groupControlsTab">
+     <widget class="QWidget" name="groupControls">
       <attribute name="title">
        <string>Add/Remove Groups</string>
       </attribute>
+      <widget class="QLabel" name="groupControlsWIPLabel">
+       <property name="geometry">
+        <rect>
+         <x>340</x>
+         <y>270</y>
+         <width>49</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>WIP</string>
+       </property>
+      </widget>
      </widget>
-     <widget class="QWidget" name="logsTab">
+     <widget class="QWidget" name="errorLogs">
       <attribute name="title">
        <string>Error Logs</string>
       </attribute>
+      <widget class="QLabel" name="logsWIPLabel">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>270</y>
+         <width>131</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>WIP</string>
+       </property>
+      </widget>
      </widget>
     </widget>
    </item>
