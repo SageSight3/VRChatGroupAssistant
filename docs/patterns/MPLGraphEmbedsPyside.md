@@ -6,9 +6,9 @@ Make a matplotlib graph more accessible and presentable in a PySide GUI applicat
 ### Solution
 To make matplotlib graphs more presentable in an application, matplotlib supports embedding their graphs in various GUI frameworks, including PySide.
 
-To do so, add a Qt layout (any will work) to the GUI to be a container for the graph in the intended gui view.. This layout can be added in either QtDesigner or in the class directly. Then, write a class to create your graph that as a subclass of FigureCanvasQtAgg (from `matplotlib.backends.backend_qtagg`).
+To do so, we'll add a Qt layout (any will work) to the GUI to be a container for the graph in the intended gui view. This layout can be added in either QtDesigner or in the class directly. Then, we'll write a class to create your graph that as a subclass of FigureCanvasQtAgg (from `matplotlib.backends.backend_qtagg`).
 
-Lastly, create an object in the intended gui view's class to hold onto your matplotlib graph, and add it to the container layout.
+Lastly, we create an object in the intended gui view's class to hold onto our matplotlib graph, and add it to the container layout.
 
 **Example**
 <br>

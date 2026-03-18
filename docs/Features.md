@@ -63,6 +63,7 @@ Note: The app and backend run independently from each other. In future, there wi
             * User attempts to take an action that directly involves querying the VRChat API (ex. making a group post) -> analytics tools shouldn't fall under this, as they would be querying the API automatically, and just displaying aggregated data from locally stored logs 
         * WIP Check all perms for all groups listed in app for a user on an interval/when querying the VRChat API for that group, in general
 * First Degree groups graph -> Should display target group in center with links to other groups it's members are in (have configureable parameters for how. ex. for group to be represented on graph, at least 5% of target group members must be in it). Should also show links between represented mutual groups if significant number of members in target group are in multiple of them. (ex. in target group a, a significant fraction of members are in both groups b and group c, so there's a link between groups b and c)
+* Frontend model should update dates list when new entries are added to the app's analytics logs
 
 ### GUI Brainstorm
 * Have arrow buttons to switch between graphs of different days
@@ -70,7 +71,7 @@ Note: The app and backend run independently from each other. In future, there wi
 * Have login window and window for group info input
 * Have hub for expansion
 * **Pages:**
-    * Login
+    * Login -> use recovery code button should be hidden, as well, when using an OTP code for 2fa
     * 2fa
     * App -> info bar at top with selected group dropdown (placeholder text could say "Group Select..."), a refresh button (will get new list of available groups user can select and refresh all group info) -> when group selection changes, all group info should refresh to change to the newly selected group
         * Home -> buttons to start, stop, and restart backend, logout button, delete logs button, quit all button (prompt for user confirmation before quitting), basic info info: selected group size, user roles in selected group, backend status, is the group in the autologger, group name, group short code and discriminator
@@ -106,6 +107,14 @@ Note: The app and backend run independently from each other. In future, there wi
     * Total Counts
 * Dates
 * isLoggedIn -> for hiding and unhiding main window menu bar (PySide standard is for it to be in main window and there's no way to add it to a QWidget in QtDesigner, and would go against design precedents so far to add it in code)
+
+### Model Signals
+* requiresEmail2fa
+* requiresAuth2fa
+* loginFailed
+* twoFactorAuthFailed
+* onlineCountsGraphDataChanged
+* datesListChanged
 
 ### Config Data
 * App name

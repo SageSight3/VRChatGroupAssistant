@@ -30,7 +30,7 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QSplitter" name="navFocusSplitter">
+    <widget class="QSplitter" name="navContentSplitter">
      <property name="styleSheet">
       <string notr="true">QSplitter::handle {
     background-color: #000000; 
@@ -79,6 +79,12 @@
          <property name="text">
           <string>About</string>
          </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <attribute name="buttonGroup">
+          <string notr="true">appPageNavButtons</string>
+         </attribute>
         </widget>
        </item>
        <item>
@@ -86,6 +92,12 @@
          <property name="text">
           <string>Analytics</string>
          </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <attribute name="buttonGroup">
+          <string notr="true">appPageNavButtons</string>
+         </attribute>
         </widget>
        </item>
        <item>
@@ -129,6 +141,13 @@
              </widget>
             </item>
             <item>
+             <widget class="QPushButton" name="refreshDataButton">
+              <property name="text">
+               <string>Refresh Data</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QPushButton" name="startAutologgerButton">
               <property name="text">
                <string>Start</string>
@@ -154,6 +173,12 @@
               <property name="text">
                <string>Control Panel</string>
               </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <attribute name="buttonGroup">
+               <string notr="true">appPageNavButtons</string>
+              </attribute>
              </widget>
             </item>
            </layout>
@@ -216,6 +241,12 @@
              <height>40</height>
             </size>
            </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <attribute name="buttonGroup">
+            <string notr="true">appPageNavButtons</string>
+           </attribute>
           </widget>
          </item>
          <item>
@@ -243,7 +274,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QStackedWidget" name="focus">
+     <widget class="QStackedWidget" name="content">
       <property name="minimumSize">
        <size>
         <width>1</width>
@@ -280,4 +311,7 @@
   <include location="../resources.qrc"/>
  </resources>
  <connections/>
+ <buttongroups>
+  <buttongroup name="appPageNavButtons"/>
+ </buttongroups>
 </ui>

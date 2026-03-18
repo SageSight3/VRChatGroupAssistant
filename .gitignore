@@ -8,6 +8,7 @@
 /config.json
 /.venv
 /gui/__pycache__
+/gui/views/__pycache__
 /sandbox/PySideSandbox/__pycache__
 /sandbox/PySideSandbox/OLD/__pycache__
 /sandbox/PySideSandbox/OLD/ui_widget_experiment/__pycache__

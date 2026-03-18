@@ -32,11 +32,11 @@
 * Maybe have app check for discord perms, as well
 * Look into finding a better way to organize tasks/docs
 * Create login window and functionality
-* Make GUI
-    * About Page
-    * Login Screen
-    * Two Factor Auth Screen
-    * Auto-logger Page
+* GUI
+    * Create custom menubar widget -> should be menu, autologger status label, and auto logger status description (QMenuBar is kinda janky)
+    * Login
+        * Add back arrow to 2fa widget -> should go back to previous verification method if set to use recovery code, and back to login window, if in initial 2fa state
+        * put loginButton in a horizontal layout so it can be given a maximum size while kept centered in the view
 * have autologger session error logs be written to a file
     * log errors to file
     * set up error log view in GUI
@@ -46,7 +46,15 @@
 ## In Progress
 * Make GUI
     * Player Count Tracker Page -> remove graph button, graph should update whenever selection changes or graph as percents is checked -> move all three to one graph, that could toggle on and off, if checked in controls? make sure pushing an arrow button updates the date selection also
-    * Create custom menubar widget -> should be menu, autologger status label, and auto logger status description (QMenuBar is kinda janky)
+    * About Page
+    * Login Widget
+        * Login
+        * Two Factor Auth
+    * App Container
+        * Navigation
+        * App Content
+            * Analytics Page
+                * Online Counts Tracker
 * What should happen if a user loses management perms for or leaves/gets removed from a group? -> delete all data associated with that group, should there be a revert functionality, may not be able to be made truly secure, without a server element to the group's use of VRCGA or VRCGA directly
 
 ## Done

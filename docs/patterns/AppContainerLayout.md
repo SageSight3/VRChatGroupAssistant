@@ -1,6 +1,6 @@
-# WIP
+# Creating an App Navigation Menu - WIP
 
-have nav and app focus be in a splitter layout together
+have nav and app focus (where main app contents will be) be in a splitter layout together
 
 Unless wanting to make collapsable widgets, make sure childrenCollapsible in QSpliiter is false (unchecked in QT Designer)
 

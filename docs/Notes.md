@@ -41,7 +41,8 @@
 * Credits tab
     * Have link to VRCGA's git repo
     * Have LGPLv3 listed for PySide
-    * Attribute Flaticon for settings button icon
+    * Attribute Flaticon for images from it
+    
 ### Sorted Group Permissions
 * **Management**
     * Manage Group Member Data
