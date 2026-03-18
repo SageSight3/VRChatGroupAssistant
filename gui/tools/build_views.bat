@@ -1,3 +1,4 @@
+REM Make sure we're executing commands from the dir the batch file's located in
 cd %~dp0
 
 CALL "..\..\.venv\\Scripts\activate.bat"
