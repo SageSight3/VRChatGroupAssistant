@@ -64,6 +64,7 @@ Note: The app and backend run independently from each other. In future, there wi
         * WIP Check all perms for all groups listed in app for a user on an interval/when querying the VRChat API for that group, in general
 * First Degree groups graph -> Should display target group in center with links to other groups it's members are in (have configureable parameters for how. ex. for group to be represented on graph, at least 5% of target group members must be in it). Should also show links between represented mutual groups if significant number of members in target group are in multiple of them. (ex. in target group a, a significant fraction of members are in both groups b and group c, so there's a link between groups b and c)
 * Frontend model should update dates list when new entries are added to the app's analytics logs
+* List which group staff members are online in VRChat/on VRChat's website, maybe show if they're on discord, as well, if set up
 
 ### GUI Brainstorm
 * Have arrow buttons to switch between graphs of different days
