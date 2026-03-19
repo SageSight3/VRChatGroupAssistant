@@ -1,9 +1,11 @@
 from PySide6.QtWidgets import QWidget
-from PySide6.QtCore import Slot
+from PySide6.QtCore import Slot, Signal
 
 from views.ui_applogin import Ui_AppLogin
 
 class AppLogin(QWidget):
+
+    from vrcga_signals import loginCredentials, twoFactorAuthCode
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -14,6 +16,8 @@ class AppLogin(QWidget):
         self.__login = self.__view.login
         self.__loginButton = self.__view.loginButton
         self.__loginFailed = self.__view.loginFailed
+        self.__usernameIn = self.__view.usernameIn
+        self.__passwordIn = self.__view.passwordIn
 
         self.__twoFactorAuth = self.__view.twoFactorAuth
         self.__twoFactorAuthDefaultLabel = self.__view.authCodeLabel
@@ -24,14 +28,15 @@ class AppLogin(QWidget):
         self.__twoFactorAuthRecoveryVerifyButton = self.__view.recoveryCodeVerifyButton
         self.__twoFactorAuthUseRecoveryCodeButton = self.__view.useRecoveryCodeButton
         self.__twoFactorAuthFailed = self.__view.twoFactorAuthFailed
+        self.__twoFactorAuthCodeIn = self.__view.twoFactorAuthIn
+
 
         self.setup_connections()
         self.default_state()
 
     def setup_connections(self):
-        
-        # Placeholder until communication with backend is set up
-        self.__loginButton.clicked.connect(self.two_factor_auth)
+        self.__loginButton.clicked.connect(self.submit_login_credentials)
+        self.__twoFactorAuthDefaultVerifyButton.clicked.connect(self.submit_2fa_code)
 
     # Sets the widget view to what it should look like when
     # launching the app for the first time
@@ -70,6 +75,12 @@ class AppLogin(QWidget):
         if not self.__twoFactorAuthFailed.isHidden():
             self.__twoFactorAuthFailed.hide()
 
+    @Slot()
+    def submit_login_credentials(self):
+        username = self.__usernameIn.text()
+        password = self.__passwordIn.text()
+        self.loginCredentials.emit(username, password)
+
     # If auth credentials pass, and 2fa is required, switch login widget to show 2fa ui
     @Slot()
     def two_factor_auth(self):
@@ -78,8 +89,11 @@ class AppLogin(QWidget):
 
         if self.__twoFactorAuth.isHidden():
             self.__twoFactorAuth.show()
+
+            # VRCGA_GUI_TEST
             self.placeholder_set_2fa_type_ui()
 
+    # VRCGA_GUI_TEST
     # placeholder method to show auth type ui, shows authenticator app auth type ui
     def placeholder_set_2fa_type_ui(self):
         self.two_factor_auth_default_state()
@@ -89,3 +103,9 @@ class AppLogin(QWidget):
 
         if self.__twoFactorAuthDefaultVerifyButton.isHidden():
             self.__twoFactorAuthDefaultVerifyButton.show()
+
+    @Slot()
+    def submit_2fa_code(self):
+        code = self.__twoFactorAuthCodeIn.text()
+        self.twoFactorAuthCode.emit(code)
+        

@@ -1,5 +1,4 @@
 from PySide6.QtWidgets import QWidget
-from PySide6.QtCore import Slot
 
 from views.ui_appmain import Ui_AppMain
 
