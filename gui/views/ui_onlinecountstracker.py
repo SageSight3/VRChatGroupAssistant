@@ -100,8 +100,6 @@ class Ui_OnlineCountsTracker(object):
 
 
         self.retranslateUi(OnlineCountsTracker)
-
-        QMetaObject.connectSlotsByName(OnlineCountsTracker)
     # setupUi
 
     def retranslateUi(self, OnlineCountsTracker):

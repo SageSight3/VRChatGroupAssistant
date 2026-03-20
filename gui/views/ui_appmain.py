@@ -182,8 +182,6 @@ class Ui_AppMain(object):
 
         self.content.setCurrentIndex(2)
 
-
-        QMetaObject.connectSlotsByName(AppMain)
     # setupUi
 
     def retranslateUi(self, AppMain):

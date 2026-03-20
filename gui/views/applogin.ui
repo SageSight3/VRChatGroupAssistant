@@ -477,19 +477,33 @@
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="useAuthCodeButton">
+            <property name="text">
+             <string>Use Authenticator App Instead</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="useEmailCodeButton">
+            <property name="text">
+             <string>Use Email Code Instead</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="emailVerifyButton">
             <property name="enabled">
              <bool>true</bool>
             </property>
             <property name="text">
-             <string>Verify Email Code</string>
+             <string>Verify</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="authVerifyButton">
             <property name="text">
-             <string>Verify Auth Code</string>
+             <string>Verify</string>
             </property>
            </widget>
           </item>
@@ -514,6 +528,25 @@
            </spacer>
           </item>
          </layout>
+        </item>
+        <item>
+         <widget class="QWidget" name="logoutButtonWidget" native="true">
+          <layout class="QHBoxLayout" name="logoutButtonLayout">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="logoutButton">
+             <property name="text">
+              <string>Log out</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3"/>
+           </item>
+          </layout>
+         </widget>
         </item>
        </layout>
       </widget>

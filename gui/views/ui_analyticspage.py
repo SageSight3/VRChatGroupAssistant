@@ -46,8 +46,6 @@ class Ui_AnalyticsPage(object):
 
         self.tabs.setCurrentIndex(1)
 
-
-        QMetaObject.connectSlotsByName(AnalyticsPage)
     # setupUi
 
     def retranslateUi(self, AnalyticsPage):

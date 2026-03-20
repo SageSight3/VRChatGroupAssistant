@@ -49,8 +49,6 @@ class Ui_AutologgerControlPanel(object):
 
         self.tabs.setCurrentIndex(0)
 
-
-        QMetaObject.connectSlotsByName(AutologgerControlPanel)
     # setupUi
 
     def retranslateUi(self, AutologgerControlPanel):

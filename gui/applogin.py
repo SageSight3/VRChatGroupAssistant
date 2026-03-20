@@ -1,11 +1,12 @@
 from PySide6.QtWidgets import QWidget
-from PySide6.QtCore import Slot, Signal
+from PySide6.QtCore import Slot, QTimer
 
 from views.ui_applogin import Ui_AppLogin
 
 class AppLogin(QWidget):
 
-    from vrcga_signals import loginCredentials, twoFactorAuthCode
+    # FLCE signals
+    from vrcga_signals import loginCreds, twoFACode
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -13,99 +14,189 @@ class AppLogin(QWidget):
         self.__view = Ui_AppLogin()
         self.__view.setupUi(self)
 
+        # easier access to widget elements
         self.__login = self.__view.login
         self.__loginButton = self.__view.loginButton
         self.__loginFailed = self.__view.loginFailed
         self.__usernameIn = self.__view.usernameIn
         self.__passwordIn = self.__view.passwordIn
 
-        self.__twoFactorAuth = self.__view.twoFactorAuth
-        self.__twoFactorAuthDefaultLabel = self.__view.authCodeLabel
-        self.__twoFactorAuthEmailLabel = self.__view.emailCodeLabel
-        self.__twoFactorAuthRecoveryLabel = self.__view.recoveryCodeLabel
-        self.__twoFactorAuthDefaultVerifyButton = self.__view.authVerifyButton
-        self.__twoFactorAuthEmailVerifyButton = self.__view.emailVerifyButton
-        self.__twoFactorAuthRecoveryVerifyButton = self.__view.recoveryCodeVerifyButton
-        self.__twoFactorAuthUseRecoveryCodeButton = self.__view.useRecoveryCodeButton
-        self.__twoFactorAuthFailed = self.__view.twoFactorAuthFailed
-        self.__twoFactorAuthCodeIn = self.__view.twoFactorAuthIn
+        self.__twoFATitleLabel = self.__view.twoFactorAuthTitleLabel
+        self.__twoFA = self.__view.twoFactorAuth
+        self.__twoFAAuthAppLabel = self.__view.authCodeLabel
+        self.__twoFAEmailLabel = self.__view.emailCodeLabel
+        self.__twoFARecoveryLabel = self.__view.recoveryCodeLabel
+        self.__twoFAAuthAppVerifyButton = self.__view.authVerifyButton
+        self.__twoFAEmailVerifyButton = self.__view.emailVerifyButton
+        self.__twoFARecoveryVerifyButton = self.__view.recoveryCodeVerifyButton
+        self.__twoFAUseRecoveryCodeButton = self.__view.useRecoveryCodeButton
+        self.__twoFAUseAuthCodeButton = self.__view.useAuthCodeButton
+        self.__twoFAUseEmailCodeButton = self.__view.useEmailCodeButton
+        self.__twoFAFailed = self.__view.twoFactorAuthFailed
+        self.__twoFACodeIn = self.__view.twoFactorAuthIn
 
+        # This will hold onto the button in twoFactorAuth to switch back
+        # to the ui for the original auth type twoFactorAuth was set to
+        # if the user switches to using a recovery code
+        self.__twoFAUseOriginalTypeButton = None
+
+        self.__logoutButton = self.__view.logoutButton
 
         self.setup_connections()
         self.default_state()
 
     def setup_connections(self):
-        self.__loginButton.clicked.connect(self.submit_login_credentials)
-        self.__twoFactorAuthDefaultVerifyButton.clicked.connect(self.submit_2fa_code)
+        self.__loginButton.clicked.connect(self.submit_login_creds)
+
+        self.__twoFAUseRecoveryCodeButton.clicked.connect(self.two_fa_recovery_code_controls_ui)
+        self.__twoFAUseAuthCodeButton.clicked.connect(self.two_fa_auth_app_controls_ui)
+        self.__twoFAUseEmailCodeButton.clicked.connect(self.two_fa_email_controls_ui)
+
+        self.__twoFAAuthAppVerifyButton.clicked.connect(self.submit_2fa_code)
+        self.__twoFAEmailVerifyButton.clicked.connect(self.submit_2fa_code)
+        self.__twoFARecoveryVerifyButton.clicked.connect(self.submit_2fa_code)
+
+        self.__logoutButton.clicked.connect(self.logout)
 
     # Sets the widget view to what it should look like when
     # launching the app for the first time
     def default_state(self):
-
         self.login_default_state()
+        self.two_fa_default_state()
 
-        self.two_factor_auth_default_state()
-        if not self.__twoFactorAuth.isHidden():
-            self.__twoFactorAuth.hide()
+        self.hide_ui_element(self.__twoFA)
+
+        # ensuring login widget is shown, in case user returns to login screen
+        self.show_ui_element(self.__login)
 
     def login_default_state(self):
-        if not self.__loginFailed.isHidden():
-            self.__loginFailed.hide()
+        # Make sure user input fields are clear
+        self.clear_login_input_fields()
+
+        self.hide_ui_element(self.__loginFailed)
+
+    def clear_login_input_fields(self):
+        self.__usernameIn.clear()
+        self.__passwordIn.clear()
 
     # By default, all 2fa ui elements specific to a 2fa type will be hidden
-    def two_factor_auth_default_state(self):
-        if not self.__twoFactorAuthDefaultLabel.isHidden():
-            self.__twoFactorAuthDefaultLabel.hide()
+    def two_fa_default_state(self):
+        # Make sure code input field is clear
+        self.__twoFACodeIn.clear()
 
-        if not self.__twoFactorAuthEmailLabel.isHidden():
-            self.__twoFactorAuthEmailLabel.hide()
+        # twoFATitleLabel's text format is set to markdown
+        self.__twoFATitleLabel.setText("## Two Factor Authentication")
 
-        if not self.__twoFactorAuthRecoveryLabel.isHidden():
-            self.__twoFactorAuthRecoveryLabel.hide()
+       # self.__twoFAUseOriginalTypeButton = None
 
-        if not self.__twoFactorAuthDefaultVerifyButton.isHidden():
-            self.__twoFactorAuthDefaultVerifyButton.hide()
+        self.hide_ui_element(self.__twoFAAuthAppLabel)
+        self.hide_ui_element(self.__twoFAEmailLabel)
+        self.hide_ui_element(self.__twoFARecoveryLabel)
+        self.hide_ui_element(self.__twoFAAuthAppVerifyButton)
+        self.hide_ui_element(self.__twoFAEmailVerifyButton)
+        self.hide_ui_element(self.__twoFARecoveryVerifyButton)
+        self.hide_ui_element(self.__twoFAUseRecoveryCodeButton)
+        self.hide_ui_element(self.__twoFAUseAuthCodeButton)
+        self.hide_ui_element(self.__twoFAUseEmailCodeButton)
+        self.hide_ui_element(self.__twoFAFailed)
 
-        if not self.__twoFactorAuthEmailVerifyButton.isHidden():
-            self.__twoFactorAuthEmailVerifyButton.hide()
-
-        if not self.__twoFactorAuthRecoveryVerifyButton.isHidden():
-            self.__twoFactorAuthRecoveryVerifyButton.hide()
-        
-        if not self.__twoFactorAuthFailed.isHidden():
-            self.__twoFactorAuthFailed.hide()
-
+    # Submit user entered login credentials
     @Slot()
-    def submit_login_credentials(self):
+    def submit_login_creds(self):
         username = self.__usernameIn.text()
         password = self.__passwordIn.text()
-        self.loginCredentials.emit(username, password)
+        self.loginCreds.emit(username, password)
 
-    # If auth credentials pass, and 2fa is required, switch login widget to show 2fa ui
     @Slot()
-    def two_factor_auth(self):
-        if not self.__login.isHidden():
-            self.__login.hide()
+    def login_failed(self):
+        self.clear_login_input_fields()
+        
+        # have the error widget blink, so that if the user enters the wrong info more than once
+        # the ui better indicates that the error was related to their most recent attrept
+        self.hide_ui_element(self.__loginFailed)
 
-        if self.__twoFactorAuth.isHidden():
-            self.__twoFactorAuth.show()
+        # QTimer.singleShot()'s second param can't be class instance method
+        # See https://doc.qt.io/qt-6/qtimer.html#singleShot for info
+        def show_login_failed():
+            self.show_ui_element(self.__loginFailed)
+        blink_duration = 75 # delay is in ms
+        QTimer.singleShot(blink_duration, show_login_failed)
 
-            # VRCGA_GUI_TEST
-            self.placeholder_set_2fa_type_ui()
+    @Slot()
+    def two_fa_auth_app_controls_ui(self):
+        self.prepare_2fa_ui("Authenticator App")
 
-    # VRCGA_GUI_TEST
-    # placeholder method to show auth type ui, shows authenticator app auth type ui
-    def placeholder_set_2fa_type_ui(self):
-        self.two_factor_auth_default_state()
+        self.__twoFAUseOriginalTypeButton = self.__twoFAUseAuthCodeButton
 
-        if self.__twoFactorAuthDefaultLabel.isHidden():
-            self.__twoFactorAuthDefaultLabel.show()
+        self.show_ui_element(self.__twoFAAuthAppLabel)
+        self.show_ui_element(self.__twoFAAuthAppVerifyButton)
+        self.show_ui_element(self.__twoFAUseRecoveryCodeButton)
 
-        if self.__twoFactorAuthDefaultVerifyButton.isHidden():
-            self.__twoFactorAuthDefaultVerifyButton.show()
+    @Slot()
+    def two_fa_email_controls_ui(self):
+        self.prepare_2fa_ui("Email")
+
+        self.__twoFAUseOriginalTypeButton = self.__twoFAUseEmailCodeButton
+
+        self.show_ui_element(self.__twoFAEmailLabel)
+        self.show_ui_element(self.__twoFAEmailVerifyButton)
+        self.show_ui_element(self.__twoFAUseRecoveryCodeButton)
+
+    @Slot()
+    def two_fa_recovery_code_controls_ui(self):
+        self.prepare_2fa_ui("Recovery Code")
+
+        self.show_ui_element(self.__twoFARecoveryLabel)
+        self.show_ui_element(self.__twoFARecoveryVerifyButton)
+
+        # switch auth type button will change to switch back to the original auth type
+        # the two factor auth widget was set to
+        self.show_ui_element(self.__twoFAUseOriginalTypeButton)
+
+    # resets 2fa ui and sets the title to the right 2fa auth type
+    def prepare_2fa_ui(self, title: str):
+        # reset 2fa ui to default state to ensure ui behaves as intended
+        # before switching to ui for auth type
+        self.two_fa_default_state()
+
+        self.hide_ui_element(self.__login)
+
+        self.__twoFATitleLabel.setText(f"{self.__twoFATitleLabel.text()} - {title}")
+
+        self.show_ui_element(self.__twoFA)
+
+    @Slot()
+    def logout(self):
+        # clear the original auth type button, since the user is logging out
+        self.__twoFAUseOriginalTypeButton = None
+
+        # reset login screen to default state
+        self.default_state()
 
     @Slot()
     def submit_2fa_code(self):
-        code = self.__twoFactorAuthCodeIn.text()
-        self.twoFactorAuthCode.emit(code)
-        
+        code = self.__twoFACodeIn.text()
+        self.twoFACode.emit(code)
+
+    @Slot()
+    def two_fa_failed(self):
+        self.__twoFACodeIn.clear()
+
+        # have the error widget blink, so that if the user enters the wrong info more than once
+        # the ui better indicates that the error was related to their most recent attrept
+        self.hide_ui_element(self.__twoFAFailed)
+
+        # QTimer.singleShot()'s second param can't be class instance method
+        # See https://doc.qt.io/qt-6/qtimer.html#singleShot for info
+        def show_2fa_failed():
+            self.show_ui_element(self.__twoFAFailed)
+        blink_duration = 75 # delay is in ms
+        QTimer.singleShot(blink_duration, show_2fa_failed)
+
+    def hide_ui_element(self, uiElement):
+        if not uiElement.isHidden():
+            uiElement.hide()
+
+    def show_ui_element(self, uiElement):
+        if uiElement.isHidden():
+            uiElement.show()

@@ -45,8 +45,6 @@ class Ui_MainWidget(object):
 
         self.appPages.setCurrentIndex(0)
 
-
-        QMetaObject.connectSlotsByName(MainWidget)
     # setupUi
 
     def retranslateUi(self, MainWidget):

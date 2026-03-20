@@ -35,8 +35,8 @@ Signals for communication soley between frontend objects
 '''
 
 # Order matters here, 1st str is username, 2nd str is password
-loginCredentials = Signal(str, str)
-twoFactorAuthCode = Signal(str)
+loginCreds = Signal(str, str)
+twoFACode = Signal(str)
 
 '''
 Model Information signals (MI signals)
@@ -48,7 +48,9 @@ These should all be originally emitted from the frontend's model object
 
 '''
 
-authCredentialsAccepted = Signal()
-authCredentialsDenied = Signal()
-twoFactorAuthCodeAccepted = Signal()
-twoFactorAuthCodeDenied = Signal()
+authCredsAccepted = Signal()
+authCredsDenied = Signal()
+twoFACodeAccepted = Signal()
+twoFACodeDenied = Signal()
+requiresTOTP2fa = Signal()
+requiresEmailOTP2fa = Signal()

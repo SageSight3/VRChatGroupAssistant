@@ -246,6 +246,16 @@ class Ui_AppLogin(object):
 
         self.twoFactorAuthButtonsLayout.addWidget(self.useRecoveryCodeButton)
 
+        self.useAuthCodeButton = QPushButton(self.twoFactorAuth)
+        self.useAuthCodeButton.setObjectName(u"useAuthCodeButton")
+
+        self.twoFactorAuthButtonsLayout.addWidget(self.useAuthCodeButton)
+
+        self.useEmailCodeButton = QPushButton(self.twoFactorAuth)
+        self.useEmailCodeButton.setObjectName(u"useEmailCodeButton")
+
+        self.twoFactorAuthButtonsLayout.addWidget(self.useEmailCodeButton)
+
         self.emailVerifyButton = QPushButton(self.twoFactorAuth)
         self.emailVerifyButton.setObjectName(u"emailVerifyButton")
         self.emailVerifyButton.setEnabled(True)
@@ -269,6 +279,28 @@ class Ui_AppLogin(object):
 
         self.twoFactorAuthLayout.addLayout(self.twoFactorAuthButtonsLayout)
 
+        self.logoutButtonWidget = QWidget(self.twoFactorAuth)
+        self.logoutButtonWidget.setObjectName(u"logoutButtonWidget")
+        self.logoutButtonLayout = QHBoxLayout(self.logoutButtonWidget)
+        self.logoutButtonLayout.setObjectName(u"logoutButtonLayout")
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+
+        self.logoutButtonLayout.addLayout(self.horizontalLayout_2)
+
+        self.logoutButton = QPushButton(self.logoutButtonWidget)
+        self.logoutButton.setObjectName(u"logoutButton")
+
+        self.logoutButtonLayout.addWidget(self.logoutButton)
+
+        self.horizontalLayout_3 = QHBoxLayout()
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+
+        self.logoutButtonLayout.addLayout(self.horizontalLayout_3)
+
+
+        self.twoFactorAuthLayout.addWidget(self.logoutButtonWidget)
+
 
         self.twoFactorAuthContainer.addWidget(self.twoFactorAuth)
 
@@ -285,8 +317,6 @@ class Ui_AppLogin(object):
 
 
         self.retranslateUi(AppLogin)
-
-        QMetaObject.connectSlotsByName(AppLogin)
     # setupUi
 
     def retranslateUi(self, AppLogin):
@@ -306,8 +336,11 @@ class Ui_AppLogin(object):
         self.twoFactorAuthFailedText.setText(QCoreApplication.translate("AppLogin", u"Two Factor Authentication Failed", None))
         self.twoFactorAuthIn.setPlaceholderText(QCoreApplication.translate("AppLogin", u"Verification Code", None))
         self.useRecoveryCodeButton.setText(QCoreApplication.translate("AppLogin", u"Use One-Time Recovery Code Instead", None))
-        self.emailVerifyButton.setText(QCoreApplication.translate("AppLogin", u"Verify Email Code", None))
-        self.authVerifyButton.setText(QCoreApplication.translate("AppLogin", u"Verify Auth Code", None))
+        self.useAuthCodeButton.setText(QCoreApplication.translate("AppLogin", u"Use Authenticator App Instead", None))
+        self.useEmailCodeButton.setText(QCoreApplication.translate("AppLogin", u"Use Email Code Instead", None))
+        self.emailVerifyButton.setText(QCoreApplication.translate("AppLogin", u"Verify", None))
+        self.authVerifyButton.setText(QCoreApplication.translate("AppLogin", u"Verify", None))
         self.recoveryCodeVerifyButton.setText(QCoreApplication.translate("AppLogin", u"Verify One-Time Recovery Code", None))
+        self.logoutButton.setText(QCoreApplication.translate("AppLogin", u"Log out", None))
     # retranslateUi
 
