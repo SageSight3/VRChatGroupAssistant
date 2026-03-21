@@ -38,18 +38,47 @@ class MainWidget(QWidget):
         self.__appGui = Ui_MainWidget()
         self.__appGui.setupUi(self)
 
+        # the stacked widget holding onto the login and main app views
+        self.__appOuterWidgets = self.__appGui.appPages
+
         self.__loginWidget = self.__appGui.login
+        self.__mainAppWidget = self.__appGui.appMain
 
         self.setup_connections()
+        self.set_launch_state()
+
+    def set_launch_state(self):
+        self.__appOuterWidgets.setCurrentWidget(self.__loginWidget)
 
     def setup_connections(self):
+
+        '''
+        Login Widget Connections
+
+        '''
+        # FLCE connections
         self.__loginWidget.loginCreds.connect(self.submit_login_creds)
         self.__loginWidget.twoFACode.connect(self.submit_2fa_code)
 
+        # MI connections
         self.authCredsDenied.connect(self.__loginWidget.login_failed)
         self.requiresTOTP2fa.connect(self.__loginWidget.two_fa_auth_app_controls_ui)
         self.requiresEmailOTP2fa.connect(self.__loginWidget.two_fa_email_controls_ui)
         self.twoFACodeDenied.connect(self.__loginWidget.two_fa_failed)
+
+        '''
+        Main App Widget Connections
+
+        '''
+        self.twoFACodeAccepted.connect(self.show_main_app)
+
+
+
+    '''
+    Login Widget Related Methods
+
+    '''
+
 
     # Submit user entered login credentials
     # While the frontend's controller will likely be main.py, still receiving login credentials
@@ -111,4 +140,15 @@ class MainWidget(QWidget):
     def two_fa_code_denied(self):
         self.twoFACodeDenied.emit()
 
-        
+
+
+    '''
+    Main App Widget Related Methods
+
+    '''
+
+
+
+    @Slot()
+    def show_main_app(self):
+        self.__appOuterWidgets.setCurrentWidget(self.__mainAppWidget)

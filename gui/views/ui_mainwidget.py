@@ -19,6 +19,7 @@ from PySide6.QtWidgets import (QApplication, QSizePolicy, QStackedWidget, QVBoxL
     QWidget)
 
 from applogin import AppLogin
+from appmain import AppMain
 
 class Ui_MainWidget(object):
     def setupUi(self, MainWidget):
@@ -34,7 +35,7 @@ class Ui_MainWidget(object):
         self.login = AppLogin()
         self.login.setObjectName(u"login")
         self.appPages.addWidget(self.login)
-        self.appMain = QWidget()
+        self.appMain = AppMain()
         self.appMain.setObjectName(u"appMain")
         self.appPages.addWidget(self.appMain)
 
@@ -43,7 +44,7 @@ class Ui_MainWidget(object):
 
         self.retranslateUi(MainWidget)
 
-        self.appPages.setCurrentIndex(0)
+        self.appPages.setCurrentIndex(1)
 
     # setupUi
 

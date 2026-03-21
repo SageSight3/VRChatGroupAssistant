@@ -32,10 +32,10 @@
    <item>
     <widget class="QStackedWidget" name="appPages">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="AppLogin" name="login"/>
-     <widget class="QWidget" name="appMain"/>
+     <widget class="AppMain" name="appMain"/>
     </widget>
    </item>
   </layout>
@@ -45,6 +45,12 @@
    <class>AppLogin</class>
    <extends>QWidget</extends>
    <header>applogin</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>AppMain</class>
+   <extends>QWidget</extends>
+   <header>appmain</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

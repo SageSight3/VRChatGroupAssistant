@@ -160,18 +160,27 @@ class Ui_AppMain(object):
         self.content.setMinimumSize(QSize(1, 0))
         self.aboutPage = QWidget()
         self.aboutPage.setObjectName(u"aboutPage")
+        self.aboutWIPLabel = QLabel(self.aboutPage)
+        self.aboutWIPLabel.setObjectName(u"aboutWIPLabel")
+        self.aboutWIPLabel.setGeometry(QRect(280, 260, 101, 16))
         self.content.addWidget(self.aboutPage)
         self.analyticsPage = QWidget()
         self.analyticsPage.setObjectName(u"analyticsPage")
+        self.analyticsWIPLabel = QLabel(self.analyticsPage)
+        self.analyticsWIPLabel.setObjectName(u"analyticsWIPLabel")
+        self.analyticsWIPLabel.setGeometry(QRect(270, 280, 121, 16))
         self.content.addWidget(self.analyticsPage)
         self.analyticsControlPanel = QWidget()
         self.analyticsControlPanel.setObjectName(u"analyticsControlPanel")
+        self.analyticsControlPanelWIPLabel = QLabel(self.analyticsControlPanel)
+        self.analyticsControlPanelWIPLabel.setObjectName(u"analyticsControlPanelWIPLabel")
+        self.analyticsControlPanelWIPLabel.setGeometry(QRect(260, 260, 151, 16))
         self.content.addWidget(self.analyticsControlPanel)
         self.settingsPage = QWidget()
         self.settingsPage.setObjectName(u"settingsPage")
         self.settingsWIPLabel = QLabel(self.settingsPage)
         self.settingsWIPLabel.setObjectName(u"settingsWIPLabel")
-        self.settingsWIPLabel.setGeometry(QRect(280, 250, 49, 16))
+        self.settingsWIPLabel.setGeometry(QRect(280, 250, 101, 16))
         self.content.addWidget(self.settingsPage)
         self.navContentSplitter.addWidget(self.content)
 
@@ -180,7 +189,7 @@ class Ui_AppMain(object):
 
         self.retranslateUi(AppMain)
 
-        self.content.setCurrentIndex(2)
+        self.content.setCurrentIndex(0)
 
     # setupUi
 
@@ -197,6 +206,9 @@ class Ui_AppMain(object):
         self.settingsButton.setText("")
         self.logoutButton.setText(QCoreApplication.translate("AppMain", u"Logout", None))
         self.quitButton.setText(QCoreApplication.translate("AppMain", u"Quit", None))
-        self.settingsWIPLabel.setText(QCoreApplication.translate("AppMain", u"WIP", None))
+        self.aboutWIPLabel.setText(QCoreApplication.translate("AppMain", u"About WIP", None))
+        self.analyticsWIPLabel.setText(QCoreApplication.translate("AppMain", u"Analytics WIP", None))
+        self.analyticsControlPanelWIPLabel.setText(QCoreApplication.translate("AppMain", u"Analytics Control Panel WIP", None))
+        self.settingsWIPLabel.setText(QCoreApplication.translate("AppMain", u"Settings WIP", None))
     # retranslateUi
 
