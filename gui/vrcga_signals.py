@@ -37,6 +37,7 @@ Signals for communication soley between frontend objects
 # Order matters here, 1st str is username, 2nd str is password
 loginCreds = Signal(str, str)
 twoFACode = Signal(str)
+logout = Signal()
 
 '''
 Model Information signals (MI signals)

@@ -65,6 +65,7 @@ Note: The app and backend run independently from each other. In future, there wi
 * First Degree groups graph -> Should display target group in center with links to other groups it's members are in (have configureable parameters for how. ex. for group to be represented on graph, at least 5% of target group members must be in it). Should also show links between represented mutual groups if significant number of members in target group are in multiple of them. (ex. in target group a, a significant fraction of members are in both groups b and group c, so there's a link between groups b and c), can have graphs for active members and all
 * Frontend model should update dates list when new entries are added to the app's analytics logs
 * List which group staff members are online in VRChat/on VRChat's website, maybe show if they're on discord, as well, if set up
+* Automatically give members of a group who have verified their 18+ with VRChat a role to allow them to be pinged exclusively for adult only events -> As of 03/23/2026, VRChat's group post system doesn't have an option to only ping members who are verified 18+, meaning groups would need to have to make a unique role and assign it to members over 18, manually, to ping them, if they need to for some reason.
 
 ### GUI Brainstorm
 * Have arrow buttons to switch between graphs of different days

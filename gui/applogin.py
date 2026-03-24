@@ -3,10 +3,12 @@ from PySide6.QtCore import Slot, QTimer
 
 from views.ui_applogin import Ui_AppLogin
 
+import util
+
 class AppLogin(QWidget):
 
     # FLCE signals
-    from vrcga_signals import loginCreds, twoFACode
+    from vrcga_signals import loginCreds, twoFACode, logout
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -56,7 +58,7 @@ class AppLogin(QWidget):
         self.__twoFAEmailVerifyButton.clicked.connect(self.submit_2fa_code)
         self.__twoFARecoveryVerifyButton.clicked.connect(self.submit_2fa_code)
 
-        self.__logoutButton.clicked.connect(self.logout)
+        self.__logoutButton.clicked.connect(self.log_out)
 
     # Sets the widget view to what it should look like when
     # launching the app for the first time
@@ -64,16 +66,16 @@ class AppLogin(QWidget):
         self.login_default_state()
         self.two_fa_default_state()
 
-        self.hide_ui_element(self.__twoFA)
+        util.hide_ui_element(self.__twoFA)
 
         # ensuring login widget is shown, in case user returns to login screen
-        self.show_ui_element(self.__login)
+        util.show_ui_element(self.__login)
 
     def login_default_state(self):
         # Make sure user input fields are clear
         self.clear_login_input_fields()
 
-        self.hide_ui_element(self.__loginFailed)
+        util.hide_ui_element(self.__loginFailed)
 
     def clear_login_input_fields(self):
         self.__usernameIn.clear()
@@ -89,16 +91,16 @@ class AppLogin(QWidget):
 
        # self.__twoFAUseOriginalTypeButton = None
 
-        self.hide_ui_element(self.__twoFAAuthAppLabel)
-        self.hide_ui_element(self.__twoFAEmailLabel)
-        self.hide_ui_element(self.__twoFARecoveryLabel)
-        self.hide_ui_element(self.__twoFAAuthAppVerifyButton)
-        self.hide_ui_element(self.__twoFAEmailVerifyButton)
-        self.hide_ui_element(self.__twoFARecoveryVerifyButton)
-        self.hide_ui_element(self.__twoFAUseRecoveryCodeButton)
-        self.hide_ui_element(self.__twoFAUseAuthCodeButton)
-        self.hide_ui_element(self.__twoFAUseEmailCodeButton)
-        self.hide_ui_element(self.__twoFAFailed)
+        util.hide_ui_element(self.__twoFAAuthAppLabel)
+        util.hide_ui_element(self.__twoFAEmailLabel)
+        util.hide_ui_element(self.__twoFARecoveryLabel)
+        util.hide_ui_element(self.__twoFAAuthAppVerifyButton)
+        util.hide_ui_element(self.__twoFAEmailVerifyButton)
+        util.hide_ui_element(self.__twoFARecoveryVerifyButton)
+        util.hide_ui_element(self.__twoFAUseRecoveryCodeButton)
+        util.hide_ui_element(self.__twoFAUseAuthCodeButton)
+        util.hide_ui_element(self.__twoFAUseEmailCodeButton)
+        util.hide_ui_element(self.__twoFAFailed)
 
     # Submit user entered login credentials
     @Slot()
@@ -113,12 +115,12 @@ class AppLogin(QWidget):
         
         # have the error widget blink, so that if the user enters the wrong info more than once
         # the ui better indicates that the error was related to their most recent attrept
-        self.hide_ui_element(self.__loginFailed)
+        util.hide_ui_element(self.__loginFailed)
 
         # QTimer.singleShot()'s second param can't be class instance method
         # See https://doc.qt.io/qt-6/qtimer.html#singleShot for info
         def show_login_failed():
-            self.show_ui_element(self.__loginFailed)
+            util.show_ui_element(self.__loginFailed)
         blink_duration = 75 # delay is in ms
         QTimer.singleShot(blink_duration, show_login_failed)
 
@@ -128,9 +130,9 @@ class AppLogin(QWidget):
 
         self.__twoFAUseOriginalTypeButton = self.__twoFAUseAuthCodeButton
 
-        self.show_ui_element(self.__twoFAAuthAppLabel)
-        self.show_ui_element(self.__twoFAAuthAppVerifyButton)
-        self.show_ui_element(self.__twoFAUseRecoveryCodeButton)
+        util.show_ui_element(self.__twoFAAuthAppLabel)
+        util.show_ui_element(self.__twoFAAuthAppVerifyButton)
+        util.show_ui_element(self.__twoFAUseRecoveryCodeButton)
 
     @Slot()
     def two_fa_email_controls_ui(self):
@@ -138,20 +140,20 @@ class AppLogin(QWidget):
 
         self.__twoFAUseOriginalTypeButton = self.__twoFAUseEmailCodeButton
 
-        self.show_ui_element(self.__twoFAEmailLabel)
-        self.show_ui_element(self.__twoFAEmailVerifyButton)
-        self.show_ui_element(self.__twoFAUseRecoveryCodeButton)
+        util.show_ui_element(self.__twoFAEmailLabel)
+        util.show_ui_element(self.__twoFAEmailVerifyButton)
+        util.show_ui_element(self.__twoFAUseRecoveryCodeButton)
 
     @Slot()
     def two_fa_recovery_code_controls_ui(self):
         self.prepare_2fa_ui("Recovery Code")
 
-        self.show_ui_element(self.__twoFARecoveryLabel)
-        self.show_ui_element(self.__twoFARecoveryVerifyButton)
+        util.show_ui_element(self.__twoFARecoveryLabel)
+        util.show_ui_element(self.__twoFARecoveryVerifyButton)
 
         # switch auth type button will change to switch back to the original auth type
         # the two factor auth widget was set to
-        self.show_ui_element(self.__twoFAUseOriginalTypeButton)
+        util.show_ui_element(self.__twoFAUseOriginalTypeButton)
 
     # resets 2fa ui and sets the title to the right 2fa auth type
     def prepare_2fa_ui(self, title: str):
@@ -159,14 +161,14 @@ class AppLogin(QWidget):
         # before switching to ui for auth type
         self.two_fa_default_state()
 
-        self.hide_ui_element(self.__login)
+        util.hide_ui_element(self.__login)
 
         self.__twoFATitleLabel.setText(f"{self.__twoFATitleLabel.text()} - {title}")
 
-        self.show_ui_element(self.__twoFA)
+        util.show_ui_element(self.__twoFA)
 
     @Slot()
-    def logout(self):
+    def log_out(self):
         # clear the original auth type button, since the user is logging out
         self.__twoFAUseOriginalTypeButton = None
 
@@ -184,19 +186,11 @@ class AppLogin(QWidget):
 
         # have the error widget blink, so that if the user enters the wrong info more than once
         # the ui better indicates that the error was related to their most recent attrept
-        self.hide_ui_element(self.__twoFAFailed)
+        util.hide_ui_element(self.__twoFAFailed)
 
         # QTimer.singleShot()'s second param can't be class instance method
         # See https://doc.qt.io/qt-6/qtimer.html#singleShot for info
         def show_2fa_failed():
-            self.show_ui_element(self.__twoFAFailed)
+            util.show_ui_element(self.__twoFAFailed)
         blink_duration = 75 # delay is in ms
         QTimer.singleShot(blink_duration, show_2fa_failed)
-
-    def hide_ui_element(self, uiElement):
-        if not uiElement.isHidden():
-            uiElement.hide()
-
-    def show_ui_element(self, uiElement):
-        if uiElement.isHidden():
-            uiElement.show()
