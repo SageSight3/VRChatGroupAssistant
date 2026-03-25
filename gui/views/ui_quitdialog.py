@@ -124,7 +124,7 @@ class Ui_QuitDialog(object):
     # setupUi
 
     def retranslateUi(self, QuitDialog):
-        QuitDialog.setWindowTitle(QCoreApplication.translate("QuitDialog", u"Dialog", None))
+        QuitDialog.setWindowTitle(QCoreApplication.translate("QuitDialog", u"VRChat Group Assistant", None))
         self.quitDialogIcon.setText("")
         self.quitTextBrowser.setHtml(QCoreApplication.translate("QuitDialog", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"

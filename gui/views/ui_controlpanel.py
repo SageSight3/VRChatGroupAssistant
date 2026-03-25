@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'autologgercontrolpanel.ui'
+## Form generated from reading UI file 'controlpanel.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.10.2
 ##
@@ -18,16 +18,16 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QLabel, QSizePolicy, QTabWidget,
     QVBoxLayout, QWidget)
 
-class Ui_AutologgerControlPanel(object):
-    def setupUi(self, AutologgerControlPanel):
-        if not AutologgerControlPanel.objectName():
-            AutologgerControlPanel.setObjectName(u"AutologgerControlPanel")
-        AutologgerControlPanel.resize(800, 600)
-        self.verticalLayout = QVBoxLayout(AutologgerControlPanel)
+class Ui_ControlPanel(object):
+    def setupUi(self, ControlPanel):
+        if not ControlPanel.objectName():
+            ControlPanel.setObjectName(u"ControlPanel")
+        ControlPanel.resize(800, 600)
+        self.verticalLayout = QVBoxLayout(ControlPanel)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.tabs = QTabWidget(AutologgerControlPanel)
+        self.tabs = QTabWidget(ControlPanel)
         self.tabs.setObjectName(u"tabs")
         self.groupControls = QWidget()
         self.groupControls.setObjectName(u"groupControls")
@@ -45,17 +45,17 @@ class Ui_AutologgerControlPanel(object):
         self.verticalLayout.addWidget(self.tabs)
 
 
-        self.retranslateUi(AutologgerControlPanel)
+        self.retranslateUi(ControlPanel)
 
         self.tabs.setCurrentIndex(0)
 
     # setupUi
 
-    def retranslateUi(self, AutologgerControlPanel):
-        AutologgerControlPanel.setWindowTitle(QCoreApplication.translate("AutologgerControlPanel", u"Form", None))
-        self.groupControlsWIPLabel.setText(QCoreApplication.translate("AutologgerControlPanel", u"WIP", None))
-        self.tabs.setTabText(self.tabs.indexOf(self.groupControls), QCoreApplication.translate("AutologgerControlPanel", u"Add/Remove Groups", None))
-        self.logsWIPLabel.setText(QCoreApplication.translate("AutologgerControlPanel", u"WIP", None))
-        self.tabs.setTabText(self.tabs.indexOf(self.errorLogs), QCoreApplication.translate("AutologgerControlPanel", u"Error Logs", None))
+    def retranslateUi(self, ControlPanel):
+        ControlPanel.setWindowTitle(QCoreApplication.translate("ControlPanel", u"Form", None))
+        self.groupControlsWIPLabel.setText(QCoreApplication.translate("ControlPanel", u"WIP", None))
+        self.tabs.setTabText(self.tabs.indexOf(self.groupControls), QCoreApplication.translate("ControlPanel", u"Add/Remove Groups", None))
+        self.logsWIPLabel.setText(QCoreApplication.translate("ControlPanel", u"WIP", None))
+        self.tabs.setTabText(self.tabs.indexOf(self.errorLogs), QCoreApplication.translate("ControlPanel", u"Error Logs", None))
     # retranslateUi
 
