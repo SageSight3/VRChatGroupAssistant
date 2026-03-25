@@ -45,7 +45,7 @@ class AppLogin(QWidget):
         self.__logoutButton = self.__view.logoutButton
 
         self.setup_connections()
-        self.default_state()
+        self.set_launch_state()
 
     def setup_connections(self):
         self.__loginButton.clicked.connect(self.submit_login_creds)
@@ -58,11 +58,15 @@ class AppLogin(QWidget):
         self.__twoFAEmailVerifyButton.clicked.connect(self.submit_2fa_code)
         self.__twoFARecoveryVerifyButton.clicked.connect(self.submit_2fa_code)
 
-        self.__logoutButton.clicked.connect(self.log_out)
+        self.__logoutButton.clicked.connect(self.emit_logout)
 
     # Sets the widget view to what it should look like when
     # launching the app for the first time
-    def default_state(self):
+    def set_launch_state(self):
+        # Set the original 2fa type switch button in the 2fa widget to None,
+        # (the 2fa type shouldn't be unknown if the login screen is in it's launch state)
+        self.__twoFAUseOriginalTypeButton = None
+
         self.login_default_state()
         self.two_fa_default_state()
 
@@ -169,11 +173,16 @@ class AppLogin(QWidget):
 
     @Slot()
     def log_out(self):
-        # clear the original auth type button, since the user is logging out
-        self.__twoFAUseOriginalTypeButton = None
+        # return login screen to its launch state
+        self.set_launch_state()
 
-        # reset login screen to default state
-        self.default_state()
+    # For consistency's sake, and to alert the app that the user has logged out,
+    # so it knows to clear cookies, emit the logout signal when the logout button
+    # is pressed, and wait for the app to tell the login screen to return to it's
+    # launch state
+    @Slot()
+    def emit_logout(self):
+        self.logout.emit()
 
     @Slot()
     def submit_2fa_code(self):

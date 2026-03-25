@@ -6,6 +6,9 @@ from views.ui_appmain import Ui_AppMain
 import util
 
 class AppMain(QWidget):
+
+    # FLCE signals
+    from vrcga_signals import logout
     
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -45,6 +48,8 @@ class AppMain(QWidget):
         self.__analyticsControlPanelButton.clicked.connect(self.switch_to_analytics_control_panel)
         self.__settingsButton.clicked.connect(self.switch_to_settings_page)
 
+        self.__logoutButton.clicked.connect(self.log_out)
+
     def set_launch_state(self):
         # Hide the analytics sub panel in the main app's nav widget
         self.default_state()
@@ -79,3 +84,7 @@ class AppMain(QWidget):
     def switch_page(self, page):
         self.default_state()
         self.__content.setCurrentWidget(page)
+
+    @Slot()
+    def log_out(self):
+        self.logout.emit()

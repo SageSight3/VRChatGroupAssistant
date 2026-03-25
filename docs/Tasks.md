@@ -42,6 +42,7 @@
     * set up error log view in GUI
 * look into PySide6 context menus
 * Review Tasks and reorganize
+* Look into protobufs (protocol buffers) for interapplication communication
 
 ## In Progress
 * Make GUI
