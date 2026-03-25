@@ -18,6 +18,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QLabel, QSizePolicy, QTabWidget,
     QVBoxLayout, QWidget)
 
+from onlinecountstracker import OnlineCountsTracker
+
 class Ui_AnalyticsPage(object):
     def setupUi(self, AnalyticsPage):
         if not AnalyticsPage.objectName():
@@ -29,7 +31,7 @@ class Ui_AnalyticsPage(object):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.tabs = QTabWidget(AnalyticsPage)
         self.tabs.setObjectName(u"tabs")
-        self.onlinePlayerCountsTracker = QWidget()
+        self.onlinePlayerCountsTracker = OnlineCountsTracker()
         self.onlinePlayerCountsTracker.setObjectName(u"onlinePlayerCountsTracker")
         self.tabs.addTab(self.onlinePlayerCountsTracker, "")
         self.placeholder = QWidget()
@@ -44,7 +46,7 @@ class Ui_AnalyticsPage(object):
 
         self.retranslateUi(AnalyticsPage)
 
-        self.tabs.setCurrentIndex(1)
+        self.tabs.setCurrentIndex(0)
 
     # setupUi
 

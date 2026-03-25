@@ -331,51 +331,9 @@
       <property name="currentIndex">
        <number>2</number>
       </property>
-      <widget class="QWidget" name="aboutPage">
-       <widget class="QLabel" name="aboutWIPLabel">
-        <property name="geometry">
-         <rect>
-          <x>280</x>
-          <y>260</y>
-          <width>101</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>About WIP</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="analyticsPage">
-       <widget class="QLabel" name="analyticsWIPLabel">
-        <property name="geometry">
-         <rect>
-          <x>270</x>
-          <y>280</y>
-          <width>121</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Analytics WIP</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="controlPanel">
-       <widget class="QLabel" name="controlPanelWIPLabel">
-        <property name="geometry">
-         <rect>
-          <x>260</x>
-          <y>260</y>
-          <width>151</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Control Panel WIP</string>
-        </property>
-       </widget>
-      </widget>
+      <widget class="AboutPage" name="aboutPage"/>
+      <widget class="AnalyticsPage" name="analyticsPage"/>
+      <widget class="ControlPanel" name="controlPanel"/>
       <widget class="QWidget" name="settingsPage">
        <widget class="QLabel" name="settingsWIPLabel">
         <property name="geometry">
@@ -396,6 +354,26 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>AboutPage</class>
+   <extends>QWidget</extends>
+   <header>aboutpage</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>AnalyticsPage</class>
+   <extends>QWidget</extends>
+   <header>analyticspage</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ControlPanel</class>
+   <extends>QWidget</extends>
+   <header>controlpanel</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../resources.qrc"/>
  </resources>

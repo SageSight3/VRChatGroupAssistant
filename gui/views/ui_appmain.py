@@ -18,6 +18,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QButtonGroup, QHBoxLayout, QLabel,
     QPushButton, QSizePolicy, QSpacerItem, QSplitter,
     QStackedWidget, QToolButton, QVBoxLayout, QWidget)
+
+from aboutpage import AboutPage
+from analyticspage import AnalyticsPage
+from controlpanel import ControlPanel
 import resources_rc
 
 class Ui_AppMain(object):
@@ -175,23 +179,14 @@ class Ui_AppMain(object):
         self.content = QStackedWidget(self.navContentSplitter)
         self.content.setObjectName(u"content")
         self.content.setMinimumSize(QSize(1, 0))
-        self.aboutPage = QWidget()
+        self.aboutPage = AboutPage()
         self.aboutPage.setObjectName(u"aboutPage")
-        self.aboutWIPLabel = QLabel(self.aboutPage)
-        self.aboutWIPLabel.setObjectName(u"aboutWIPLabel")
-        self.aboutWIPLabel.setGeometry(QRect(280, 260, 101, 16))
         self.content.addWidget(self.aboutPage)
-        self.analyticsPage = QWidget()
+        self.analyticsPage = AnalyticsPage()
         self.analyticsPage.setObjectName(u"analyticsPage")
-        self.analyticsWIPLabel = QLabel(self.analyticsPage)
-        self.analyticsWIPLabel.setObjectName(u"analyticsWIPLabel")
-        self.analyticsWIPLabel.setGeometry(QRect(270, 280, 121, 16))
         self.content.addWidget(self.analyticsPage)
-        self.controlPanel = QWidget()
+        self.controlPanel = ControlPanel()
         self.controlPanel.setObjectName(u"controlPanel")
-        self.controlPanelWIPLabel = QLabel(self.controlPanel)
-        self.controlPanelWIPLabel.setObjectName(u"controlPanelWIPLabel")
-        self.controlPanelWIPLabel.setGeometry(QRect(260, 260, 151, 16))
         self.content.addWidget(self.controlPanel)
         self.settingsPage = QWidget()
         self.settingsPage.setObjectName(u"settingsPage")
@@ -223,9 +218,6 @@ class Ui_AppMain(object):
         self.settingsButton.setText("")
         self.logoutButton.setText(QCoreApplication.translate("AppMain", u"Logout", None))
         self.quitButton.setText(QCoreApplication.translate("AppMain", u"Quit", None))
-        self.aboutWIPLabel.setText(QCoreApplication.translate("AppMain", u"About WIP", None))
-        self.analyticsWIPLabel.setText(QCoreApplication.translate("AppMain", u"Analytics WIP", None))
-        self.controlPanelWIPLabel.setText(QCoreApplication.translate("AppMain", u"Control Panel WIP", None))
         self.settingsWIPLabel.setText(QCoreApplication.translate("AppMain", u"Settings WIP", None))
     # retranslateUi
 
