@@ -1,4 +1,4 @@
-from PySide6.QtCore import Signal, QObject
+from PySide6.QtCore import Signal
 
 '''
 VRCGA will treat signals as indications of singular specific events

@@ -66,6 +66,7 @@ Note: The app and backend run independently from each other. In future, there wi
 * Frontend model should update dates list when new entries are added to the app's analytics logs
 * List which group staff members are online in VRChat/on VRChat's website, maybe show if they're on discord, as well, if set up
 * Automatically give members of a group who have verified their 18+ with VRChat a role to allow them to be pinged exclusively for adult only events -> As of 03/23/2026, VRChat's group post system doesn't have an option to only ping members who are verified 18+, meaning groups would need to have to make a unique role and assign it to members over 18, manually, to ping them, if they need to for some reason.
+* Any action that requires the API to be queried should pop up a window saying that the backend service needs to be running for the action to work, if the backend is stopped
 
 ### GUI Brainstorm
 * Have arrow buttons to switch between graphs of different days
@@ -101,14 +102,15 @@ Note: The app and backend run independently from each other. In future, there wi
     * Short code and discriminator (formatted how they are in VRChat)
 * User roles in selected group
 * User perms in selected group
-* Backend status
-* WIP
+* Backend status -> is backend running or stopped
 * Current Graph Data
     * Percents?
     * Online Counts
     * Total Counts
 * Dates
 * isLoggedIn -> for hiding and unhiding main window menu bar (PySide standard is for it to be in main window and there's no way to add it to a QWidget in QtDesigner, and would go against design precedents so far to add it in code)
+* Current appOuterWidget
+* showCloseDialogs -> should show app closing dialogs if a close event is activated for it's gui's main widget
 
 ### Model Signals
 * requiresEmail2fa
@@ -151,3 +153,7 @@ Note: The app and backend run independently from each other. In future, there wi
     * If frontend is closed, but backend isn't, a dialog window should open, informing the user that the backend is still running, should also provide option to quit backend
     * Menu bar should also display status of autologger
     * Button to open about page should also be in menu bar -> should open as a subwindow/dialog
+    * Settings Page
+        * Clear cookies button
+        * Show app close/close backend service dialog on app close
+        * Quit backend service on app close

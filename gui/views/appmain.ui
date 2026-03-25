@@ -101,7 +101,74 @@
         </widget>
        </item>
        <item>
-        <widget class="QWidget" name="analyticsSubPanel" native="true">
+        <widget class="QWidget" name="refreshDataButtonWidget" native="true">
+         <layout class="QHBoxLayout" name="refreshDataButtonLayout">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>1</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>20</number>
+          </property>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="refreshDataButton">
+            <property name="text">
+             <string>Refresh Data</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="controlPanelButton">
+         <property name="text">
+          <string>Control Panel</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <attribute name="buttonGroup">
+          <string notr="true">appPageNavButtons</string>
+         </attribute>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="vrcgaServiceSubPanel" native="true">
          <layout class="QHBoxLayout" name="analyticsSubPanelLayout">
           <property name="leftMargin">
            <number>9</number>
@@ -126,14 +193,14 @@
            </spacer>
           </item>
           <item>
-           <layout class="QVBoxLayout" name="analyticsSubPanelItemsLayout">
+           <layout class="QVBoxLayout" name="vrcgaServiceSubPanelItemsLayout">
             <property name="spacing">
              <number>2</number>
             </property>
             <item>
-             <widget class="QLabel" name="autologgerStatus">
+             <widget class="QLabel" name="vrcgaServiceStatus">
               <property name="text">
-               <string>Autologger: [STATUS]</string>
+               <string>VRCGA Service: [STATUS]</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -141,44 +208,24 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="refreshDataButton">
-              <property name="text">
-               <string>Refresh Data</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="startAutologgerButton">
+             <widget class="QPushButton" name="startVRCGAServiceButton">
               <property name="text">
                <string>Start</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="stopAutologgerButton">
+             <widget class="QPushButton" name="stopVRCGAServiceButton">
               <property name="text">
                <string>Stop</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="restartAutologgerButton">
+             <widget class="QPushButton" name="restartVRCGAServiceButton">
               <property name="text">
                <string>Restart</string>
               </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="autologgerControlPanelButton">
-              <property name="text">
-               <string>Control Panel</string>
-              </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-              <attribute name="buttonGroup">
-               <string notr="true">appPageNavButtons</string>
-              </attribute>
              </widget>
             </item>
            </layout>
@@ -282,7 +329,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="aboutPage">
        <widget class="QLabel" name="aboutWIPLabel">
@@ -314,8 +361,8 @@
         </property>
        </widget>
       </widget>
-      <widget class="QWidget" name="analyticsControlPanel">
-       <widget class="QLabel" name="analyticsControlPanelWIPLabel">
+      <widget class="QWidget" name="controlPanel">
+       <widget class="QLabel" name="controlPanelWIPLabel">
         <property name="geometry">
          <rect>
           <x>260</x>
@@ -325,7 +372,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>Analytics Control Panel WIP</string>
+         <string>Control Panel WIP</string>
         </property>
        </widget>
       </widget>

@@ -1,8 +1,9 @@
-from PySide6.QtWidgets import QWidget
+from PySide6.QtWidgets import QWidget, QDialog
 from PySide6.QtCore import Slot
 from PySide6.QtGui import QCloseEvent
 
 from views.ui_mainwidget import Ui_MainWidget
+from quitdialog import QuitDialog
 
 '''
 All code that's been written for GUI development and testing purposes
@@ -78,7 +79,9 @@ class MainWidget(QWidget):
 
         '''
         self.twoFACodeAccepted.connect(self.show_main_app)
+
         self.__mainAppWidget.logout.connect(self.log_out)
+        self.__mainAppWidget.closeApp.connect(self.close_app)
 
 
 
@@ -168,20 +171,33 @@ class MainWidget(QWidget):
     def show_main_app(self):
         self.__appOuterWidgets.setCurrentWidget(self.__mainAppWidget)
 
-
-
-    '''
-    App Quit 
-
-    '''
-
     @Slot()
-    def app_quit_dialog(self):
-        # VRCGA_GUI_TEST
-        # Activates app close event
+    def close_app(self):
         self.close()
+
+
+
+    '''
+    App Quit
+
+    '''
 
     # Override normal close event
     def closeEvent(self, event: QCloseEvent):
-        # Accept close event and allow mainwidget to close
-        event.accept()
+
+        # VRCGA_GUI_TEST
+        no_close_dialog = False
+
+        # If model says user has requested app to not show close dialog again
+        if no_close_dialog:
+            event.accept()
+            return
+
+        close_app_dialog = QuitDialog(self)
+        result = close_app_dialog.exec()
+
+        if result == QDialog.Accepted:
+            # Accept close event and allow mainwidget to close
+            event.accept()
+        else:
+            event.ignore()

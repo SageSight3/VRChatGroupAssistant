@@ -34,7 +34,8 @@ VRChat Group Assistant uses primarily `PySide6` for it's GUI under the open sour
 VRChat Group Assistant also uses the python package, `mplcursors`, for its graphs. [Find it here.](https://github.com/anntzer/mplcursors)
 
 Settings icon from [Flaticon](https://www.flaticon.com/free-icons/gear). Made by Greg Cresnar.
-Auth error icon from [Flaticon]("https://www.flaticon.com/free-icons/access-denied"). Made by Eklip Studio.
+Auth error icon from [Flaticon](https://www.flaticon.com/free-icons/access-denied). Made by Eklip Studio.
+Quit Dialog exclamation mark from [Flaticon](https://www.flaticon.com/free-icons/exclamation-mark). Made by Freepik.
 
 ---
 

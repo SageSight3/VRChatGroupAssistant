@@ -2,7 +2,6 @@
 
 ## To Do
 * Look into making graph scrollable when window is small
-* Look into storing program data in AppData or Documents. May be necessary for compiling to an executable.
 * Possibly refactor GUI scripts to follow MVC better: gui Convert gui.py to controller.py. Convert data-parser.py to model.py. Convert grapher.py to gui.py or view.py or make a new gui/view script and ahve grapher be a sub-script of it -> Look into Python classes.
 * Begin doing research into making discord bot ON HOLD
 * Make script to update version num in all neccessary files?
@@ -32,17 +31,23 @@
 * Maybe have app check for discord perms, as well
 * Look into finding a better way to organize tasks/docs
 * Implement login window functionality
-* GUI
-    * Create custom menubar widget -> should be menu, autologger status label, and auto logger status description (QMenuBar is kinda janky)
-    * Login
-        * Add back arrow to 2fa widget -> should go back to previous verification method if set to use recovery code, and back to login window, if in initial 2fa state
-        * put loginButton in a horizontal layout so it can be given a maximum size while kept centered in the view
+* put loginButton in a horizontal layout so it can be given a maximum size while kept centered in the view
 * have autologger session error logs be written to a file
     * log errors to file
     * set up error log view in GUI
-* look into PySide6 context menus
 * Review Tasks and reorganize
 * Look into protobufs (protocol buffers) for interapplication communication
+* Store app config and database in Documents or AppData
+    * Look into storing program data in AppData or Documents.
+* Add show password button to app gui login screen
+* Frontend
+    * implement 'don't ask again' functionality for close app dialog
+    * implement cookie clearing oif user logs out of app
+    * implement checking if 2fa is required for when user login credentials are accepted in login screen
+    * implement passing login info to backend
+    * implement getting backend status and displaying it in main app widget in gui
+    * implement start, stop, restart, and refresh data button functionality in main app widget in gui
+    * *Once GUI is initially implemented, go through each screen/app page and implement missing functionality*
 
 ## In Progress
 * Make GUI
@@ -82,3 +87,6 @@
 * Removed need to store auth credentials. User auth credentials are no longer saved.
 * Figure out how custom widgets for app pages will be maintained, since pyside6-uic overrides them havomg init methods, parents, and inheriting from QWidget
 * Sandbox PySide GUI changing windows -> look into QStackedWidget
+* GUI
+    * Login
+        * Add back arrow to 2fa widget -> should go back to previous verification method if set to use recovery code, and back to login window, if in initial 2fa state

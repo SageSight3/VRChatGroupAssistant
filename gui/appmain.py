@@ -9,6 +9,8 @@ class AppMain(QWidget):
 
     # FLCE signals
     from vrcga_signals import logout
+
+    closeApp = Signal()
     
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -19,13 +21,14 @@ class AppMain(QWidget):
         # App nav buttons
         self.__aboutButton = self.__view.aboutButton
         self.__analyticsButton = self.__view.analyticsButton
-        self.__analyticsSubPanel = self.__view.analyticsSubPanel
-        self.__autologgerStatus = self.__view.autologgerStatus
+        self.__vrcgaServiceStatus = self.__view.vrcgaServiceStatus
+        self.__refreshDataButtonWidget = self.__view.refreshDataButtonWidget
         self.__refreshDataButton = self.__view.refreshDataButton
-        self.__startAutologgerButton = self.__view.startAutologgerButton
-        self.__stopAutologgerButton = self.__view.stopAutologgerButton
-        self.__restartAutologgerButton = self.__view.restartAutologgerButton
-        self.__analyticsControlPanelButton = self.__view.autologgerControlPanelButton
+        self.__controlPanelButton = self.__view.controlPanelButton
+        self.__vrcgaServiceSubPanel = self.__view.vrcgaServiceSubPanel
+        self.__startVRCGAServiceButton = self.__view.startVRCGAServiceButton
+        self.__stopVRCGAServiceButton = self.__view.stopVRCGAServiceButton
+        self.__restartVRCGAServiceButton = self.__view.restartVRCGAServiceButton
         self.__settingsButton = self.__view.settingsButton
         self.__logoutButton = self.__view.logoutButton
         self.__quitButton = self.__view.quitButton
@@ -36,7 +39,7 @@ class AppMain(QWidget):
         # App content pages
         self.__aboutPage = self.__view.aboutPage
         self.__analyticsPage = self.__view.analyticsPage
-        self.__analyticsControlPanel = self.__view.analyticsControlPanel
+        self.__controlPanel = self.__view.controlPanel
         self.__settingsPage = self.__view.settingsPage
 
         self.setup_connections()
@@ -45,10 +48,11 @@ class AppMain(QWidget):
     def setup_connections(self):
         self.__aboutButton.clicked.connect(self.switch_to_about_page)
         self.__analyticsButton.clicked.connect(self.switch_to_analytics_page)
-        self.__analyticsControlPanelButton.clicked.connect(self.switch_to_analytics_control_panel)
+        self.__controlPanelButton.clicked.connect(self.switch_to_control_panel)
         self.__settingsButton.clicked.connect(self.switch_to_settings_page)
 
         self.__logoutButton.clicked.connect(self.log_out)
+        self.__quitButton.clicked.connect(self.close_app)
 
     def set_launch_state(self):
         # Hide the analytics sub panel in the main app's nav widget
@@ -59,7 +63,8 @@ class AppMain(QWidget):
         self.__aboutButton.setChecked(True)
 
     def default_state(self):
-        util.hide_ui_element(self.__analyticsSubPanel)
+        util.hide_ui_element(self.__vrcgaServiceSubPanel)
+        util.hide_ui_element(self.__refreshDataButtonWidget)
 
     @Slot()
     def switch_to_about_page(self):
@@ -68,14 +73,12 @@ class AppMain(QWidget):
     @Slot()
     def switch_to_analytics_page(self):
         self.switch_page(self.__analyticsPage)
-        util.show_ui_element(self.__analyticsSubPanel)
+        util.show_ui_element(self.__refreshDataButtonWidget)
 
     @Slot()
-    def switch_to_analytics_control_panel(self):
-        self.switch_page(self.__analyticsControlPanel)
-        
-        # Still need to show analytics subpanel, since it's hidden in switch_page()
-        util.show_ui_element(self.__analyticsSubPanel)
+    def switch_to_control_panel(self):
+        self.switch_page(self.__controlPanel)
+        util.show_ui_element(self.__vrcgaServiceSubPanel)
 
     @Slot()
     def switch_to_settings_page(self):
@@ -88,3 +91,7 @@ class AppMain(QWidget):
     @Slot()
     def log_out(self):
         self.logout.emit()
+
+    @Slot()
+    def close_app(self):
+        self.closeApp.emit()

@@ -61,60 +61,77 @@ class Ui_AppMain(object):
 
         self.navLayout.addWidget(self.analyticsButton)
 
-        self.analyticsSubPanel = QWidget(self.nav)
-        self.analyticsSubPanel.setObjectName(u"analyticsSubPanel")
-        self.analyticsSubPanelLayout = QHBoxLayout(self.analyticsSubPanel)
+        self.refreshDataButtonWidget = QWidget(self.nav)
+        self.refreshDataButtonWidget.setObjectName(u"refreshDataButtonWidget")
+        self.refreshDataButtonLayout = QHBoxLayout(self.refreshDataButtonWidget)
+        self.refreshDataButtonLayout.setSpacing(0)
+        self.refreshDataButtonLayout.setObjectName(u"refreshDataButtonLayout")
+        self.refreshDataButtonLayout.setContentsMargins(0, 1, 0, 20)
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.refreshDataButtonLayout.addItem(self.horizontalSpacer_3)
+
+        self.refreshDataButton = QPushButton(self.refreshDataButtonWidget)
+        self.refreshDataButton.setObjectName(u"refreshDataButton")
+
+        self.refreshDataButtonLayout.addWidget(self.refreshDataButton)
+
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.refreshDataButtonLayout.addItem(self.horizontalSpacer_4)
+
+
+        self.navLayout.addWidget(self.refreshDataButtonWidget)
+
+        self.controlPanelButton = QPushButton(self.nav)
+        self.appPageNavButtons.addButton(self.controlPanelButton)
+        self.controlPanelButton.setObjectName(u"controlPanelButton")
+        self.controlPanelButton.setCheckable(True)
+
+        self.navLayout.addWidget(self.controlPanelButton)
+
+        self.vrcgaServiceSubPanel = QWidget(self.nav)
+        self.vrcgaServiceSubPanel.setObjectName(u"vrcgaServiceSubPanel")
+        self.analyticsSubPanelLayout = QHBoxLayout(self.vrcgaServiceSubPanel)
         self.analyticsSubPanelLayout.setObjectName(u"analyticsSubPanelLayout")
         self.analyticsSubPanelLayout.setContentsMargins(9, 0, 9, -1)
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.analyticsSubPanelLayout.addItem(self.horizontalSpacer)
 
-        self.analyticsSubPanelItemsLayout = QVBoxLayout()
-        self.analyticsSubPanelItemsLayout.setSpacing(2)
-        self.analyticsSubPanelItemsLayout.setObjectName(u"analyticsSubPanelItemsLayout")
-        self.autologgerStatus = QLabel(self.analyticsSubPanel)
-        self.autologgerStatus.setObjectName(u"autologgerStatus")
-        self.autologgerStatus.setAlignment(Qt.AlignCenter)
+        self.vrcgaServiceSubPanelItemsLayout = QVBoxLayout()
+        self.vrcgaServiceSubPanelItemsLayout.setSpacing(2)
+        self.vrcgaServiceSubPanelItemsLayout.setObjectName(u"vrcgaServiceSubPanelItemsLayout")
+        self.vrcgaServiceStatus = QLabel(self.vrcgaServiceSubPanel)
+        self.vrcgaServiceStatus.setObjectName(u"vrcgaServiceStatus")
+        self.vrcgaServiceStatus.setAlignment(Qt.AlignCenter)
 
-        self.analyticsSubPanelItemsLayout.addWidget(self.autologgerStatus)
+        self.vrcgaServiceSubPanelItemsLayout.addWidget(self.vrcgaServiceStatus)
 
-        self.refreshDataButton = QPushButton(self.analyticsSubPanel)
-        self.refreshDataButton.setObjectName(u"refreshDataButton")
+        self.startVRCGAServiceButton = QPushButton(self.vrcgaServiceSubPanel)
+        self.startVRCGAServiceButton.setObjectName(u"startVRCGAServiceButton")
 
-        self.analyticsSubPanelItemsLayout.addWidget(self.refreshDataButton)
+        self.vrcgaServiceSubPanelItemsLayout.addWidget(self.startVRCGAServiceButton)
 
-        self.startAutologgerButton = QPushButton(self.analyticsSubPanel)
-        self.startAutologgerButton.setObjectName(u"startAutologgerButton")
+        self.stopVRCGAServiceButton = QPushButton(self.vrcgaServiceSubPanel)
+        self.stopVRCGAServiceButton.setObjectName(u"stopVRCGAServiceButton")
 
-        self.analyticsSubPanelItemsLayout.addWidget(self.startAutologgerButton)
+        self.vrcgaServiceSubPanelItemsLayout.addWidget(self.stopVRCGAServiceButton)
 
-        self.stopAutologgerButton = QPushButton(self.analyticsSubPanel)
-        self.stopAutologgerButton.setObjectName(u"stopAutologgerButton")
+        self.restartVRCGAServiceButton = QPushButton(self.vrcgaServiceSubPanel)
+        self.restartVRCGAServiceButton.setObjectName(u"restartVRCGAServiceButton")
 
-        self.analyticsSubPanelItemsLayout.addWidget(self.stopAutologgerButton)
-
-        self.restartAutologgerButton = QPushButton(self.analyticsSubPanel)
-        self.restartAutologgerButton.setObjectName(u"restartAutologgerButton")
-
-        self.analyticsSubPanelItemsLayout.addWidget(self.restartAutologgerButton)
-
-        self.autologgerControlPanelButton = QPushButton(self.analyticsSubPanel)
-        self.appPageNavButtons.addButton(self.autologgerControlPanelButton)
-        self.autologgerControlPanelButton.setObjectName(u"autologgerControlPanelButton")
-        self.autologgerControlPanelButton.setCheckable(True)
-
-        self.analyticsSubPanelItemsLayout.addWidget(self.autologgerControlPanelButton)
+        self.vrcgaServiceSubPanelItemsLayout.addWidget(self.restartVRCGAServiceButton)
 
 
-        self.analyticsSubPanelLayout.addLayout(self.analyticsSubPanelItemsLayout)
+        self.analyticsSubPanelLayout.addLayout(self.vrcgaServiceSubPanelItemsLayout)
 
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.analyticsSubPanelLayout.addItem(self.horizontalSpacer_2)
 
 
-        self.navLayout.addWidget(self.analyticsSubPanel)
+        self.navLayout.addWidget(self.vrcgaServiceSubPanel)
 
         self.navSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
@@ -170,12 +187,12 @@ class Ui_AppMain(object):
         self.analyticsWIPLabel.setObjectName(u"analyticsWIPLabel")
         self.analyticsWIPLabel.setGeometry(QRect(270, 280, 121, 16))
         self.content.addWidget(self.analyticsPage)
-        self.analyticsControlPanel = QWidget()
-        self.analyticsControlPanel.setObjectName(u"analyticsControlPanel")
-        self.analyticsControlPanelWIPLabel = QLabel(self.analyticsControlPanel)
-        self.analyticsControlPanelWIPLabel.setObjectName(u"analyticsControlPanelWIPLabel")
-        self.analyticsControlPanelWIPLabel.setGeometry(QRect(260, 260, 151, 16))
-        self.content.addWidget(self.analyticsControlPanel)
+        self.controlPanel = QWidget()
+        self.controlPanel.setObjectName(u"controlPanel")
+        self.controlPanelWIPLabel = QLabel(self.controlPanel)
+        self.controlPanelWIPLabel.setObjectName(u"controlPanelWIPLabel")
+        self.controlPanelWIPLabel.setGeometry(QRect(260, 260, 151, 16))
+        self.content.addWidget(self.controlPanel)
         self.settingsPage = QWidget()
         self.settingsPage.setObjectName(u"settingsPage")
         self.settingsWIPLabel = QLabel(self.settingsPage)
@@ -189,7 +206,7 @@ class Ui_AppMain(object):
 
         self.retranslateUi(AppMain)
 
-        self.content.setCurrentIndex(0)
+        self.content.setCurrentIndex(2)
 
     # setupUi
 
@@ -197,18 +214,18 @@ class Ui_AppMain(object):
         AppMain.setWindowTitle(QCoreApplication.translate("AppMain", u"Form", None))
         self.aboutButton.setText(QCoreApplication.translate("AppMain", u"About", None))
         self.analyticsButton.setText(QCoreApplication.translate("AppMain", u"Analytics", None))
-        self.autologgerStatus.setText(QCoreApplication.translate("AppMain", u"Autologger: [STATUS]", None))
         self.refreshDataButton.setText(QCoreApplication.translate("AppMain", u"Refresh Data", None))
-        self.startAutologgerButton.setText(QCoreApplication.translate("AppMain", u"Start", None))
-        self.stopAutologgerButton.setText(QCoreApplication.translate("AppMain", u"Stop", None))
-        self.restartAutologgerButton.setText(QCoreApplication.translate("AppMain", u"Restart", None))
-        self.autologgerControlPanelButton.setText(QCoreApplication.translate("AppMain", u"Control Panel", None))
+        self.controlPanelButton.setText(QCoreApplication.translate("AppMain", u"Control Panel", None))
+        self.vrcgaServiceStatus.setText(QCoreApplication.translate("AppMain", u"VRCGA Service: [STATUS]", None))
+        self.startVRCGAServiceButton.setText(QCoreApplication.translate("AppMain", u"Start", None))
+        self.stopVRCGAServiceButton.setText(QCoreApplication.translate("AppMain", u"Stop", None))
+        self.restartVRCGAServiceButton.setText(QCoreApplication.translate("AppMain", u"Restart", None))
         self.settingsButton.setText("")
         self.logoutButton.setText(QCoreApplication.translate("AppMain", u"Logout", None))
         self.quitButton.setText(QCoreApplication.translate("AppMain", u"Quit", None))
         self.aboutWIPLabel.setText(QCoreApplication.translate("AppMain", u"About WIP", None))
         self.analyticsWIPLabel.setText(QCoreApplication.translate("AppMain", u"Analytics WIP", None))
-        self.analyticsControlPanelWIPLabel.setText(QCoreApplication.translate("AppMain", u"Analytics Control Panel WIP", None))
+        self.controlPanelWIPLabel.setText(QCoreApplication.translate("AppMain", u"Control Panel WIP", None))
         self.settingsWIPLabel.setText(QCoreApplication.translate("AppMain", u"Settings WIP", None))
     # retranslateUi
 

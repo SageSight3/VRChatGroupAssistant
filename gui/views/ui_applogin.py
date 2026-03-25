@@ -24,7 +24,7 @@ class Ui_AppLogin(object):
     def setupUi(self, AppLogin):
         if not AppLogin.objectName():
             AppLogin.setObjectName(u"AppLogin")
-        AppLogin.resize(800, 600)
+        AppLogin.resize(914, 600)
         self.verticalLayout = QVBoxLayout(AppLogin)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
@@ -123,6 +123,7 @@ class Ui_AppLogin(object):
         self.passwordIn = QLineEdit(self.login)
         self.passwordIn.setObjectName(u"passwordIn")
         self.passwordIn.setMinimumSize(QSize(200, 0))
+        self.passwordIn.setEchoMode(QLineEdit.Password)
 
         self.passwordInLayout.addWidget(self.passwordIn)
 
