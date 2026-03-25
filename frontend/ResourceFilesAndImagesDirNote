@@ -1,0 +1,3 @@
+The reason the resources files and images dir for the frontend are in the parent directory, and not in the gui subdir is
+because pyside6-uic and pyside6-rcc don't seem to be able to auto-generate correct import statements to the them in generated 
+ui files, with how the frontend file structure is organized

@@ -7,8 +7,9 @@
 /data/activity_log
 /config.json
 /.venv
-/gui/__pycache__
-/gui/views/__pycache__
+/frontend/__pycache__
+/frontend/gui/__pycache__
+/frontend/gui/views/__pycache__
 /sandbox/PySideSandbox/__pycache__
 /sandbox/PySideSandbox/OLD/__pycache__
 /sandbox/PySideSandbox/OLD/ui_widget_experiment/__pycache__

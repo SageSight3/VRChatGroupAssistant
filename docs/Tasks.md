@@ -15,7 +15,6 @@
 * See if can space bar groups in graph to be better spaces/give the bar labels more room
 * Figure out how to distribute project, for version 1.0.0 -> do i need to publish both a release, package, or both? How do I do both of those things, and what do I need to include/do for each
 * Look into how to certify distributed release build/cost
-* Add about/credits section to GUI -> will need to put LGPLv3 license text here? will also need to include name of LGPL libraries used (PySide6?)? Look into what else needs to be in it -> have contact information in it?
 * Add logout functionality -> cookies should be cleared when user logs out
 * Refactor auth module to be a struct impl block
 * Update backend for case of user enters wrong auth credentials
@@ -52,12 +51,13 @@
 ## In Progress
 * Make GUI
     * Player Count Tracker Page -> remove graph button, graph should update whenever selection changes or graph as percents is checked -> move all three to one graph, that could toggle on and off, if checked in controls? make sure pushing an arrow button updates the date selection also
-    * About Page
     * Login Widget
         * Login
         * Two Factor Auth
     * App Container
         * Navigation
+        * About Page
+            * * Add about/credits section to GUI -> will need to put LGPLv3 license text here? will also need to include name of LGPL libraries used (PySide6?)? Look into what else needs to be in it -> have contact information in it?
         * App Content
             * Analytics Page
                 * Online Counts Tracker

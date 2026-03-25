@@ -1,9 +1,0 @@
-<RCC>
-  <qresource prefix="images">
-    <file>images/QuitDialogIcon.png</file>
-    <file>images/AuthErrorIconNoBG.png</file>
-    <file>images/SettingsIcon.png</file>
-    <file>images/ArrowButton.png</file>
-    <file>images/RefreshIcon.png</file>
-  </qresource>
-</RCC>
