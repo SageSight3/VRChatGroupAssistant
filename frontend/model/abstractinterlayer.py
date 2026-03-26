@@ -31,6 +31,8 @@ EDIT: Abstract methods that have yet to be implemented will only raise an error 
 
 err_msg_base = "ModelServiceInterlayer: "
 
+# Combine QObject's and ABC's metaclasses so Abstract Interlayer can inherit from both of them
+# ABC - Abstract Base Class
 class QObjectABCMeta(ABCMeta, QObject.__class__):
     pass
 
@@ -47,11 +49,11 @@ class AbstractInterlayer(QObject, ABC, metaclass=QObjectABCMeta):
     '''
 
     @abstractmethod
-    def query_dates_from_db(self) -> list[str]:
+    def query_days_from_db(self) -> list[Mapping[str, str]]:
         raise NotImplementedError(err_msg_base + "query_dates_from_db() not implemented")
 
     @abstractmethod
-    def query_date_online_counts(self, date) -> Mapping[str, list[int]]:
+    def query_date_online_counts_data(self, date) -> Mapping[str, list]:
         raise NotImplementedError(err_msg_base + "query_date_online_counts() not implemented")
 
     '''

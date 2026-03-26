@@ -65,6 +65,8 @@
                 * Online Counts Tracker
 * What should happen if a user loses management perms for or leaves/gets removed from a group? -> delete all data associated with that group, should there be a revert functionality, may not be able to be made truly secure, without a server element to the group's use of VRCGA or VRCGA directly
 * Design database for refactoring log storage to an sqlite3 db
+* Refactor online counts tracker data to be a list where each element holds onto the data for one day in the frontend's model > will be more consistent with how days are stored, also may be better for future feature implementations and debugging
+    * will need to refactor model backend interlayer to do so
 
 ## Done
 * Update group_info log_member_counts() to log 0 for both online and total counts if querying API fails
