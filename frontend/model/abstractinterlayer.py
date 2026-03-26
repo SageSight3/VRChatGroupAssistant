@@ -1,6 +1,6 @@
 from PySide6.QtCore import QObject
 
-from abc import abstractmethod
+from abc import ABCMeta, ABC, abstractmethod
 from collections.abc import Mapping
 
 '''
@@ -25,11 +25,18 @@ EDIT: Version of Python being used for VRCGA's frontend at present is Python 3.1
 doesn't have @override decorator. Update in future, but for now, just comment which
 methods are overrides
 
+EDIT: Abstract methods that have yet to be implemented will only raise an error if they're called
+
 '''
+
+err_msg_base = "ModelServiceInterlayer: "
+
+class QObjectABCMeta(ABCMeta, QObject.__class__):
+    pass
 
 # AbstractInterlayer will inherit from QObject, since the interlayer
 # may need to be able to receive or emit signals
-class AbstractInterlayer(QObject):
+class AbstractInterlayer(QObject, ABC, metaclass=QObjectABCMeta):
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -41,11 +48,11 @@ class AbstractInterlayer(QObject):
 
     @abstractmethod
     def query_dates_from_db(self) -> list[str]:
-        pass
+        raise NotImplementedError(err_msg_base + "query_dates_from_db() not implemented")
 
     @abstractmethod
     def query_date_online_counts(self, date) -> Mapping[str, list[int]]:
-        pass
+        raise NotImplementedError(err_msg_base + "query_date_online_counts() not implemented")
 
     '''
     Config and Status Queries
