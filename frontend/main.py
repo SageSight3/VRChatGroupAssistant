@@ -13,6 +13,7 @@ class Controller():
         self.__gui = MainWidget()
         self.__model = Model()
 
+        # TEST
         print(self.__model.get_dates())
         print(self.__model.get_online_counts())
         print(self.__model.get_total_counts())
