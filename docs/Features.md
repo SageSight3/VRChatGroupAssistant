@@ -67,6 +67,7 @@ Note: The app and backend run independently from each other. In future, there wi
 * List which group staff members are online in VRChat/on VRChat's website, maybe show if they're on discord, as well, if set up
 * Automatically give members of a group who have verified their 18+ with VRChat a role to allow them to be pinged exclusively for adult only events -> As of 03/23/2026, VRChat's group post system doesn't have an option to only ping members who are verified 18+, meaning groups would need to have to make a unique role and assign it to members over 18, manually, to ping them, if they need to for some reason.
 * Any action that requires the API to be queried should pop up a window saying that the backend service needs to be running for the action to work, if the backend is stopped
+* GUI should have page showing group description?
 
 ### GUI Brainstorm
 * Have arrow buttons to switch between graphs of different days
@@ -108,7 +109,7 @@ Note: The app and backend run independently from each other. In future, there wi
     * Online Counts
     * Total Counts
 * Dates
-* isLoggedIn -> for hiding and unhiding main window menu bar (PySide standard is for it to be in main window and there's no way to add it to a QWidget in QtDesigner, and would go against design precedents so far to add it in code)
+* sessionExists -> is there an existing logged in VRCGA session
 * Current appOuterWidget
 * showCloseDialogs -> should show app closing dialogs if a close event is activated for it's gui's main widget
 
