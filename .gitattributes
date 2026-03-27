@@ -10,5 +10,5 @@
 /sandbox/PySideSandbox/OLD/app_mockup/ui_test_page_widget.py linguist-generated=true
 /sandbox/PySideSandbox/OLD/app_mockup/ui_two_factor_page_widget.py linguist-generated=true
 /sandbox/PySideSandbox/OLD/app_mockup/resources_rc.py linguist-generated=true
-/gui/views/** linguist-generated=true
-/gui/resources_rc.py linguist-generated=true
+/frontend/gui/views/** linguist-generated=true
+/frontend/resources_rc.py linguist-generated=true
