@@ -1,0 +1,62 @@
+# Task Reorganization Brainstorm WIP
+
+Break tasks into different categories:
+* Refactorings
+* Feature Implementations Dir -> Should be a dir, with subdirs for individual features
+    * A Feature Dir
+        * Frontend
+            * GUI
+            * Model
+            * Controller
+            * Misc.
+        * Backend
+            * Database
+            * Service -> possibly have sub categories for VRChat API, Client (Config/Session related Tasks), Misc.
+            * Misc.
+    * Another Feature
+        * ...
+    * ...
+* Documentation Tasks
+* Misc.
+* Current Tasks Dir
+* Done Tasks Dir
+
+Have new self-imposed rule: Can only add a task to the tasks list, if its related to the current task. Otherwise, put in an ideas doc. Furthermore, issues unrelated to the current task should be added to a dedicated Issues doc.
+
+Tasks docs should also be split between research/design, and implementation tasks. Maybe split based on ADDE (Analysis, Design, Development, Evaluation)
+Category Idea WIP:
+    * Analysis - research
+    * Design - self explanatory
+    * Development - Implement design in code
+    * Testing
+    * Documentation
+    * Evaluation - what could be done better
+
+For issues, if it's unclear/unknown what needs to be done to solve them, put it in the issues list. For managing project development in future, go off these definitions:
+* **Issue** - A problem with any part of the project that the solution for is unknown.
+    * Only create a new issue if it's related to things already implemented or the current task or its objective
+* **Feature** - A part of the project that gives it unique functionality unrelated to any of its existing features. Additions to the project that are meant to add functionality to existing features should be categorized with those features (Ex. Online Player Counts Tracker to see how many of a group's members are active at different times during the day)
+* **Addition** - Something that enhances the functionality of a feature it's intended for. (Ex. Adding the ability to change the timezone of how data is displayed in the Online Player Counts Tracker graph)
+* **Objective** - What a task is intended to make progress towards, like be a feature implementation or larger refactorings (Ex. splitting the frontend's model into multiple submodels)
+* **Task** - A clear step that needs to be done to finish an objective. A task should be a single unit that doesn't require further interpretation to complete. (Ex. implement graph functionality for the OnlinePlayerCountsGraph. Note: This should be considered distinct from the model data functionality needed for the OnlinePlayerCountsGraph)
+
+An example of what the task organization should look like for the OnlinePlayerCountsTracker
+
+# Feature - OnlinePlayerCountsTracker
+Log and visualize data of how many players in their group are online at different times of day.
+
+### Requirements
+* Display bar graph of player counts online throughout day
+* Option to display data as percents of total group online
+* Ability to show graphs of different days
+
+### Tasks
+
+**Frontend**
+* Create view for OnlinePlayerCountsTracker. It should have:
+    * A graph widget
+    * A selection box for changing the date represented in the graph
+    * Arrow buttons for changing the prev and next dates
+    * ...
+* Build Model to hold OnlinePlayerCountsTracker data
+WIP

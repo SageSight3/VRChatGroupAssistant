@@ -1,4 +1,4 @@
-# Refacotorings
+# Possible Task Ideas
 
 This list is less so target tasks to complete, and more of an ideas list thats more do them if can get to them. There isn't time sensitivity on these, though some should be done sooner than later, if they're going to be.
 
@@ -9,7 +9,7 @@ This list is less so target tasks to complete, and more of an ideas list thats m
 * Refactor subview weidgets to inehrit from an abstract widget class -> can enforce requirement for methods like setup_connections() and set_launch_state()
 * Reorganize Tasks
 * Sort docs better
-* Move brainstorms out of Features
+* Move brainstorms out of Features to their own doc
 * Move old docs to a pre-1.0.0 dir
 * Write documentation for methods
 * Move sandbox to it's own git repo
@@ -18,4 +18,4 @@ This list is less so target tasks to complete, and more of an ideas list thats m
 * Implement group selection feature and multiple group analytics logging
 * Clean up file structure
 * Implementing other VRCGA Features
-* WIP
+* Create a dedciated doc for issues
