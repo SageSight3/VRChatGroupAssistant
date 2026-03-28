@@ -2,6 +2,7 @@ from PySide6.QtCore import QObject
 
 from abc import ABCMeta, ABC, abstractmethod
 from collections.abc import Mapping
+from typing import Any
 
 '''
 Creating an abstract interlayer class allows for 
@@ -53,7 +54,7 @@ class AbstractInterlayer(QObject, ABC, metaclass=QObjectABCMeta):
         raise NotImplementedError(err_msg_base + "query_dates_from_db() not implemented")
 
     @abstractmethod
-    def query_date_online_counts_data(self, date) -> Mapping[str, list]:
+    def query_date_online_counts_data(self, date) -> list[Mapping[str, Any]]:
         raise NotImplementedError(err_msg_base + "query_date_online_counts() not implemented")
 
     '''

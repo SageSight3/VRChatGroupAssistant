@@ -1,4 +1,5 @@
 from collections.abc import Mapping
+from typing import Any
 
 from model.abstractinterlayer import AbstractInterlayer
 
@@ -33,7 +34,7 @@ class ModelBackendInterlayer(AbstractInterlayer):
 
         # Create a list of unique days
         sorted_days = []
-        for index in range(len(days["Dates"])):
+        for index in range(len(days["Dates"])): # Dates key is arbitary here
             date = days["Dates"][index]
             weekday = days["Weekdays"][index]
             day = {"Date": date, "Weekday": weekday}
@@ -46,7 +47,7 @@ class ModelBackendInterlayer(AbstractInterlayer):
         return sorted_days
 
     # Override
-    def query_date_online_counts_data(self, date) -> Mapping[str, list]:
+    def query_date_online_counts_data(self, date) -> list[Mapping[str, Any]]:
 
         data = data_parser.get_activity_log_data(
             date, 
@@ -55,12 +56,17 @@ class ModelBackendInterlayer(AbstractInterlayer):
             ret_group_total_member_counts=True
         )
 
-        return {
-            "Online": data["OnlineMemberCounts"],
-            "Total": data["GroupTotalMemberCounts"],
-            "Timestamps": data["LogEntryTimes"]
-        }
+        organized_data = []
 
+        for index in range(len(data["LogEntryTimes"])): # LogEntryTimes key is arbitary here
+            datapoint = {
+                "Online": data["OnlineMemberCounts"][index],
+                "Total": data["GroupTotalMemberCounts"][index],
+                "Timestamp": data["LogEntryTimes"][index]
+            }
+            organized_data.append(datapoint)
+
+        return organized_data
 
 
     '''

@@ -58,7 +58,7 @@ class AppLogin(QWidget):
         self.__twoFAEmailVerifyButton.clicked.connect(self.submit_2fa_code)
         self.__twoFARecoveryVerifyButton.clicked.connect(self.submit_2fa_code)
 
-        self.__logoutButton.clicked.connect(self.emit_logout)
+        self.__logoutButton.clicked.connect(self.log_out)
 
     # Sets the widget view to what it should look like when
     # launching the app for the first time
@@ -173,15 +173,6 @@ class AppLogin(QWidget):
 
     @Slot()
     def log_out(self):
-        # return login screen to its launch state
-        self.set_launch_state()
-
-    # For consistency's sake, and to alert the app that the user has logged out,
-    # so it knows to clear cookies, emit the logout signal when the logout button
-    # is pressed, and wait for the app to tell the login screen to return to it's
-    # launch state
-    @Slot()
-    def emit_logout(self):
         self.logout.emit()
 
     @Slot()

@@ -4,16 +4,16 @@ serve the same purpose, as them, so Model is more organized
 
 '''
 
-class OnlineCountsTrackerData:
+class OnlineCountTrackerData:
 
-    def __init__(self):
+    def __init__(self, online: int, total: int, percent: int, timestamp: str):
 
         # Inst vars are public, since this class is just meant to be a
         # data container
-        self.online_counts: list[int] = []
-        self.total_counts: list[int] = []
-        self.online_percents: list[int] = []
-        self.timestamps: list[str] = []
+        self.online_count = online
+        self.total_count = total
+        self.online_percent = percent
+        self.timestamp = timestamp
 
 class Day(object):
     

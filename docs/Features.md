@@ -1,13 +1,13 @@
-# Current Features
+# Features Doc for pre-1.0.0
 
 Note: The app and backend run independently from each other. In future, there will be controls to start and stop the backend from the app, and the app will start the backend when launched, if the backend isn't already running. It will also have an alternative `full quit` button, that will close both the app and the backend, if wanted.
 
-### Backend (Rust)
+### Backend (Rust) - Implemented
 * Attempts login with stored cookies from config file. Prompts user for auth credentials, if fails, as well as 2fa, if needed.
 * Takes basic group info as input and queries VRChat API to find a target group and gets its group id
 * Queries VRChat API at the start of every hour, and logs how many members in the target group are are online, and the size of the target group. Logs -1 for both counts if the query fails. Helpful for figuring out what geographical demogrpahics exist within your group, for the purpsoes of event planning and better accomodating group member time availability. Logs can be found in the [`activity log`](../data/activity_log).
 
-## App
+## App - Implemented
 * Parses activity log data, treats all -1 counts as 0, and returns parsed data in a configurable dictionary
 * Generates a list of every unique date in the activity log
 * Retrieves app name and version info from config file

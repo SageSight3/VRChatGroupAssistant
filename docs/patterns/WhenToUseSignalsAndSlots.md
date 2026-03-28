@@ -1,0 +1,3 @@
+To maintain consistency between signals and slots, while alsoso minimizing the number of signals we need, unless necessary, only use signals and slots when needing to pass messages from child objects to parent objects, or when signaling state changes from child objects to parent objects.
+
+Example. The Controller shouldn't use a signal to tell the gui to reset to it's launch state when the user logs out, since the gui is a child object of it. However, despite the Model also being a child object of the Controller, because it's changing states, it should signal when it's data updates, even though the Controller could just use the Model's getter methods to access updated data after calling an update method.

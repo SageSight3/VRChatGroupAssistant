@@ -39,6 +39,10 @@ loginCreds = Signal(str, str)
 twoFACode = Signal(str)
 logout = Signal()
 
+closeApp = Signal()
+
+refreshAnalyticsData = Signal()
+
 '''
 Model Information signals (MI signals)
 

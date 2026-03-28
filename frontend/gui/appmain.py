@@ -8,9 +8,11 @@ import gui.util as util
 class AppMain(QWidget):
 
     # FLCE signals
-    from vrcga_signals import logout
-
-    closeApp = Signal()
+    from vrcga_signals import (
+        logout, 
+        closeApp, 
+        refreshAnalyticsData
+    )
     
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -51,6 +53,7 @@ class AppMain(QWidget):
         self.__controlPanelButton.clicked.connect(self.switch_to_control_panel)
         self.__settingsButton.clicked.connect(self.switch_to_settings_page)
 
+        self.__refreshDataButton.clicked.connect(self.refresh_analytics_data)
         self.__logoutButton.clicked.connect(self.log_out)
         self.__quitButton.clicked.connect(self.close_app)
 
@@ -61,6 +64,9 @@ class AppMain(QWidget):
         # Set current app page to the app's about page
         self.switch_to_about_page()
         self.__aboutButton.setChecked(True)
+
+        # Get initial data for analytics page gui
+        self.refresh_analytics_data()
 
     def default_state(self):
         util.hide_ui_element(self.__vrcgaServiceSubPanel)
@@ -87,6 +93,13 @@ class AppMain(QWidget):
     def switch_page(self, page):
         self.default_state()
         self.__content.setCurrentWidget(page)
+
+    def update_days_data(self, new_days_list):
+        self.__analyticsPage.update_days_data(new_days_list)
+
+    @Slot()
+    def refresh_analytics_data(self):
+        self.refreshAnalyticsData.emit()
 
     @Slot()
     def log_out(self):

@@ -22,8 +22,14 @@ ex.
 class MainWidget(QWidget):
 
     # FLCE signals
-    from vrcga_signals import loginCreds, twoFACode, logout
+    from vrcga_signals import (
+        loginCreds, 
+        twoFACode,
+        logout, 
+        refreshAnalyticsData
+    )
 
+    # VRCGA_GUI_TEST
     # MI signals
     from vrcga_signals import (
         authCredsAccepted, 
@@ -66,13 +72,13 @@ class MainWidget(QWidget):
         self.__loginWidget.twoFACode.connect(self.submit_2fa_code)
         self.__loginWidget.logout.connect(self.log_out)
         
-        self.logout.connect(self.__loginWidget.log_out)
+        # self.logout.connect(self.__loginWidget.log_out)
 
         # MI connections
-        self.authCredsDenied.connect(self.__loginWidget.login_failed)
-        self.requiresTOTP2fa.connect(self.__loginWidget.two_fa_auth_app_controls_ui)
-        self.requiresEmailOTP2fa.connect(self.__loginWidget.two_fa_email_controls_ui)
-        self.twoFACodeDenied.connect(self.__loginWidget.two_fa_failed)
+        # self.authCredsDenied.connect(self.__loginWidget.login_failed)
+        # self.requiresTOTP2fa.connect(self.__loginWidget.two_fa_auth_app_controls_ui)
+        # self.requiresEmailOTP2fa.connect(self.__loginWidget.two_fa_email_controls_ui)
+        # self.twoFACodeDenied.connect(self.__loginWidget.two_fa_failed)
 
         '''
         Main App Widget Connections
@@ -82,6 +88,8 @@ class MainWidget(QWidget):
 
         self.__mainAppWidget.logout.connect(self.log_out)
         self.__mainAppWidget.closeApp.connect(self.close_app)
+    
+        self.__mainAppWidget.refreshAnalyticsData.connect(self.refresh_analytics_data)
 
 
 
@@ -115,19 +123,19 @@ class MainWidget(QWidget):
 
         # VRCGA_GUI_TEST
         # Temp for GUI development - Move to own method
-        self.requiresTOTP2fa.emit()
+        self.requires_2fa_auth_app()
 
     @Slot()
     def login_creds_denied(self):
-        self.authCredsDenied.emit()
+        self.__loginWidget.login_failed()
 
     @Slot()
     def requires_2fa_auth_app(self):
-        self.requiresTOTP2fa.emit()
+        self.__loginWidget.two_fa_auth_app_controls_ui()
 
     @Slot()
     def requires_2fa_email(self):
-        self.requiresEmailOTP2fa.emit()
+        self.__loginWidget.two_fa_email_controls_ui()
 
     @Slot(str)
     def submit_2fa_code(self, code):
@@ -149,16 +157,13 @@ class MainWidget(QWidget):
 
     @Slot()
     def two_fa_code_denied(self):
-        self.twoFACodeDenied.emit()
+        self.__loginWidget.two_fa_failed()
 
     @Slot()
     def log_out(self):
         # emit logout signal, so other modules can do what they need to do
         # when the user logs out
         self.logout.emit()
-        
-        # return to app launch state
-        self.set_launch_state()
 
     '''
     App Main Related Methods
@@ -175,6 +180,12 @@ class MainWidget(QWidget):
     def close_app(self):
         self.close()
 
+    @Slot()
+    def refresh_analytics_data(self):
+        self.refreshAnalyticsData.emit()
+
+    def update_days_data(self, new_days_list):
+        self.__mainAppWidget.update_days_data(new_days_list)
 
 
     '''

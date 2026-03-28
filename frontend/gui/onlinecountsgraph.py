@@ -6,6 +6,8 @@ class OnlineCountsGraph(FigureCanvas):
         self.__figure = plt.figure(figsize=(6, 3), constrained_layout=True)
         super().__init__(self.__figure)
 
+        self.graph_online_counts()
+
     def graph_online_counts(self):
         # Clear old graph
         self.__figure.clear()
@@ -23,7 +25,7 @@ class OnlineCountsGraph(FigureCanvas):
         axes.set_ylabel("y-axis")
 
         import random
-        def gen_random_data(self, data_range=100):
+        def gen_random_data(data_range=100):
             return [random.random() * random.random() * data_range for _i in range(24)]
         
         axes.plot(gen_random_data())
