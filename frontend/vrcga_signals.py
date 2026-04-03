@@ -43,6 +43,9 @@ closeApp = Signal()
 
 refreshAnalyticsData = Signal()
 
+# emits the index of the selected date in the model's days lisy when the selected date in the analytics views changes, 
+selectedDayChanged = Signal(int)
+
 '''
 Model Information signals (MI signals)
 

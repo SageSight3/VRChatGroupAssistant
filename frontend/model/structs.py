@@ -17,7 +17,8 @@ class OnlineCountTrackerData:
 
 class Day(object):
     
-    def __init__(self, a_date, a_weekday):
+    def __init__(self, a_date, a_weekday, an_index):
         
         self.date: str = a_date
         self.weekday: str = a_weekday
+        self.index: int = an_index

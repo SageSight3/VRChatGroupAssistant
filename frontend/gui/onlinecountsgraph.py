@@ -2,11 +2,30 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 
 class OnlineCountsGraph(FigureCanvas):
+
+    __timestampLabels = [f"{hour:02d}:00" for hour in range(0, 24)]
+
     def __init__(self):
         self.__figure = plt.figure(figsize=(6, 3), constrained_layout=True)
         super().__init__(self.__figure)
 
+        # Initialize Graph Attributes
+
+        self.__title = ""
+
+        self.__online_bar_labels: list[str] = []
+        self.__total_bar_labels: list[str] = []
+
+        self.__online_counts: list[int] = []
+        self.__total_counts: list[int] = []
+
+        # max height of the graph
+        self.__y_lim: int = 0
+
         self.graph_online_counts()
+
+    def update_graph(self, new_graph_data):
+        pass
 
     def graph_online_counts(self):
         # Clear old graph

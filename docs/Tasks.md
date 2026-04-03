@@ -49,6 +49,7 @@
     * *Once GUI is initially implemented, go through each screen/app page and implement missing functionality*
     * VRCGA Servuce status in GUI should update if the service quits unexpectedly
         * Should also update, if is unable to query VRChat API, for whatever reason (like API Outage, bad internet connection, etc.)
+    * add remember me checkbox and functionality to login
 
 ## In Progress
 * Make GUI

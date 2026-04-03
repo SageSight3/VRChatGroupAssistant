@@ -19,3 +19,5 @@ This list is less so target tasks to complete, and more of an ideas list thats m
 * Clean up file structure
 * Implementing other VRCGA Features
 * Create a dedciated doc for issues
+* Refactor frontend methods privacy to be more consistent with their data's privacy
+* Refactor out duplicate code

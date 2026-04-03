@@ -11,7 +11,8 @@ class AppMain(QWidget):
     from vrcga_signals import (
         logout, 
         closeApp, 
-        refreshAnalyticsData
+        refreshAnalyticsData,
+        selectedDayChanged
     )
     
     def __init__(self, parent=None):
@@ -57,6 +58,8 @@ class AppMain(QWidget):
         self.__logoutButton.clicked.connect(self.log_out)
         self.__quitButton.clicked.connect(self.close_app)
 
+        self.__analyticsPage.selectedDayChanged.connect(self.change_selected_day)
+
     def set_launch_state(self):
         # Hide the analytics sub panel in the main app's nav widget
         self.default_state()
@@ -96,6 +99,16 @@ class AppMain(QWidget):
 
     def update_days_data(self, new_days_list):
         self.__analyticsPage.update_days_data(new_days_list)
+
+    def update_selected_day(self, new_day):
+        self.__analyticsPage.update_selected_day(new_day)
+
+    def update_online_counts_graph(self, new_data):
+        self.__analyticsPage.update_online_counts_graph(new_data)
+
+    @Slot(int)
+    def change_selected_day(self, model_day_index):
+        self.selectedDayChanged.emit(model_day_index)
 
     @Slot()
     def refresh_analytics_data(self):

@@ -27,7 +27,7 @@ class ModelBackendInterlayer(AbstractInterlayer):
 
 
     # Override
-    def query_days_from_db(self) -> list[Mapping[str, str]]:
+    def query_days_from_db(self) -> list[Mapping[str, str, int]]:
 
         # Get dates and weekdays for every entry in logs
         days = data_parser.get_activity_log_data(ret_dates=True, ret_weekdays=True)

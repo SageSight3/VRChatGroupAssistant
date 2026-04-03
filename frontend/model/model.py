@@ -5,9 +5,9 @@ from model.structs import *
 
 class Model(QObject):
 
-    selectedDateChanged = Signal()
-    refreshedDaysList = Signal(list)
-    refreshedOnlineCountsTrackerData = Signal()
+    updatedSelectedDay = Signal(object)
+    refreshedDaysList = Signal(list, int) # updated days list, updated index of selected day
+    refreshedOnlineCountsTrackerData = Signal(list)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -17,13 +17,20 @@ class Model(QObject):
         
         # Days hold two vals, one for the date, one for the weekday
         self.__days: list[Day] = []
-        self.update_days()
-
-        self.__selected_day = self.__days[0]
-        
-        # Data for Online Counts Tracker
+        self.__selected_day = Day("", "", 0)
         self.__online_counts_data: list[OnlineCountTrackerData] = []
+        
+        # Assign initial values to data
+        self.update_days()
+        self.update_selected_day(0)
         self.update_date_online_counts_data(self.__selected_day.date)
+
+
+    '''
+    Data Update Methods
+
+    '''
+
 
     def update_data(self):
         self.update_days()
@@ -36,17 +43,26 @@ class Model(QObject):
         # Get update days list from backend
         updated_days = self.__interlayer.query_days_from_db()
 
+        # For finding the new index of selected day in the updated dates list
+        selected_day_new_index = None
+
+        index = 0 # To guarantee parity with item data in days lists in views
         for day in updated_days:
             date = day["Date"]
             weekday = day["Weekday"]
-            day_data = Day(date, weekday)
+            day_data = Day(date, weekday, index)
             self.__days.append(day_data)
 
-        self.refreshedDaysList.emit(self.__days)
+            if self.__selected_day.date == date:
+                selected_day_new_index = index
 
-    def update_selected_day(self, index):
-        self.__selected_day = self.__days[index]
-        self.selectedDateChanged.emot()
+            index = index + 1
+
+        # If the old selected day isn't found in the updated days list, the selected day should be set reset
+        if selected_day_new_index == None:
+            selected_day_new_index = 0
+
+        self.refreshedDaysList.emit(self.__days, selected_day_new_index)
 
     # Update online counts data with the online and total counts, timestamps, and online percents
     # of a group for the passed in date
@@ -78,15 +94,19 @@ class Model(QObject):
             an_online_count_datapoint = OnlineCountTrackerData(online, total, percent, timestamp)
             self.__online_counts_data.append(an_online_count_datapoint)
 
-        self.refreshedOnlineCountsTrackerData.emit()
+        self.refreshedOnlineCountsTrackerData.emit(self.__online_counts_data)
 
+    def update_selected_day(self, index):
+        if index == None:
+            return
+        self.__selected_day = self.__days[index]
+        self.updatedSelectedDay.emit(self.__selected_day)
 
 
     '''
     Getters
 
     '''
-
 
 
     def get_days(self):

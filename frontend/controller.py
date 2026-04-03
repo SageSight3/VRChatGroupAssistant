@@ -4,7 +4,7 @@ from PySide6.QtCore import Slot
 
 from gui.mainwidget import MainWidget
 from model.model import Model
-from model.structs import Day
+from model.structs import Day, OnlineCountTrackerData
 
 class Controller():
 
@@ -28,9 +28,12 @@ class Controller():
 
         self.__gui.logout.connect(self.log_out)
         self.__gui.refreshAnalyticsData.connect(self.refresh_analytics_gui_data)
+        self.__gui.selectedDayChanged.connect(self.change_selected_day)
         
         # Model Connections
         self.__model.refreshedDaysList.connect(self.update_days_in_gui)
+        self.__model.refreshedOnlineCountsTrackerData.connect(self.update_online_counts_graph)
+        self.__model.updatedSelectedDay.connect(self.update_selected_day_in_gui)
 
     def set_launch_state(self):
         # Pass model data to GUI on launch
@@ -47,9 +50,22 @@ class Controller():
     def refresh_analytics_gui_data(self):
         self.__model.update_data()
 
-    @Slot(list)
-    def update_days_in_gui(self, new_days_list: list[Day]):
+    @Slot(int)
+    def change_selected_day(self, model_day_index):
+        self.__model.update_selected_day(model_day_index)
+
+    @Slot(list, int)
+    def update_days_in_gui(self, new_days_list: list[Day], new_selected_day_index):
         self.__gui.update_days_data(new_days_list)
+        self.change_selected_day(new_selected_day_index)
+
+    @Slot(object)
+    def update_selected_day_in_gui(self, new_day: Day):
+        self.__gui.update_selected_day(new_day)
+
+    @Slot(list)
+    def update_online_counts_graph(self, new_data: list[OnlineCountTrackerData]):
+        self.__gui.update_online_counts_graph(new_data)
 
     # Run method for full front end
     def run(self):
