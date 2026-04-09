@@ -64,6 +64,7 @@
         * App Content
             * Analytics Page
                 * Online Counts Tracker
+                    * Model hooked into GUI classes, write graph widget
 * What should happen if a user loses management perms for or leaves/gets removed from a group? -> delete all data associated with that group, should there be a revert functionality, may not be able to be made truly secure, without a server element to the group's use of VRCGA or VRCGA directly
 * Design database for refactoring log storage to an sqlite3 db
 
