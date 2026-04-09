@@ -23,7 +23,7 @@ class Model(QObject):
         # Assign initial values to data
         self.update_days()
         self.update_selected_day(0)
-        self.update_date_online_counts_data(self.__selected_day.date)
+        self.update_date_online_counts_data()
 
 
     '''
@@ -34,7 +34,7 @@ class Model(QObject):
 
     def update_data(self):
         self.update_days()
-        self.update_date_online_counts_data(self.__selected_day.date)
+        self.update_date_online_counts_data()
 
     def update_days(self):
         # Clear days list for updating
@@ -66,12 +66,12 @@ class Model(QObject):
 
     # Update online counts data with the online and total counts, timestamps, and online percents
     # of a group for the passed in date
-    def update_date_online_counts_data(self, date):
+    def update_date_online_counts_data(self):
         # Clear existing online counts tracker data
         self.__online_counts_data.clear()
 
         # Get online counts for passed in date, from backend
-        new_data = self.__interlayer.query_date_online_counts_data(date)
+        new_data = self.__interlayer.query_date_online_counts_data(self.__selected_day.date)
 
         # Calculate and update online_percents for online counts tracker data
         for datapoint in new_data: # taking the length of timestamps is arbitrary here

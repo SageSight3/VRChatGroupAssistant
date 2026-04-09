@@ -25,7 +25,9 @@ class OnlineCountsGraph(FigureCanvas):
         self.graph_online_counts()
 
     def update_graph(self, new_graph_data):
-        pass
+        print("~~~~~~~~~~~~~~~~~~~~~")
+        for datapoint in new_graph_data:
+            print(f"{datapoint.timestamp} {datapoint.online_count} {datapoint.total_count} {datapoint.online_percent}%")
 
     def graph_online_counts(self):
         # Clear old graph

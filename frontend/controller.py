@@ -53,6 +53,7 @@ class Controller():
     @Slot(int)
     def change_selected_day(self, model_day_index):
         self.__model.update_selected_day(model_day_index)
+        self.__model.update_date_online_counts_data()
 
     @Slot(list, int)
     def update_days_in_gui(self, new_days_list: list[Day], new_selected_day_index):
