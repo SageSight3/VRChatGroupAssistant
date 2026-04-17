@@ -4,7 +4,7 @@ from PySide6.QtCore import Slot
 
 from gui.mainwidget import MainWidget
 from model.model import Model
-from model.structs import Day, OnlineCountTrackerData
+from model.modelobjects import *
 
 class Controller():
 
@@ -18,10 +18,6 @@ class Controller():
         self.setup_connections()
         self.set_launch_state()
 
-        # TEST
-        for datapoint in self.__model.get_online_counts_data():
-            print(f"online: {datapoint.online_count} total: {datapoint.total_count}, percent: {datapoint.online_percent}, timestamp: {datapoint.timestamp}")
-
     def setup_connections(self):
 
         # GUI Connections
@@ -32,7 +28,7 @@ class Controller():
         
         # Model Connections
         self.__model.refreshedDaysList.connect(self.update_days_in_gui)
-        self.__model.refreshedOnlineCountsTrackerData.connect(self.update_online_counts_graph)
+        self.__model.refreshedOnlineCountsGraphData.connect(self.update_online_counts_graph)
         self.__model.updatedSelectedDay.connect(self.update_selected_day_in_gui)
 
     def set_launch_state(self):
@@ -64,9 +60,9 @@ class Controller():
     def update_selected_day_in_gui(self, new_day: Day):
         self.__gui.update_selected_day(new_day)
 
-    @Slot(list)
-    def update_online_counts_graph(self, new_data: list[OnlineCountTrackerData]):
-        self.__gui.update_online_counts_graph(new_data)
+    @Slot(object)
+    def update_online_counts_graph(self, new_graph_data: OnlineCrountsGraphData):
+        self.__gui.update_online_counts_graph(new_graph_data)
 
     # Run method for full front end
     def run(self):

@@ -103,8 +103,8 @@ class AppMain(QWidget):
     def update_selected_day(self, new_day):
         self.__analyticsPage.update_selected_day(new_day)
 
-    def update_online_counts_graph(self, new_data):
-        self.__analyticsPage.update_online_counts_graph(new_data)
+    def update_online_counts_graph(self, new_graph_data):
+        self.__analyticsPage.update_online_counts_graph(new_graph_data)
 
     @Slot(int)
     def change_selected_day(self, model_day_index):

@@ -1,13 +1,14 @@
 from PySide6.QtCore import QObject, Signal
 
 from model.modelbackendinterlayer import ModelBackendInterlayer
-from model.structs import *
+from model.modelobjects import *
 
 class Model(QObject):
 
     updatedSelectedDay = Signal(object)
     refreshedDaysList = Signal(list, int) # updated days list, updated index of selected day
-    refreshedOnlineCountsTrackerData = Signal(list)
+    # refreshedOnlineCountsTrackerData = Signal(list)
+    refreshedOnlineCountsGraphData = Signal(object)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -19,11 +20,13 @@ class Model(QObject):
         self.__days: list[Day] = []
         self.__selected_day = Day("", "", 0)
         self.__online_counts_data: list[OnlineCountTrackerData] = []
+        self.__online_counts_graph_data: OnlineCrountsGraphData = OnlineCrountsGraphData("", self.__online_counts_data)
         
         # Assign initial values to data
         self.update_days()
         self.update_selected_day(0)
         self.update_date_online_counts_data()
+        self.update_online_counts_graph_data()
 
 
     '''
@@ -94,7 +97,14 @@ class Model(QObject):
             an_online_count_datapoint = OnlineCountTrackerData(online, total, percent, timestamp)
             self.__online_counts_data.append(an_online_count_datapoint)
 
-        self.refreshedOnlineCountsTrackerData.emit(self.__online_counts_data)
+        # self.refreshedOnlineCountsTrackerData.emit(self.__online_counts_data)
+        self.update_online_counts_graph_data()
+
+    def update_online_counts_graph_data(self):
+        graph_title = f"{self.__selected_day.weekday} {self.__selected_day.date}"
+        self.__online_counts_graph_data = OnlineCrountsGraphData(graph_title, self.__online_counts_data)
+
+        self.refreshedOnlineCountsGraphData.emit(self.__online_counts_graph_data )
 
     def update_selected_day(self, index):
         if index == None:
