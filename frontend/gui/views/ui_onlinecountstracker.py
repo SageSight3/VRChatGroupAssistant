@@ -55,10 +55,20 @@ class Ui_OnlineCountsTracker(object):
 
         self.controlsLayout.addWidget(self.dateSelectionBox)
 
-        self.graphPercentsCheckbox = QCheckBox(OnlineCountsTracker)
-        self.graphPercentsCheckbox.setObjectName(u"graphPercentsCheckbox")
+        self.showPercentsCheckbox = QCheckBox(OnlineCountsTracker)
+        self.showPercentsCheckbox.setObjectName(u"showPercentsCheckbox")
 
-        self.controlsLayout.addWidget(self.graphPercentsCheckbox)
+        self.controlsLayout.addWidget(self.showPercentsCheckbox)
+
+        self.showOnlineCheckbox = QCheckBox(OnlineCountsTracker)
+        self.showOnlineCheckbox.setObjectName(u"showOnlineCheckbox")
+
+        self.controlsLayout.addWidget(self.showOnlineCheckbox)
+
+        self.showTotalsCheckbox = QCheckBox(OnlineCountsTracker)
+        self.showTotalsCheckbox.setObjectName(u"showTotalsCheckbox")
+
+        self.controlsLayout.addWidget(self.showTotalsCheckbox)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
@@ -99,7 +109,9 @@ class Ui_OnlineCountsTracker(object):
         self.dateSelectionBox.setItemText(6, QCoreApplication.translate("OnlineCountsTracker", u"_YYYY-MM-DD Weekday", None))
         self.dateSelectionBox.setItemText(7, QCoreApplication.translate("OnlineCountsTracker", u"_YYYY-MM-DD Weekday", None))
 
-        self.graphPercentsCheckbox.setText(QCoreApplication.translate("OnlineCountsTracker", u"Graph as percents?", None))
+        self.showPercentsCheckbox.setText(QCoreApplication.translate("OnlineCountsTracker", u"Show Online Percents", None))
+        self.showOnlineCheckbox.setText(QCoreApplication.translate("OnlineCountsTracker", u"Show Online Counts", None))
+        self.showTotalsCheckbox.setText(QCoreApplication.translate("OnlineCountsTracker", u"Show Total Counts", None))
         self.prevDateButton.setText(QCoreApplication.translate("OnlineCountsTracker", u"...", None))
         self.nextDateButton.setText(QCoreApplication.translate("OnlineCountsTracker", u"...", None))
     # retranslateUi

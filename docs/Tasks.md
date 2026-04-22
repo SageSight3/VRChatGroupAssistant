@@ -50,6 +50,7 @@
     * VRCGA Servuce status in GUI should update if the service quits unexpectedly
         * Should also update, if is unable to query VRChat API, for whatever reason (like API Outage, bad internet connection, etc.)
     * add remember me checkbox and functionality to login
+* In modelbackendinterlay/dataparser, refactor log path to be parsed from app cofig
 
 ## In Progress
 * Make GUI

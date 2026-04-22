@@ -25,8 +25,8 @@ class OnlineCrountsGraphData:
 
         bar_not_found_label = "0%"
         self.percent_bar_labels = [bar_not_found_label for _hour in self.graph_timestamps]
+        
         self.percents = [0 for _hour in self.graph_timestamps]
-
         self.online_counts = [0 for _hour in self.graph_timestamps]
         self.total_counts = [0 for _hour in self.graph_timestamps]
 

@@ -16,7 +16,9 @@ class OnlineCountsTracker(QWidget):
         self.__view.setupUi(self)
 
         self.__dateSelectionBox = self.__view.dateSelectionBox
-        self.__graphPercentsCheckbox = self.__view.graphPercentsCheckbox
+        self.__showPercentsCheckbox = self.__view.showPercentsCheckbox
+        self.__showOnlineCheckbox = self.__view.showOnlineCheckbox
+        self.__showTotalsCheckbox = self.__view.showTotalsCheckbox
         self.__nextDateButton = self.__view.nextDateButton
         self.__prevDateButton = self.__view.prevDateButton
 
@@ -62,4 +64,8 @@ class OnlineCountsTracker(QWidget):
             self.__dateSelectionBox.setCurrentIndex(selected_date_new_index)
 
     def update_graph(self, new_graph_data):
-        self.__graph.update_graph(new_graph_data)
+        show_percents = self.__showPercentsCheckbox.isChecked()
+        show_online = self.__showOnlineCheckbox.isChecked()
+        show_totals = self.__showTotalsCheckbox.isChecked()
+
+        self.__graph.update_graph(new_graph_data, show_percents, show_online, show_totals)
