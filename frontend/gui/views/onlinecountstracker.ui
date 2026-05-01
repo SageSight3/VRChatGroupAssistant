@@ -88,23 +88,16 @@
       </widget>
      </item>
      <item>
+      <widget class="QCheckBox" name="showMemberCountsCheckbox">
+       <property name="text">
+        <string>Show Member Counts</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QCheckBox" name="showPercentsCheckbox">
        <property name="text">
         <string>Show Online Percents</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="showOnlineCheckbox">
-       <property name="text">
-        <string>Show Online Counts</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="showTotalsCheckbox">
-       <property name="text">
-        <string>Show Total Counts</string>
        </property>
       </widget>
      </item>
