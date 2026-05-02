@@ -12,7 +12,7 @@ data parser in the interim.
 
 '''
 
-import data_parser
+import model.data_parser as data_parser
 
 class ModelBackendInterlayer(AbstractInterlayer):
 

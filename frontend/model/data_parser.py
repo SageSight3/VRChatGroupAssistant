@@ -17,7 +17,7 @@ def get_activity_log_data(
         ret_group_total_member_counts=False
 ):
     # Open activity log
-    path = "/../data/activity_log"
+    path = "/../../data/activity_log"
     log_file = open(os.path.dirname(__file__) + path, 'r')
 
     # Parse log entries 
