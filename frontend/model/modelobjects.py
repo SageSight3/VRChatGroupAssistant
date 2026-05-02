@@ -35,8 +35,6 @@ class OnlineCrountsGraphData:
         self.online_counts = [0 for _hour in self.graph_timestamps]
         self.total_counts = [0 for _hour in self.graph_timestamps]
 
-        self.show_member_counts = True
-
         # Change default values to their respective values in target_date_data
         for data_index in range(0, len(online_counts_data)):
             # Find index in graph timestamps of data point (log entry) timestamp

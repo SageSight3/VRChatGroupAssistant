@@ -47,3 +47,8 @@ class AnalyticsPage(QWidget):
     def update_online_counts_graph(self, new_data):
         self.__onlinePlayerCountsTracker.update_graph(new_data)
         
+        # Possibly refactor into different method later, may see if can put all online player count tracker updates
+        # in one method
+        self.__onlinePlayerCountsTracker.set_show_member_counts(new_data.show_member_counts)
+        self.__onlinePlayerCountsTracker.set_show_online_percents(new_data.show_online_percents)
+        

@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QWidget
-from PySide6.QtCore import Slot, QSignalBlocker
+from PySide6.QtCore import Slot, QSignalBlocker, Qt
 
 from gui.views.ui_onlinecountstracker import Ui_OnlineCountsTracker
 
@@ -35,6 +35,8 @@ class OnlineCountsTracker(QWidget):
         self.__dateSelectionBox.currentIndexChanged.connect(self.change_selected_date)
         self.__showMemberCountsCheckbox.checkStateChanged.connect(self.change_show_member_counts)
         self.__showPercentsCheckbox.checkStateChanged.connect(self.change_show_online_percents)
+        self.__nextDateButton.clicked.connect(self.next_date)
+        self.__prevDateButton.clicked.connect(self.prev_date)
     
     @Slot(int)
     def change_selected_date(self, _date_seletion_box_index):
@@ -45,6 +47,34 @@ class OnlineCountsTracker(QWidget):
             return
         
         self.selectedDayChanged.emit(model_day_index)
+
+    @Slot()
+    def next_date(self):
+        # Since each arrow button wull be disabled, if at the beginning or end of the dates list, and pushing
+        # the next date button would mean there's valid dates before the selected one again, make sure the prev
+        # date button is reenabled
+        self.__prevDateButton.setEnabled(True)
+
+        new_selected_date_index = self.__dateSelectionBox.currentIndex() + 1
+        if new_selected_date_index >= self.__dateSelectionBox.count() - 1:
+            self.__dateSelectionBox.setCurrentIndex(self.__dateSelectionBox.count() - 1)
+            self.__nextDateButton.setEnabled(False)
+        else:
+            self.__dateSelectionBox.setCurrentIndex(new_selected_date_index)
+
+    @Slot()
+    def prev_date(self):
+        # Since each arrow button wull be disabled, if at the beginning or end of the dates list, and pushing
+        # the prev date button would mean there's valid dates after the selected one again, make sure the next
+        # date button is reenabled
+        self.__nextDateButton.setEnabled(True)
+
+        new_selected_date_index = self.__dateSelectionBox.currentIndex() - 1
+        if new_selected_date_index <= 0:
+            self.__dateSelectionBox.setCurrentIndex(0)
+            self.__prevDateButton.setEnabled(False)
+        else:
+            self.__dateSelectionBox.setCurrentIndex(new_selected_date_index)
 
     @Slot(object)
     def change_show_member_counts(self, check_state):
@@ -77,5 +107,16 @@ class OnlineCountsTracker(QWidget):
             self.__dateSelectionBox.setCurrentIndex(selected_date_new_index)
 
     def update_graph(self, new_graph_data):
-
         self.__graph.update_graph(new_graph_data, new_graph_data.show_online_percents, new_graph_data.show_member_counts)
+
+    def set_show_member_counts(self, is_shown):
+        if is_shown:
+            self.__showMemberCountsCheckbox.setCheckState(Qt.Checked)
+        else:
+            self.__showMemberCountsCheckbox.setCheckState(Qt.Unchecked)
+
+    def set_show_online_percents(self, is_shown):
+        if is_shown:
+            self.__showPercentsCheckbox.setCheckState(Qt.Checked)
+        else:
+            self.__showPercentsCheckbox.setCheckState(Qt.Unchecked)
