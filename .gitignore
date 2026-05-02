@@ -3,7 +3,7 @@
 /storage/config.json
 /storage/cookies
 /storage/target_group
-/deprecated
+/deprecated/storage
 /data/activity_log
 /config.json
 /.venv
