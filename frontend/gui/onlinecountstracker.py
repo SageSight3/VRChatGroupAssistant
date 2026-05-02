@@ -7,7 +7,11 @@ from gui.onlinecountsgraph import OnlineCountsGraph
 
 class OnlineCountsTracker(QWidget):
 
-    from vrcga_signals import selectedDayChanged
+    from vrcga_signals import (
+        selectedDayChanged, 
+        showMemberCountsChanged, 
+        showOnlinePercentsChanged
+    )
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -29,6 +33,8 @@ class OnlineCountsTracker(QWidget):
 
     def setup_connections(self):
         self.__dateSelectionBox.currentIndexChanged.connect(self.change_selected_date)
+        self.__showMemberCountsCheckbox.checkStateChanged.connect(self.change_show_member_counts)
+        self.__showPercentsCheckbox.checkStateChanged.connect(self.change_show_online_percents)
     
     @Slot(int)
     def change_selected_date(self, _date_seletion_box_index):
@@ -39,6 +45,14 @@ class OnlineCountsTracker(QWidget):
             return
         
         self.selectedDayChanged.emit(model_day_index)
+
+    @Slot(object)
+    def change_show_member_counts(self, check_state):
+        self.showMemberCountsChanged.emit(check_state)
+
+    @Slot(object)
+    def change_show_online_percents(self, check_state):
+        self.showOnlinePercentsChanged.emit(check_state)
 
     def refresh_dates_selection_box(self, new_days_list): 
         # Block signals to prevent selection box refresh from attempting to signal a selection change
@@ -64,4 +78,4 @@ class OnlineCountsTracker(QWidget):
 
     def update_graph(self, new_graph_data):
 
-        self.__graph.update_graph(new_graph_data)
+        self.__graph.update_graph(new_graph_data, new_graph_data.show_online_percents, new_graph_data.show_member_counts)

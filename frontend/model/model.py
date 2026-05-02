@@ -1,4 +1,4 @@
-from PySide6.QtCore import QObject, Signal
+from PySide6.QtCore import QObject, Signal, Qt
 
 from model.modelbackendinterlayer import ModelBackendInterlayer
 from model.modelobjects import *
@@ -6,6 +6,8 @@ from model.modelobjects import *
 class Model(QObject):
 
     updatedSelectedDay = Signal(object)
+    updatedShowMemberCounts = Signal(bool)
+    updatedShowOnlinePercents = Signal(bool)
     refreshedDaysList = Signal(list, int) # updated days list, updated index of selected day
     # refreshedOnlineCountsTrackerData = Signal(list)
     refreshedOnlineCountsGraphData = Signal(object)
@@ -102,15 +104,31 @@ class Model(QObject):
 
     def update_online_counts_graph_data(self):
         graph_title = f"{self.__selected_day.weekday} {self.__selected_day.date}"
-        self.__online_counts_graph_data = OnlineCrountsGraphData(graph_title, self.__online_counts_data)
+        self.__online_counts_graph_data.set_mpl_graph_data(graph_title, self.__online_counts_data)
 
-        self.refreshedOnlineCountsGraphData.emit(self.__online_counts_graph_data )
+        self.refreshedOnlineCountsGraphData.emit(self.__online_counts_graph_data)
 
     def update_selected_day(self, index):
         if index == None:
             return
         self.__selected_day = self.__days[index]
         self.updatedSelectedDay.emit(self.__selected_day)
+
+    def update_show_member_counts(self, is_shown: Qt.CheckState):
+        if is_shown == Qt.Unchecked:
+            self.__online_counts_graph_data.show_member_counts = False
+        else:
+            self.__online_counts_graph_data.show_member_counts = True
+
+        self.refreshedOnlineCountsGraphData.emit(self.__online_counts_graph_data)
+
+    def update_show_online_percents(self, is_shown: Qt.CheckState):
+        if is_shown == Qt.Unchecked:
+            self.__online_counts_graph_data.show_online_percents = False
+        else:
+            self.__online_counts_graph_data.show_online_percents = True
+
+        self.refreshedOnlineCountsGraphData.emit(self.__online_counts_graph_data)
 
 
     '''

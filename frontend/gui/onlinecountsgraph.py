@@ -17,7 +17,7 @@ class OnlineCountsGraph(FigureCanvas):
         self.__figure.set_edgecolor(graph_font_color)
         super().__init__(self.__figure)
 
-    def update_graph(self, new_graph_data, show_percents=True, show_member_counts=True):
+    def update_graph(self, new_graph_data, show_percents, show_member_counts):
 
         show_all_bars = show_percents and show_member_counts
 
@@ -41,24 +41,31 @@ class OnlineCountsGraph(FigureCanvas):
         axes.set_xticks(bar_group_locations + xtick_label_offset, new_graph_data.graph_timestamps)
 
         # Add bars
-        if show_member_counts:
-            self.graph_member_counts(axes, bar_group_locations, bar_width, new_graph_data)
+        # The outer conditional makes it so nothing is shown for the y-axis, if neither member counts or percents 
+        # are being shown, in the hopes of making the app look cleaner
+        if (show_percents or show_member_counts): 
+            if show_member_counts:
+                self.graph_member_counts(axes, bar_group_locations, bar_width, new_graph_data)
 
-        if show_percents:
-            if show_all_bars:
-                self.graph_online_percents(axes, bar_group_locations, bar_width, new_graph_data)
-            else:
-                bar_width = bar_width * 2 # since this means we're only showing 1 bar, make it thicker
-                self.graph_online_percents(axes, bar_group_locations, bar_width, new_graph_data, member_counts_bars=False)
+            if show_percents:
+                if show_all_bars:
+                    self.graph_online_percents(axes, bar_group_locations, bar_width, new_graph_data)
+                else:
+                    bar_width = bar_width * 2 # since this means we're only showing 1 bar, make it thicker
+                    self.graph_online_percents(axes, bar_group_locations, bar_width, new_graph_data, member_counts_bars=False)
 
-        # Add a legend
-        self.__figure.legend(
-            loc="upper left",
-            ncols=2, 
-            labelcolor=graph_font_color, 
-            edgecolor=graph_font_color, 
-            facecolor=graph_face_color
-        )
+            # Add a legend
+            if show_member_counts: # Will only show the legend if there is more than one bar in the bar groups
+                self.__figure.legend(
+                    loc="upper left",
+                    ncols=2, 
+                    labelcolor=graph_font_color, 
+                    edgecolor=graph_font_color, 
+                    facecolor=graph_face_color
+                )
+
+        else:
+            axes.yaxis.set_visible(False)
         
         # Redraw the graph
         self.draw()

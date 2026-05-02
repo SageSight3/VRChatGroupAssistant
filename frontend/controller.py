@@ -21,10 +21,11 @@ class Controller():
     def setup_connections(self):
 
         # GUI Connections
-
         self.__gui.logout.connect(self.log_out)
         self.__gui.refreshAnalyticsData.connect(self.refresh_analytics_gui_data)
         self.__gui.selectedDayChanged.connect(self.change_selected_day)
+        self.__gui.showMemberCountsChanged.connect(self.change_show_member_counts)
+        self.__gui.showOnlinePercentsChanged.connect(self.change_show_online_percents)
         
         # Model Connections
         self.__model.refreshedDaysList.connect(self.update_days_in_gui)
@@ -50,6 +51,14 @@ class Controller():
     def change_selected_day(self, model_day_index):
         self.__model.update_selected_day(model_day_index)
         self.__model.update_date_online_counts_data()
+
+    @Slot(object)
+    def change_show_member_counts(self, check_state):
+       self.__model.update_show_member_counts(check_state)
+    
+    @Slot(object)
+    def change_show_online_percents(self, check_state):
+        self.__model.update_show_online_percents(check_state)
 
     @Slot(list, int)
     def update_days_in_gui(self, new_days_list: list[Day], new_selected_day_index):

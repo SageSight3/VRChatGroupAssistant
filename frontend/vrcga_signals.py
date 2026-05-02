@@ -1,5 +1,4 @@
 from PySide6.QtCore import Signal
-
 '''
 VRCGA will treat signals as indications of singular specific events
 This means should be no question for what they mean to a receiving slot.
@@ -24,10 +23,6 @@ it will always only handle the events it's being made for.
 
 '''
 
-# VRCGA_GUI_TEST
-# temp signal for GUI development
-devSignal = Signal(str)
-
 '''
 Frontend Local Communication Exclusive signals (FLCE signals)
 Signals for communication soley between frontend objects
@@ -45,6 +40,9 @@ refreshAnalyticsData = Signal()
 
 # emits the index of the selected date in the model's days lisy when the selected date in the analytics views changes, 
 selectedDayChanged = Signal(int)
+
+showMemberCountsChanged = Signal(object)
+showOnlinePercentsChanged = Signal(object)
 
 '''
 Model Information signals (MI signals)

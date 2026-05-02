@@ -27,7 +27,9 @@ class MainWidget(QWidget):
         twoFACode,
         logout, 
         refreshAnalyticsData,
-        selectedDayChanged
+        selectedDayChanged,
+        showMemberCountsChanged,
+        showOnlinePercentsChanged
     )
 
     # VRCGA_GUI_TEST
@@ -92,7 +94,8 @@ class MainWidget(QWidget):
     
         self.__mainAppWidget.refreshAnalyticsData.connect(self.refresh_analytics_data)
         self.__mainAppWidget.selectedDayChanged.connect(self.change_selected_day)
-
+        self.__mainAppWidget.showMemberCountsChanged.connect(self.change_show_member_counts)
+        self.__mainAppWidget.showOnlinePercentsChanged.connect(self.change_show_online_percents)
 
 
     '''
@@ -189,6 +192,14 @@ class MainWidget(QWidget):
     @Slot(int)
     def change_selected_day(self, model_day_index):
         self.selectedDayChanged.emit(model_day_index)
+
+    @Slot(object)
+    def change_show_member_counts(self, check_state):
+        self.showMemberCountsChanged.emit(check_state)
+
+    @Slot(object)
+    def change_show_online_percents(self, check_state):
+        self.showOnlinePercentsChanged.emit(check_state)
 
     def update_days_data(self, new_days_list):
         self.__mainAppWidget.update_days_data(new_days_list)

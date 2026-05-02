@@ -12,7 +12,9 @@ class AppMain(QWidget):
         logout, 
         closeApp, 
         refreshAnalyticsData,
-        selectedDayChanged
+        selectedDayChanged,
+        showMemberCountsChanged,
+        showOnlinePercentsChanged
     )
     
     def __init__(self, parent=None):
@@ -59,6 +61,8 @@ class AppMain(QWidget):
         self.__quitButton.clicked.connect(self.close_app)
 
         self.__analyticsPage.selectedDayChanged.connect(self.change_selected_day)
+        self.__analyticsPage.showMemberCountsChanged.connect(self.change_show_member_counts)
+        self.__analyticsPage.showOnlinePercentsChanged.connect(self.change_show_online_percents)
 
     def set_launch_state(self):
         # Hide the analytics sub panel in the main app's nav widget
@@ -109,6 +113,14 @@ class AppMain(QWidget):
     @Slot(int)
     def change_selected_day(self, model_day_index):
         self.selectedDayChanged.emit(model_day_index)
+
+    @Slot(object)
+    def change_show_member_counts(self, check_state):
+        self.showMemberCountsChanged.emit(check_state)
+
+    @Slot(object)
+    def change_show_online_percents(self, check_state):
+        self.showOnlinePercentsChanged.emit(check_state)
 
     @Slot()
     def refresh_analytics_data(self):

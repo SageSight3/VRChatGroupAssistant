@@ -16,6 +16,11 @@ class OnlineCrountsGraphData:
     graph_timestamps = timestamps # done this way, so future model objects can also use timestamps
     
     def __init__(self, graph_title, online_counts_data: OnlineCountTrackerData):
+        self.show_member_counts = True
+        self.show_online_percents = False
+        self.set_mpl_graph_data(graph_title, online_counts_data)
+
+    def set_mpl_graph_data(self, graph_title, online_counts_data: OnlineCountTrackerData):
         self.graph_title = graph_title
 
         # Initialize default graph data
@@ -29,6 +34,8 @@ class OnlineCrountsGraphData:
         self.percents = [0 for _hour in self.graph_timestamps]
         self.online_counts = [0 for _hour in self.graph_timestamps]
         self.total_counts = [0 for _hour in self.graph_timestamps]
+
+        self.show_member_counts = True
 
         # Change default values to their respective values in target_date_data
         for data_index in range(0, len(online_counts_data)):
@@ -53,7 +60,7 @@ class OnlineCrountsGraphData:
             self.online_counts[graph_index] = data_point_online_count
             self.total_counts[graph_index] = data_point_total_count
             self.percent_bar_labels[graph_index] = str(data_point_percent) + "%"
-            self.percents[graph_index] = data_point_percent
+            self.percents[graph_index] = data_point_percent       
 
 class Day(object):
     
