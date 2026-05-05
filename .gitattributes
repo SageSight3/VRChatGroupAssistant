@@ -12,3 +12,4 @@
 /sandbox/PySideSandbox/OLD/app_mockup/resources_rc.py linguist-generated=true
 /frontend/gui/views/** linguist-generated=true
 /frontend/resources_rc.py linguist-generated=true
+/.venv/** linguist-generated=true
