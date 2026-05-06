@@ -32,8 +32,10 @@
 * Make sure it's up to date in `cargo.toml`, `config.json`, `config-guide.json`, and `constants.rs`
 * **Frontend**
     * convert necessary `.ui` files to `.py` files
+    * make sure compiling in the `.venv`
     * if building release:
         * Compile to an executable with PyInstaller: `python -m PyInstaller <--onedir or --onefile> <--noconsole> <filename.py>`
+        * Last compile command: `python -m PyInstaller --onefile --noconsole main.py`
 * **Backend**
     * if building release:
         * use command `cargo build --release`, compiles to release profile executable, instead of debug

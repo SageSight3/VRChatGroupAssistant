@@ -40,6 +40,8 @@
 * In modelbackendinterlay/dataparser, refactor log path to be parsed from app cofig
 * have model save showMemberCounts and showOnlinePercents values to a user's config
 * Switch log_group_member_counts() to use a BufWriter for updating the log -> not fully neccessary potentially, since log is only updated every hour
+* have service print both service and app version
+* Have all version nums somewhere in GUI, maybe in settings?
 
 ## In Progress
 * Make GUI
