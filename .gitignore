@@ -10,6 +10,9 @@
 /frontend/gui/__pycache__
 /frontend/gui/views/__pycache__
 /frontend/model/__pycache__
+/frontend/build
+/frontend/dist
+/frontend/main.spec
 /sandbox/PySideSandbox/__pycache__
 /sandbox/PySideSandbox/OLD/__pycache__
 /sandbox/PySideSandbox/OLD/ui_widget_experiment/__pycache__

@@ -1,6 +1,8 @@
 {
   "appName": "VRChat Group Assistant",
-  "appVersion": "0.12.0",
+  "serviceVersion": "0.12.0",
+  "frontendVersion": "0.20.0",
+  "appVersion": "0.32.0",
   "backendExePath": "./VRChatGroupAssistant.exe",
   "basicGroupInfo": {
     "discriminator": "GroupDiscriminator",

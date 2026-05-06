@@ -1,7 +1,13 @@
 # Notes
 
 ### To Update Version Number
-* Make sure it's up to date in `cargo.toml`, `config.json`, `config-guide.json`, and `constants.rs`
+* as of app version: 0.32.0, version has been split into three components: 
+    * frontend version - version of the frontend app and GUI
+    * service version - version of the backend service for querying the API and other backend responsibilities
+    * app version - the app's full version, will be frontend version + service version
+* Make sure service version is up to date in `cargo.toml`, `config.json`, `config-guide.json`, and `constants.rs`
+* Make sure frontend version is up to date in `config.json`
+* Make sure app version is up to date in `config.json`
 * Make sure to update version num in release build dir also
 
 ### To Switch to Venv

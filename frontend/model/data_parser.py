@@ -17,8 +17,12 @@ def get_activity_log_data(
         ret_group_total_member_counts=False
 ):
     # Open activity log
-    path = "/../../data/activity_log"
-    log_file = open(os.path.dirname(__file__) + path, 'r')
+    # path = "/../data/activity_log" # for compiling to --one-dir with PyInstaller
+    # path = "/data/activity_log" # for compiling to --one-file with PyInstaller
+    # log_file = open(os.path.dirname(__file__) + path, 'r')
+
+    path = "/../data/activity_log" # path for debugging in dev repo
+    log_file = open(os.getcwd() + path, 'r') # main.py will ensure frontend is running in correct cwd
 
     # Parse log entries 
     # Map each entry to a list, with each entry split into its individual attributes
