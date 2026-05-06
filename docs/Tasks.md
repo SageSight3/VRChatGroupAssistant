@@ -42,6 +42,7 @@
 * Switch log_group_member_counts() to use a BufWriter for updating the log -> not fully neccessary potentially, since log is only updated every hour
 * have service print both service and app version
 * Have all version nums somewhere in GUI, maybe in settings?
+* Add group name to online counts graph titles
 
 ## In Progress
 * Make GUI
