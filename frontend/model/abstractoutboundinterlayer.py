@@ -1,8 +1,12 @@
 from PySide6.QtCore import QObject
 
-from abc import ABCMeta, ABC, abstractmethod
+from abc import abstractmethod
 from collections.abc import Mapping
 from typing import Any
+
+import psutil
+
+from model.abstractinterlayerbase import AbstractInterlayer
 
 '''
 Creating an abstract interlayer class allows for 
@@ -30,16 +34,9 @@ EDIT: Abstract methods that have yet to be implemented will only raise an error 
 
 '''
 
-err_msg_base = "ModelServiceInterlayer: "
+err_msg_base = "AbstractOutboundInterlayer: "
 
-# Combine QObject's and ABC's metaclasses so Abstract Interlayer can inherit from both of them
-# ABC - Abstract Base Class
-class QObjectABCMeta(ABCMeta, QObject.__class__):
-    pass
-
-# AbstractInterlayer will inherit from QObject, since the interlayer
-# may need to be able to receive or emit signals
-class AbstractInterlayer(QObject, ABC, metaclass=QObjectABCMeta):
+class AbstractOutboundInterlayer(AbstractInterlayer):
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -56,19 +53,16 @@ class AbstractInterlayer(QObject, ABC, metaclass=QObjectABCMeta):
     @abstractmethod
     def query_date_online_counts_data(self, date) -> list[Mapping[str, Any]]:
         raise NotImplementedError(err_msg_base + "query_date_online_counts() not implemented")
-
+    
     '''
-    Config and Status Queries
-
-    '''
-
-    '''
-    Inbound Communications from VRCGA Service
+    Start/Stop VRCGA Service
 
     '''
 
-
-    '''
-    Oubound Communication to VRCGA Service
-
-    '''
+    @abstractmethod
+    def start_vrcga_service(self) -> psutil.Process :
+        raise NotImplementedError(err_msg_base + "start_vrcga_service() not implemented")
+    
+    @abstractmethod
+    def stop_vrcga_service(self, service_proc: psutil.Process):
+        raise NotImplementedError(err_msg_base + "stop_vrcga_service() not implemented")

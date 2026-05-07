@@ -99,7 +99,7 @@ class MainWidget(QWidget):
 
 
     '''
-    Login Related Methods
+    Login and Session Related Methods
 
     '''
 
@@ -170,11 +170,12 @@ class MainWidget(QWidget):
         # when the user logs out
         self.logout.emit()
 
+
+
     '''
     App Main Related Methods
 
     '''
-
 
 
     @Slot()
@@ -185,9 +186,25 @@ class MainWidget(QWidget):
     def close_app(self):
         self.close()
 
+
+
+    '''
+    Analytics
+
+    '''
+
+
     @Slot()
     def refresh_analytics_data(self):
         self.refreshAnalyticsData.emit()
+
+
+    
+    '''
+    Online Counts Tracker
+
+    '''
+
 
     @Slot(int)
     def change_selected_day(self, model_day_index):

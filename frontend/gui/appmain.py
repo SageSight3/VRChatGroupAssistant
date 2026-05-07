@@ -79,6 +79,14 @@ class AppMain(QWidget):
         util.hide_ui_element(self.__vrcgaServiceSubPanel)
         util.hide_ui_element(self.__refreshDataButtonWidget)
 
+
+
+    '''
+    Navigation
+
+    '''
+
+
     @Slot()
     def switch_to_about_page(self):
         self.switch_page(self.__aboutPage)
@@ -101,6 +109,14 @@ class AppMain(QWidget):
         self.default_state()
         self.__content.setCurrentWidget(page)
 
+
+
+    '''
+    Online Counts Tracker
+
+    '''
+
+
     def update_days_data(self, new_days_list):
         self.__analyticsPage.update_days_data(new_days_list)
 
@@ -122,9 +138,25 @@ class AppMain(QWidget):
     def change_show_online_percents(self, check_state):
         self.showOnlinePercentsChanged.emit(check_state)
 
+
+
+    '''
+    Analytics
+
+    '''
+
+
     @Slot()
     def refresh_analytics_data(self):
         self.refreshAnalyticsData.emit()
+
+
+
+    '''
+    Session Related Methods
+    
+    '''
+
 
     @Slot()
     def log_out(self):

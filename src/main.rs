@@ -2,11 +2,7 @@ use tokio_cron_scheduler::{JobScheduler, Job};
 use tokio;
 
 mod modules;
-use modules::auth;
-use modules::group_info;
-
-use crate::modules::util;
-use crate::modules::constants;
+use modules::*;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -17,6 +13,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let app_config = util::parse_json(constants::APP_CONFIG_PATH);
     let app_version = format!("{} {}", app_config["appName"].as_str().unwrap(), app_config["appVersion"].as_str().unwrap());
     println!("{}", app_version);
+
+    let service_version = format!("VRCGAService Version: {}", app_config["serviceVersion"].as_str().unwrap());
+    println!("{}", service_version);
 
     //Get target group id. Panic, if error
     let target_group_id_search = group_info::get_target_group_id(&session_config.clone()).await;

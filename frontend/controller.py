@@ -36,6 +36,14 @@ class Controller():
         # Pass model data to GUI on launch
         self.refresh_analytics_gui_data()
 
+
+    
+    '''
+    Login and Session Related Methods
+
+    '''
+
+
     @Slot()
     def log_out(self):
         # reset the GUI back to launch state login screen
@@ -43,9 +51,26 @@ class Controller():
 
         # TODO: Clear session data
 
+
+
+    '''
+    Analytics
+
+    '''
+
+
+
     @Slot()
     def refresh_analytics_gui_data(self):
-        self.__model.update_data()
+        self.__model.update_analytics_data()    
+        
+    
+    
+    '''
+    Online Counts Tracker
+
+    '''
+    
 
     @Slot(int)
     def change_selected_day(self, model_day_index):
@@ -72,6 +97,14 @@ class Controller():
     @Slot(object)
     def update_online_counts_graph(self, new_graph_data: OnlineCrountsGraphData):
         self.__gui.update_online_counts_graph(new_graph_data)
+
+
+
+    '''
+    Frontend Run Related Methods
+
+    '''
+
 
     # Run method for full front end
     def run(self):

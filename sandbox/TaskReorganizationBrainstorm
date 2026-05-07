@@ -1,5 +1,12 @@
 # Task Reorganization Brainstorm WIP
 
+Split Tasks into categories, for small, medium, and large
+* Small - polishing, code/small UX refinements -> nothing complex
+* Medium -
+* Large -
+Have dedicated issues/to do/ideas list -> will be added to as things come up
+Move tasks over to a checklist app
+
 Break tasks into different categories:
 * Refactorings
 * Feature Implementations Dir -> Should be a dir, with subdirs for individual features

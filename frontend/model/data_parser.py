@@ -131,8 +131,8 @@ def get_app_name():
 
 # Opens and parses the app's config
 def get_app_config():
-    path = "/../config.json"
-    app_config = open(os.path.dirname(__file__) + path, 'r')
+    path = "/../config.json" # remove the first /.. when compiling to one file for release build
+    app_config = open(os.getcwd() + path, 'r')
     
     # Parse app config
     parsed_app_config = json.load(app_config)

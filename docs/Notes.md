@@ -5,7 +5,7 @@
     * frontend version - version of the frontend app and GUI
     * service version - version of the backend service for querying the API and other backend responsibilities
     * app version - the app's full version, will be frontend version + service version
-* Make sure service version is up to date in `cargo.toml`, `config.json`, `config-guide.json`, and `constants.rs`
+* Make sure service version is up to date in `cargo.toml`, `config.json`, `config_release`, `config-guide.json`, `config_sandbox.json`, and `constants.rs`
 * Make sure frontend version is up to date in `config.json`
 * Make sure app version is up to date in `config.json`
 * Make sure to update version num in release build dir also
@@ -29,16 +29,25 @@
 * When making a release, make sure to include `READEME.md` and the `licenses` dir with it.
 
 ### Build Process
-* Make sure it's up to date in `cargo.toml`, `config.json`, `config-guide.json`, and `constants.rs`
+* Make sure version nums are up to date
+* For release builds: make sure port numbers are correct
 * **Frontend**
     * convert necessary `.ui` files to `.py` files
     * make sure compiling in the `.venv`
     * if building release:
+        * make sure to change paths in `data_parser` and `config.json`
+            * `data_parser`
+                * `get_app_config()` - should be `/config.json`
+                * `get_activity_log_data()` - `/data/activity_log`
+            * `config.json`
+                * change vrcga service path to correct location (should be `"/VRCGAService.exe"`)
+        * in `msointerlayer.py`, in `start_vrcga_service()`, remove cwd arg from `subprocess.Popen()`, or change to cwd to where it should be
         * Compile to an executable with PyInstaller: `python -m PyInstaller <--onedir or --onefile> <--noconsole> <filename.py>`
         * Last compile command: `python -m PyInstaller --onefile --noconsole main.py`
 * **Backend**
     * if building release:
         * use command `cargo build --release`, compiles to release profile executable, instead of debug
+        * remember to rename backend exe to `VRCGAService.exe`
 * if building release:
     * make sure everything is up to date in release build dir, also
 

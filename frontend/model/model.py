@@ -1,10 +1,12 @@
 from PySide6.QtCore import QObject, Signal, Qt
 
-from model.modelbackendinterlayer import ModelBackendInterlayer
+from model.msointerlayer import MSOInterlayer
+from model.msiinterlayer import MSIInterlayer
 from model.modelobjects import *
 
 class Model(QObject):
 
+    # Analytics Signals
     updatedSelectedDay = Signal(object)
     updatedShowMemberCounts = Signal(bool)
     updatedShowOnlinePercents = Signal(bool)
@@ -16,19 +18,27 @@ class Model(QObject):
         super().__init__(parent)
 
         # Interlayer object for frontend communication with database and VRCGA service
-        self.__interlayer = ModelBackendInterlayer()
+        self.__outbound_interlayer = MSOInterlayer()
+        self.__inbound_interlayer = MSIInterlayer()
         
-        # Days hold two vals, one for the date, one for the weekday
-        self.__days: list[Day] = []
+        # Analytics Data
+        self.__days: list[Day] = [] # Days hold two vals, one for the date, one for the weekday
         self.__selected_day = Day("", "", 0)
         self.__online_counts_data: list[OnlineCountTrackerData] = []
         self.__online_counts_graph_data: OnlineCrountsGraphData = OnlineCrountsGraphData("", self.__online_counts_data)
+
+        # Service Data
+        self.__vrga_service_process = self.__outbound_interlayer.start_vrcga_service()
         
         # Assign initial values to data
         self.update_days()
         self.update_selected_day(0)
         self.update_date_online_counts_data()
         self.update_online_counts_graph_data()
+
+        # VRCGA_GUI_TEST
+        print(self.__vrga_service_process)
+        # self.__outbound_interlayer.stop_vrcga_service(self.__vrga_service_process)
 
 
     '''
@@ -37,7 +47,7 @@ class Model(QObject):
     '''
 
 
-    def update_data(self):
+    def update_analytics_data(self):
         self.update_days()
         self.update_date_online_counts_data()
 
@@ -46,7 +56,7 @@ class Model(QObject):
         self.__days.clear()
         
         # Get update days list from backend
-        updated_days = self.__interlayer.query_days_from_db()
+        updated_days = self.__outbound_interlayer.query_days_from_db()
 
         # For finding the new index of selected day in the updated dates list
         selected_day_new_index = None
@@ -76,7 +86,7 @@ class Model(QObject):
         self.__online_counts_data.clear()
 
         # Get online counts for passed in date, from backend
-        new_data = self.__interlayer.query_date_online_counts_data(self.__selected_day.date)
+        new_data = self.__outbound_interlayer.query_date_online_counts_data(self.__selected_day.date)
 
         # Calculate and update online_percents for online counts tracker data
         for datapoint in new_data: # taking the length of timestamps is arbitrary here
