@@ -1,7 +1,6 @@
 # Tasks for 1.0.0
 
 ## To Do
-* Add buttons to start and stop Rust program
 * Make it so when program is launched, if any neccessary files or dirs don't exist yet, they'll be created with the necessary info they need -> make an install wizard?
 * Figure out how to distribute project, for version 1.0.0 -> do i need to publish both a release, package, or both? How do I do both of those things, and what do I need to include/do for each
 * Look into how to certify distributed release build/cost
@@ -18,7 +17,6 @@
     * implement checking if 2fa is required for when user login credentials are accepted in login screen
     * implement getting backend status and displaying it in main app widget in gui
     * have service session logs in control panel
-    * implement start, stop, restart, and refresh data button functionality in main app widget in gui
     * *Once GUI is initially implemented, go through each screen/app page and implement missing functionality*
     * VRCGA Servuce status in GUI should update if the service quits unexpectedly
         * Should also update, if is unable to query VRChat API, for whatever reason (like API Outage, bad internet connection, etc.)
@@ -36,8 +34,9 @@
     * App Container
         * Navigation
             * VRCGA Service status
+            * Add buttons to start and stop vrcga service
         * About Page
-            * * Add about/credits section to GUI -> will need to put LGPLv3 license text here? will also need to include name of LGPL libraries used (PySide6?)? Look into what else needs to be in it -> have contact information in it?
+            * Add about/credits section to GUI -> will need to put LGPLv3 license text here? will also need to include name of LGPL libraries used (PySide6?)? Look into what else needs to be in it -> have contact information in it?
 * Update frontend and maybe rust program also to change their working directories to where they need to be
 * Add quit all button to frontend -> should close both the gui app and stop the rust program
 * Look into how to have a python app communicate with a rust app
@@ -45,8 +44,13 @@
 * Implement login window functionality
 * Frontend
     * implement passing login info to backend
+    * implement start, stop, restart, and refresh data button functionality in main app widget in gui
+    * VRCGA Servuce status in GUI should update if the service quits unexpectedly
 * Make it so when frontend launches, it will check if VRCGA service is running, and if it isn't, start it
 * Change names in config prefixxed with `backend` to be prefixed with `service`
+* Have `start_vrcga_service()` update service status, if the vrcga service is already running
+* look into scheduling jobs in python
+* look into multithreading in python
 
 ## Done
 * Update group_info log_member_counts() to log 0 for both online and total counts if querying API fails
