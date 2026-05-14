@@ -55,9 +55,11 @@ class OnlineCountsTracker(QWidget):
         # date button is reenabled
         self.__prevDateButton.setEnabled(True)
 
-        new_selected_date_index = self.__dateSelectionBox.currentIndex() + 1
-        if new_selected_date_index >= self.__dateSelectionBox.count() - 1:
-            self.__dateSelectionBox.setCurrentIndex(self.__dateSelectionBox.count() - 1)
+        # For the date buttons, don't forget that the dates list starts at the most recent date and goes backwards
+        # So, the next button should go towards the beginning of the list
+        new_selected_date_index = self.__dateSelectionBox.currentIndex() - 1
+        if new_selected_date_index <= 0:
+            self.__dateSelectionBox.setCurrentIndex(0)
             self.__nextDateButton.setEnabled(False)
         else:
             self.__dateSelectionBox.setCurrentIndex(new_selected_date_index)
@@ -69,9 +71,11 @@ class OnlineCountsTracker(QWidget):
         # date button is reenabled
         self.__nextDateButton.setEnabled(True)
 
-        new_selected_date_index = self.__dateSelectionBox.currentIndex() - 1
-        if new_selected_date_index <= 0:
-            self.__dateSelectionBox.setCurrentIndex(0)
+        # For the date buttons, don't forget that the dates list starts at the most recent date and goes backwards
+        # So, the prev button should go towards the end of the list
+        new_selected_date_index = self.__dateSelectionBox.currentIndex() + 1
+        if new_selected_date_index >= self.__dateSelectionBox.count() - 1:
+            self.__dateSelectionBox.setCurrentIndex(self.__dateSelectionBox.count() - 1)
             self.__prevDateButton.setEnabled(False)
         else:
             self.__dateSelectionBox.setCurrentIndex(new_selected_date_index)

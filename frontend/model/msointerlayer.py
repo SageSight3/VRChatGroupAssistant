@@ -1,5 +1,6 @@
 from collections.abc import Mapping
 from typing import Any
+from PySide6.QtCore import QTimer
 
 import psutil
 import subprocess
@@ -24,6 +25,18 @@ class MSOInterlayer(AbstractOutboundInterlayer):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+
+        # VRCGA Service name for status checking
+        config = data_parser.get_app_config() 
+        self.__service_process_name = config["serviceProcessName"]
+
+        # Service Status Checker
+        self.__service_monitor = QTimer(self)
+        self.__service_monitor.timeout.connect(self.is_service_running)
+        # Check to make sure the service is running once every 3 minutes
+        self.__service_monitor.start(180000)
+        self.count = 0
+
 
     '''
     Database Queries
@@ -85,9 +98,9 @@ class MSOInterlayer(AbstractOutboundInterlayer):
 
         # Get VRCGA Service name/path
         config = data_parser.get_app_config() 
-        service_process_name = config["serviceProcessName"]
+        self.__service_process_name = config["serviceProcessName"]
 
-        service_process = self.is_running(service_process_name)
+        service_process = self.is_service_running()
         if service_process[0]:
             return service_process[1]
         
@@ -114,10 +127,10 @@ class MSOInterlayer(AbstractOutboundInterlayer):
                 shell=True
             )
         
-        service_process = self.is_running(service_process_name)
+        service_process = self.is_service_running()
         while not service_process[0]:
             time.sleep(1)
-            service_process = self.is_running(service_process_name)
+            service_process = self.is_service_running()
 
         return service_process[1]
 
@@ -139,8 +152,10 @@ class MSOInterlayer(AbstractOutboundInterlayer):
             print(f"ERROR: Failed to force kill backend process: {error}")
 
     # Is the VRCGA service running, and if so, what's its process?
-    def is_running(self, service_process_name):
+    def is_service_running(self):
+        self.count += 1
+        print(self.count)
         for process in  psutil.process_iter(["name"]):
-            if process.info["name"] == service_process_name:
+            if process.info["name"] == self.__service_process_name:
                 return (True, process)
         return (False, None)
