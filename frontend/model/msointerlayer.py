@@ -35,7 +35,6 @@ class MSOInterlayer(AbstractOutboundInterlayer):
         self.__service_monitor.timeout.connect(self.is_service_running)
         # Check to make sure the service is running once every 3 minutes
         self.__service_monitor.start(180000)
-        self.count = 0
 
 
     '''
@@ -153,8 +152,6 @@ class MSOInterlayer(AbstractOutboundInterlayer):
 
     # Is the VRCGA service running, and if so, what's its process?
     def is_service_running(self):
-        self.count += 1
-        print(self.count)
         for process in  psutil.process_iter(["name"]):
             if process.info["name"] == self.__service_process_name:
                 return (True, process)
