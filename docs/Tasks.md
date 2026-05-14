@@ -46,10 +46,8 @@
     * implement passing login info to backend
     * implement start, stop, restart, and refresh data button functionality in main app widget in gui
     * VRCGA Servuce status in GUI should update if the service quits unexpectedly
-* Make it so when frontend launches, it will check if VRCGA service is running, and if it isn't, start it
 * Change names in config prefixxed with `backend` to be prefixed with `service`
 * Have `start_vrcga_service()` update service status, if the vrcga service is already running
-* look into scheduling jobs in python
 * look into multithreading in python
 
 ## Done
@@ -93,3 +91,5 @@
                 * Model hooked into GUI classes, write graph widget
 * Arrow buttons to GUI for switching between graphs
 * have service print both service and app version
+* look into scheduling jobs in python
+* Make it so when frontend launches, it will check if VRCGA service is running, and if it isn't, start it
