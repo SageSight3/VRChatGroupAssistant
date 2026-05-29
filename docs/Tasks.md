@@ -49,6 +49,11 @@
 * Change names in config prefixxed with `backend` to be prefixed with `service`
 * Have `start_vrcga_service()` update service status, if the vrcga service is already running
 * look into multithreading in python
+    * The flask app will need to be on a separate thread from the app
+        * have it be a daemon of the app?
+        * the flask app's routes/methods would need to be defined within a parent method
+            * call parent method on server object, make thread of launching the server
+            * Sandbox first
 
 ## Done
 * Update group_info log_member_counts() to log 0 for both online and total counts if querying API fails
