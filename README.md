@@ -2,6 +2,8 @@
 
 VRChat Group Assistant is an app and backend to help with running a VRChat group, by providing analytics tools for identifying geogrpahical demographics within your group's member base to better understand what times of the day, your group is most active, and other tools for streamlining group moderation, event planning, and more, with possible future features including announcement, moderation, and log syncing with a discord server, if your group has one. See **[Features](docs/Features.md)** for more info.
 
+**Note:** I've been busier the past couple months, so VRCGA development has slowed, but is still underway.
+
 # Instructions
 VRChat Group Assistant, at present not create a config file for you automatically, which you will need to make manually, following the steps below.
 
