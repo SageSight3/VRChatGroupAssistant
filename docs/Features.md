@@ -69,6 +69,21 @@ Note: The app and backend run independently from each other. In future, there wi
 * Any action that requires the API to be queried should pop up a window saying that the backend service needs to be running for the action to work, if the backend is stopped
 * GUI should have page showing group description?
 
+### Data Analysis Feature Brainstorm
+* Today button in online activity tracker widget
+* Average activity tracker -> show average activity at every time throughout the week over a user chosen interval: default: 12 weeks, interval could be saved in config
+    * Could also make it so it shows the changes from the previous period, as well
+        * Could have another widget to show those changes over time
+* Growth tracker -> graph of group growth over time, could also have graph of group activity over time (online), as well
+* "Hotspots" -> display the top X times and the days they occur on where the group's online activity is, on average, highest
+    * Could have feature to filter for the top X times from a set of user selected times throughout the week (in short, a schedule availability filter)
+* Projections -> Could show estimates of what group analytics may look like in future weeks/months, if trends continu, based on data from all time or set interval
+* Mutual Group Analysis -> Get a list of groups that significant a significant percent of the group's member base are also in, and display them with their respective percentages, user would be allowed to choose the threshold - minimum: 5%?, a mutual group would need to be among the group's member base to be shown
+* Verified 18+ Demographics -> Gets percent and number of group members that are Verified 18+
+* **Meetup Analysis**
+    * List regular attendees -> members who've shown up consistently over a set interval -> user can customize consistency threshold: minimum: 25%?
+    * Instance activity tracker -> display how many members are in meetup instances over time (every 20 minutes?)
+
 ### GUI Brainstorm
 * Have arrow buttons to switch between graphs of different days
 * Checkboxes to toggle rendering for both online and total member counts
