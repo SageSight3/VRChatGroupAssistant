@@ -24,6 +24,7 @@ class OnlineCountsTracker(QWidget):
         self.__showMemberCountsCheckbox = self.__view.showMemberCountsCheckbox
         self.__nextDateButton = self.__view.nextDateButton
         self.__prevDateButton = self.__view.prevDateButton
+        self.__todayButton = self.__view.todayButton
 
         # Add graph to view
         self.__graph = OnlineCountsGraph()
@@ -37,6 +38,7 @@ class OnlineCountsTracker(QWidget):
         self.__showPercentsCheckbox.checkStateChanged.connect(self.change_show_online_percents)
         self.__nextDateButton.clicked.connect(self.next_date)
         self.__prevDateButton.clicked.connect(self.prev_date)
+        self.__todayButton.clicked.connect(self.today)
     
     @Slot(int)
     def change_selected_date(self, _date_seletion_box_index):
@@ -50,35 +52,16 @@ class OnlineCountsTracker(QWidget):
 
     @Slot()
     def next_date(self):
-        # Since each arrow button wull be disabled, if at the beginning or end of the dates list, and pushing
-        # the next date button would mean there's valid dates before the selected one again, make sure the prev
-        # date button is reenabled
-        self.__prevDateButton.setEnabled(True)
-
-        # For the date buttons, don't forget that the dates list starts at the most recent date and goes backwards
-        # So, the next button should go towards the beginning of the list
-        new_selected_date_index = self.__dateSelectionBox.currentIndex() - 1
-        if new_selected_date_index <= 0:
-            self.__dateSelectionBox.setCurrentIndex(0)
-            self.__nextDateButton.setEnabled(False)
-        else:
-            self.__dateSelectionBox.setCurrentIndex(new_selected_date_index)
+        self.set_date_selection(self.__dateSelectionBox.currentIndex() - 1)
 
     @Slot()
     def prev_date(self):
-        # Since each arrow button wull be disabled, if at the beginning or end of the dates list, and pushing
-        # the prev date button would mean there's valid dates after the selected one again, make sure the next
-        # date button is reenabled
-        self.__nextDateButton.setEnabled(True)
+        self.set_date_selection(self.__dateSelectionBox.currentIndex() + 1)
 
-        # For the date buttons, don't forget that the dates list starts at the most recent date and goes backwards
-        # So, the prev button should go towards the end of the list
-        new_selected_date_index = self.__dateSelectionBox.currentIndex() + 1
-        if new_selected_date_index >= self.__dateSelectionBox.count() - 1:
-            self.__dateSelectionBox.setCurrentIndex(self.__dateSelectionBox.count() - 1)
-            self.__prevDateButton.setEnabled(False)
-        else:
-            self.__dateSelectionBox.setCurrentIndex(new_selected_date_index)
+    # Sets date shown in gui to today
+    @Slot()
+    def today(self):
+        self.set_date_selection(0)
 
     @Slot(object)
     def change_show_member_counts(self, check_state):
@@ -87,6 +70,21 @@ class OnlineCountsTracker(QWidget):
     @Slot(object)
     def change_show_online_percents(self, check_state):
         self.showOnlinePercentsChanged.emit(check_state)
+
+    # Sets date of date selection box while also enabing and disabling next and prev buttons, as needed
+    def set_date_selection(self, new_date_index):
+        # Enable next and prev buttons
+        self.__nextDateButton.setEnabled(True)
+        self.__prevDateButton.setEnabled(True)
+
+        if new_date_index >= self.__dateSelectionBox.count() - 1:
+            new_date_index = self.__dateSelectionBox.count() - 1
+            self.__prevDateButton.setEnabled(False)
+        elif new_date_index <= 0:
+            new_date_index = 0
+            self.__nextDateButton.setEnabled(False)
+
+        self.__dateSelectionBox.setCurrentIndex(new_date_index)
 
     def refresh_dates_selection_box(self, new_days_list): 
         # Block signals to prevent selection box refresh from attempting to signal a selection change
@@ -108,7 +106,7 @@ class OnlineCountsTracker(QWidget):
         # positions, prevent it from signaling that its selected item has changed again, for
         # the same item
         with QSignalBlocker(self.__dateSelectionBox):
-            self.__dateSelectionBox.setCurrentIndex(selected_date_new_index)
+            self.set_date_selection(selected_date_new_index)
 
     def update_graph(self, new_graph_data):
         self.__graph.update_graph(new_graph_data, new_graph_data.show_online_percents, new_graph_data.show_member_counts)

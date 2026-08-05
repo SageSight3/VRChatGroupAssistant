@@ -28,6 +28,7 @@
 * Style GUI
 * Unless user selects remember me, quitting the app, should log the user out
 * Have server port nums in config and parsed by frontend and service on launch
+* Update service to show print frontend version, as well?
 
 ## In Progress
 * Make GUI

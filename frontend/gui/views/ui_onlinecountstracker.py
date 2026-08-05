@@ -15,11 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QHBoxLayout, QSizePolicy,
-    QSpacerItem, QToolButton, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QHBoxLayout, QPushButton,
+    QSizePolicy, QSpacerItem, QToolButton, QVBoxLayout,
+    QWidget)
 
 from gui.util import SearchableComboBox
-import resources_rc
 
 class Ui_OnlineCountsTracker(object):
     def setupUi(self, OnlineCountsTracker):
@@ -69,17 +69,22 @@ class Ui_OnlineCountsTracker(object):
 
         self.controlsLayout.addItem(self.horizontalSpacer)
 
-        self.prevDateButton = QToolButton(OnlineCountsTracker)
-        self.prevDateButton.setObjectName(u"prevDateButton")
-        self.prevDateButton.setArrowType(Qt.LeftArrow)
+        self.todayButton = QPushButton(OnlineCountsTracker)
+        self.todayButton.setObjectName(u"todayButton")
 
-        self.controlsLayout.addWidget(self.prevDateButton)
+        self.controlsLayout.addWidget(self.todayButton)
 
         self.nextDateButton = QToolButton(OnlineCountsTracker)
         self.nextDateButton.setObjectName(u"nextDateButton")
-        self.nextDateButton.setArrowType(Qt.RightArrow)
+        self.nextDateButton.setArrowType(Qt.LeftArrow)
 
         self.controlsLayout.addWidget(self.nextDateButton)
+
+        self.prevDateButton = QToolButton(OnlineCountsTracker)
+        self.prevDateButton.setObjectName(u"prevDateButton")
+        self.prevDateButton.setArrowType(Qt.RightArrow)
+
+        self.controlsLayout.addWidget(self.prevDateButton)
 
 
         self.verticalLayout.addLayout(self.controlsLayout)
@@ -106,7 +111,8 @@ class Ui_OnlineCountsTracker(object):
 
         self.showMemberCountsCheckbox.setText(QCoreApplication.translate("OnlineCountsTracker", u"Show Member Counts", None))
         self.showPercentsCheckbox.setText(QCoreApplication.translate("OnlineCountsTracker", u"Show Online Percents", None))
-        self.prevDateButton.setText(QCoreApplication.translate("OnlineCountsTracker", u"...", None))
+        self.todayButton.setText(QCoreApplication.translate("OnlineCountsTracker", u"Today", None))
         self.nextDateButton.setText(QCoreApplication.translate("OnlineCountsTracker", u"...", None))
+        self.prevDateButton.setText(QCoreApplication.translate("OnlineCountsTracker", u"...", None))
     # retranslateUi
 

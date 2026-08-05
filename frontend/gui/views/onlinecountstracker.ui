@@ -115,7 +115,14 @@
       </spacer>
      </item>
      <item>
-      <widget class="QToolButton" name="prevDateButton">
+      <widget class="QPushButton" name="todayButton">
+       <property name="text">
+        <string>Today</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="nextDateButton">
        <property name="text">
         <string>...</string>
        </property>
@@ -125,7 +132,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="nextDateButton">
+      <widget class="QToolButton" name="prevDateButton">
        <property name="text">
         <string>...</string>
        </property>
@@ -148,8 +155,6 @@
    <header>gui.util</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="../resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
