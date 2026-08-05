@@ -69,6 +69,7 @@ Note: The app and backend run independently from each other. In future, there wi
 * Any action that requires the API to be queried should pop up a window saying that the backend service needs to be running for the action to work, if the backend is stopped
 * GUI should have page showing group description?
 * GUI should display name of group being viewed/interacted with
+* Group members trust rank anaylytics -> ex. How many members of the group are known or trusted? How many are user or below?
 
 ### Data Analysis Feature Brainstorm
 * Today button in online activity tracker widget
