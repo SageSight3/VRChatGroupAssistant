@@ -68,6 +68,7 @@ Note: The app and backend run independently from each other. In future, there wi
 * Automatically give members of a group who have verified their 18+ with VRChat a role to allow them to be pinged exclusively for adult only events -> As of 03/23/2026, VRChat's group post system doesn't have an option to only ping members who are verified 18+, meaning groups would need to have to make a unique role and assign it to members over 18, manually, to ping them, if they need to for some reason.
 * Any action that requires the API to be queried should pop up a window saying that the backend service needs to be running for the action to work, if the backend is stopped
 * GUI should have page showing group description?
+* GUI should display name of group being viewed/interacted with
 
 ### Data Analysis Feature Brainstorm
 * Today button in online activity tracker widget
